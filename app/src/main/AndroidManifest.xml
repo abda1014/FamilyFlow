@@ -1,29 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="hs.karlsruhe.de.bmi_rechner">
+    package="hs.karlsruhe.de.familyFlow">
 
-    <application
-        android:allowBackup="true"
-        android:icon="@mipmap/cookies"
-        android:label="@string/app_name"
-        android:supportsRtl="true"
+    <application>
+<!--        android:allowBackup="true"-->
+<!--        android:icon="@mipmap/cookies"-->
+<!--        android:label="@string/app_name"-->
+<!--        android:supportsRtl="true"-->
 
-        android:theme="@style/AppTheme"
-        >
+<!--        android:theme="@style/AppTheme"-->
+<!--        >-->
 
-        <activity android:name=".Menu">
+        <activity android:name="hs.karlsruhe.de.FamilyFlow.Menu"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".laender_activities.BMI_Deutschland" />
-        <activity android:name=".laender_activities.BMI_USA" />
-        <activity android:name=".laender_activities.BMI_Portugal" />
-        <activity
-            android:name=".laender_activities.BMI_Denglisch"
-            android:label="Denglisch" />
+        <activity android:name="hs.karlsruhe.de.FamilyFlow.ui.Pinwand" />
     </application>
 
 </manifest>
