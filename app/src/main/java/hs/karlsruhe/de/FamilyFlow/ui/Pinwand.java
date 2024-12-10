@@ -6,8 +6,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
 
-public class Pinwand extends Activity {
+import hs.karlsruhe.de.familyflow.R;
+
+
+public class Pinwand extends AppCompatActivity {
 
     private EditText gewichtText;
     private EditText hoeheText;
@@ -16,8 +20,7 @@ public class Pinwand extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_bmi_deutschland);
-
+        setContentView(R.layout.activity_pinwand);
     }
 
     public void calculateClickHandler(View view) {

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@android:dimen/dialog_min_width_major"
+    android:paddingTop="@android:dimen/dialog_min_width_major"
+    android:paddingRight="@android:dimen/dialog_min_width_major"
+    android:paddingBottom="@android:dimen/dialog_min_width_major"
+    tools:context="hs.karlsruhe.de.FamilyFlow.ui.Pinwand">
+
+    <Button
+        android:id="@+id/AufgabenButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/aufgaben" />
+</RelativeLayout>
