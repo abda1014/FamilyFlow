@@ -1,6 +1,5 @@
-package hs.karlsruhe.de.FamilyFlow.ui;
+package hs.karlsruhe.de.familyflow.activities;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -11,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import hs.karlsruhe.de.familyflow.R;
 
 
-public class Pinwand extends AppCompatActivity {
+public class Pinnwand extends AppCompatActivity {
 
     private EditText gewichtText;
     private EditText hoeheText;
@@ -20,7 +19,7 @@ public class Pinwand extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pinwand);
+        setContentView(R.layout.activity_pinnwand);
     }
 
     public void calculateClickHandler(View view) {
