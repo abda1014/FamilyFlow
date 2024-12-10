@@ -95,7 +95,7 @@ public class Pinwand extends Activity {
         } else {
             return "Stark Übergewichtig";
         }
-
+//test
     }
 
 
