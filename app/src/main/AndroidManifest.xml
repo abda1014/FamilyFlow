@@ -12,19 +12,26 @@
 <!--        android:icon="@mipmap/cookies"-->
 <!--        android:label="@string/app_name"-->
 <!--        android:supportsRtl="true"-->
+    <application
+        android:theme="@style/Theme.FamilyFlow"> <!-- Globales Theme für die App -->
 
-<!--        android:theme="@style/AppTheme"-->
-<!--        >-->
-
-        <activity android:name="hs.karlsruhe.de.familyflow.Menu"
-            android:exported="true">
+        <activity
+            android:name=".activities.Login"
+            android:exported="true"
+            android:theme="@style/Theme.FamilyFlow"> <!-- Spezifisches Theme für Login -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="hs.karlsruhe.de.familyflow.activities.Pinnwand" />
+
+        <!-- Weitere Activities -->
+
+        <activity
+            android:name=".activities.Pinnwand"
+            android:exported="true"
+            android:theme="@style/Theme.FamilyFlow"/> <!-- Optional: Theme für Pinnwand -->
+
     </application>
 
 </manifest>
