@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">FamilyFlow</string>
+    <string name="benutzername">Benutername eingeben</string>
+    <string name="buttonLogin">Login</string>
+    <string name="buttonRegistrieren">Registrieren</string>
+    <string name="passwort">Passwort eingeben</string>
 </resources>
