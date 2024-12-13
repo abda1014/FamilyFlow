@@ -4,9 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import hs.karlsruhe.de.familyflow.R;
 
@@ -17,14 +17,14 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // Initialisiere Frames
-        LinearLayout frameInitial = findViewById(R.id.frameInitial);
-        LinearLayout frameLogin = findViewById(R.id.frameLogin);
+        // Initialisiere Frames als ConstraintLayout
+        ConstraintLayout frameInitial = findViewById(R.id.frameInitial);
+        ConstraintLayout frameLogin = findViewById(R.id.frameLogin);
 
         // Ursprünglicher Login-Button
         Button buttonLogin = findViewById(R.id.buttonLogin);
 
-        // Zeigt Frame mit Eingabefeldern und versteckt Initial-Frame
+        // Zeigt Frame mit Eingabefeldern und versteckt das Initial-Frame
         buttonLogin.setOnClickListener(v -> {
             frameInitial.setVisibility(View.GONE);
             frameLogin.setVisibility(View.VISIBLE);

@@ -9,12 +9,10 @@
     tools:context="hs.karlsruhe.de.familyflow.activities.Login">
 
     <!-- Frame 1: Ursprüngliche Buttons -->
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/frameInitial"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical"
         android:visibility="visible"
         tools:visibility="gone">
 
@@ -25,7 +23,12 @@
             android:backgroundTint="@color/brown1"
             android:text="@string/buttonLogin"
             android:textColor="@android:color/white"
-            app:cornerRadius="8dp" />
+            app:cornerRadius="8dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/buttonRegistrieren"
+            app:layout_constraintVertical_chainStyle="packed" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonRegistrieren"
@@ -35,25 +38,30 @@
             android:backgroundTint="@color/brown1"
             android:text="@string/buttonRegistrieren"
             android:textColor="@android:color/white"
-            app:cornerRadius="8dp" />
-    </LinearLayout>
+            app:cornerRadius="8dp"
+            app:layout_constraintTop_toBottomOf="@id/buttonLogin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- Frame 2: Eingabefelder und Login-Button -->
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/frameLogin"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center"
         android:visibility="gone"
         tools:visibility="visible">
 
+        <!-- Username Input Field -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/usernameInputLayout"
             android:layout_width="311dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:hint="@string/benutzername">
+            android:layout_marginTop="100dp"
+            android:hint="@string/benutzername"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextBenutzername"
@@ -62,12 +70,16 @@
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Password Input Field -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/passwordInputLayout"
             android:layout_width="311dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:hint="@string/passwort">
+            android:layout_marginTop="10dp"
+            android:hint="@string/passwort"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/usernameInputLayout">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextPasswort"
@@ -76,14 +88,50 @@
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Login Button -->
+
+        <!-- Passwort vergessen Button -->
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonNewLogin"
-            android:layout_width="130dp"
+            android:layout_width="310dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:backgroundTint="@color/brown1"
             android:text="@string/buttonLogin"
             android:textColor="@android:color/white"
-            app:cornerRadius="8dp" />
-    </LinearLayout>
+            app:cornerRadius="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/buttonVergessen" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonVergessen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:layout_marginTop="36dp"
+            android:backgroundTint="@android:color/white"
+            android:text="@string/passwortVergessen"
+            android:textColor="@color/brown1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/passwordInputLayout" />
+
+        <TextView
+            android:id="@+id/textKontoErstellen"
+            style="@style/BoldTextStyle"
+            android:layout_width="321dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="72dp"
+            android:gravity="center"
+            android:text="@string/stringTextKontoErstellen"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/buttonNewLogin" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

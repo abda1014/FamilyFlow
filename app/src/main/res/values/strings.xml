@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">FamilyFlow</string>
-    <string name="benutzername">Benutername eingeben</string>
-    <string name="buttonLogin">Login</string>
-    <string name="buttonRegistrieren">Registrieren</string>
-    <string name="passwort">Passwort eingeben</string>
+    <string name="benutzername">E-Mail-Adresse</string>
+    <string name="buttonLogin">Anmelden</string>
+    <string name="buttonRegistrieren">Konto erstellen</string>
+    <string name="stringTextKontoErstellen">Wenn Sie noch kein Konto haben, erstellen Sie eines.</string>
+    <string name="passwort">Passwort</string>
+    <string name="passwortVergessen">Passwort vergessen</string>
 </resources>
