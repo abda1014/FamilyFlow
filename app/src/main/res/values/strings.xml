@@ -6,4 +6,7 @@
     <string name="stringTextKontoErstellen">Wenn Sie noch kein Konto haben, erstellen Sie eines.</string>
     <string name="passwort">Passwort</string>
     <string name="passwortVergessen">Passwort vergessen</string>
+    <string name="logo_beschreibung">App-Logo</string>
+    <string name="ueberschriftLogin">Sign in</string>
+    <string name="zurueck">zurück</string>
 </resources>
