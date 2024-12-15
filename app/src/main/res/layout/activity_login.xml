@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="visible"
-        tools:visibility="visible">
+        tools:visibility="gone">
 
         <!-- App-Logo -->
         <ImageView
@@ -67,7 +67,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
-        tools:visibility="gone">
+        tools:visibility="visible">
 
         <!-- Eingabefeld Mail-Adresse -->
         <com.google.android.material.textfield.TextInputLayout
@@ -82,7 +82,7 @@
             app:layout_constraintTop_toBottomOf="@id/textUeberschrift">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextBenutzername"
+                android:id="@+id/editTextMail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text" />
@@ -137,11 +137,13 @@
             app:layout_constraintTop_toBottomOf="@+id/textKontoErstellen" />
 
         <!-- Zurück-button -->
+
+        <!-- Passwort vergessen- Button -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonZurueck"
             android:layout_width="110dp"
             android:layout_height="48dp"
-            android:layout_marginTop="112dp"
+            android:layout_marginTop="88dp"
             android:backgroundTint="@color/brown1"
             android:text="@string/zurueck"
             android:textColor="@android:color/white"
@@ -151,7 +153,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttonKontoAnlegen" />
 
-        <!-- Passwort vergessen- Button -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonVergessen"
             android:layout_width="wrap_content"
@@ -167,19 +168,20 @@
             app:layout_constraintTop_toBottomOf="@id/passwordInputLayout" />
 
         <!-- Infotext zu Konto erstellen -->
+
+        <!-- Text Überschrift -->
         <TextView
             android:id="@+id/textKontoErstellen"
             style="@style/BoldTextStyle"
             android:layout_width="321dp"
             android:layout_height="55dp"
-            android:layout_marginTop="72dp"
+            android:layout_marginTop="48dp"
             android:gravity="center"
             android:text="@string/stringTextKontoErstellen"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/buttonNewLogin" />
+            app:layout_constraintTop_toBottomOf="@id/fehlermeldung" />
 
-        <!-- Text Überschrift -->
         <TextView
             android:id="@+id/textUeberschrift"
             style="@style/UeberschriftLogin"
@@ -191,6 +193,21 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/fehlermeldung"
+            android:layout_width="240dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:text="@string/fehlermeldungLogin"
+            android:textColor="@android:color/holo_red_dark"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/buttonNewLogin"
+            tools:visibility="visible" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

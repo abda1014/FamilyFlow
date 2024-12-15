@@ -3,10 +3,11 @@
     <string name="benutzername">E-Mail-Adresse</string>
     <string name="buttonLogin">Anmelden</string>
     <string name="buttonRegistrieren">Konto erstellen</string>
-    <string name="stringTextKontoErstellen">Wenn Sie noch kein Konto haben, erstellen Sie eines.</string>
+    <string name="fehlermeldungLogin">Ungültige EIngabe: E-Mail-Adresse oder Passwort ist falsch</string>
     <string name="passwort">Passwort</string>
     <string name="passwortVergessen">Passwort vergessen</string>
     <string name="logo_beschreibung">App-Logo</string>
+    <string name="stringTextKontoErstellen">Wenn Sie noch kein Konto haben, erstellen Sie eines.</string>
     <string name="ueberschriftLogin">Sign in</string>
     <string name="zurueck">zurück</string>
 </resources>
