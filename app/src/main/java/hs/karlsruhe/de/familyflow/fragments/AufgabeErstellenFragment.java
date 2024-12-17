@@ -16,10 +16,9 @@ public class AufgabeErstellenFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_aufgabe_erstellen, container, false);
 
         // TODO: Logik für das Erstellen einer neuen Aufgabe hinzufügen
 
-        return view;
+        return inflater.inflate(R.layout.fragment_aufgabe_erstellen, container, false);
     }
 }

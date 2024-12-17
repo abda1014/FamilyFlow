@@ -6,21 +6,21 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <EditText
+    <TextView
         android:id="@+id/editTextAufgabeTitel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Titel der Aufgabe"/>
+        android:hint="@string/titel_der_aufgabe"/>
 
-    <EditText
+    <TextView
         android:id="@+id/editTextAufgabeBeschreibung"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Beschreibung"/>
+        android:hint="@string/beschreibung"/>
 
     <Button
         android:id="@+id/buttonSpeichern"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Speichern"/>
+        android:text="@string/speichern"/>
 </LinearLayout>

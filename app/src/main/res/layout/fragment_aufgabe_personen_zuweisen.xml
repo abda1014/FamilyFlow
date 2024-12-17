@@ -10,7 +10,7 @@
         android:id="@+id/textViewPersonenZuweisen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Personen zuweisen"
+        android:text="@string/personen_zuweisen"
         android:textSize="18sp"
         android:textStyle="bold"/>
 

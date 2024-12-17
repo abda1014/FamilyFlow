@@ -16,10 +16,9 @@ public class AufgabeBearbeitenFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_aufgabe_bearbeiten, container, false);
 
         // TODO: Logik für das Bearbeiten einer Aufgabe hinzufügen
 
-        return view;
+        return inflater.inflate(R.layout.fragment_aufgabe_bearbeiten, container, false);
     }
 }

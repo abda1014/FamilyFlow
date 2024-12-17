@@ -16,10 +16,9 @@ public class AufgabePersonenZuweisenFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_aufgabe_personen_zuweisen, container, false);
 
         // TODO: Logik für das Zuweisen von Personen hinzufügen
 
-        return view;
+        return inflater.inflate(R.layout.fragment_aufgabe_personen_zuweisen, container, false);
     }
 }
