@@ -12,10 +12,6 @@ import hs.karlsruhe.de.familyflow.R;
 
 public class Pinnwand extends AppCompatActivity {
 
-    private EditText gewichtText;
-    private EditText hoeheText;
-    private TextView resultText;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,33 +68,4 @@ public class Pinnwand extends AppCompatActivity {
 //            System.exit(0);
 //        }
     }
-
-    // BMI Formel: https://www.uni-hohenheim.de/wwwin140/info/interaktives/bmi.htm
-    private float berechneBMI(float gewicht, float hoehe) {
-
-        return 10000 * (float) (gewicht / (hoehe * hoehe));
-    }
-
-
-    // Interpretiert was der BMI Wert bedeuted
-    private String interpretiereBMI(float bmiWert) {
-
-        if (bmiWert < 16) {
-            return "Stark Untergewichtig";
-        } else if (bmiWert < 18.5) {
-
-            return "Untergewicht";
-        } else if (bmiWert < 25) {
-
-            return "Normal";
-        } else if (bmiWert < 30) {
-
-            return "Übergewicht";
-        } else {
-            return "Stark Übergewichtig";
-        }
-
-    }
-
-
 }
