@@ -39,6 +39,6 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:$room_version"
 
     // Optional (nur ergänzen, wenn du es nutzt):
-    // implementation "androidx.room:room-rxjava3:$room_version"
-    // implementation "androidx.room:room-livedata:$room_version"
+    implementation "androidx.room:room-rxjava3:$room_version"
+    implementation "androidx.room:room-livedata:$room_version"
 }
