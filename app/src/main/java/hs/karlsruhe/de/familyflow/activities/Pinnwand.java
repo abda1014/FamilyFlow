@@ -1,71 +1,61 @@
 package hs.karlsruhe.de.familyflow.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import hs.karlsruhe.de.familyflow.R;
 
-
+/**
+ * Die Pinnwand:
+ * Beinhaltet die Navigation zu den anderen Activities und den Inhalt der Pinnwand
+ */
 public class Pinnwand extends AppCompatActivity {
 
+    /**
+     * Wird beim Laden der Pinnwand ausgeführt und initialisiert die View
+     * @param savedInstanceState If the activity is being re-initialized after
+     *     previously being shut down then this Bundle contains the data it most
+     *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
+     *
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pinnwand);
+        InitialisiereClickHandler(findViewById(R.id.Pinnwand));
     }
 
-    public void calculateClickHandler(View view) {
+    /**
+     * ClickHandler für die Buttons auf der Pinnwand um zu den anderen Activities zu navigieren
+     * @param view Die Pinnwand View, die das Click Event erhalten hat
+     */
+    public void InitialisiereClickHandler(View view) {
+        //initialisiere Aufgaben Button
+        Button aufgabenButton = findViewById(R.id.AufgabenButton);
+        aufgabenButton.setOnClickListener(v -> ZuAufgabenUebersicht());
 
-        //Stellt sicher das der Klick auf den Berechnen Button behandelt wird
-//        if (view.getId() == R.id.berechnenButton) {
-//
-//            try {
-//                //Definiere die Referenzen zu den Feldern
-//                gewichtText = (EditText) findViewById(R.id.gewichtText);
-//                hoeheText = (EditText) findViewById(R.id.hoeheText);
-//                resultText = (TextView) findViewById(R.id.resultLabel);
-//
-//
-//                //Erhält die Werte des Benutzers
-//                float gewicht = Float.parseFloat(gewichtText.getText().toString());
-//                float hoehe = Float.parseFloat(hoeheText.getText().toString());
-//
-//
-//                //Berechnet den BMI Wert
-//                float bmiWert = berechneBMI(gewicht, hoehe);
-//
-//                // Interpretiert den Wert
-//                String bmiInterpretation = interpretiereBMI(bmiWert);
-//
-//                // Setzt den Wert in das Result Feld welches angezeigt wird
-//
-//                resultText.setText(bmiWert + " - " + bmiInterpretation);
-//
-//                //System.out.println in anderen Umgebungen
-//                Context context = getApplicationContext();
-//                CharSequence text = bmiInterpretation;
-//                int duration = Toast.LENGTH_LONG;
-//
-//                Toast toast = Toast.makeText(context, text, duration);
-//                toast.show();
-//
-//            }catch (NumberFormatException e) {
-//
-//                resultText.setText("Falsche Eingabe");
-//                resultText.setTextColor(Color.RED);
-//            }
-//        }
+        //initialisiere Termine Button
+        Button termineButton = findViewById(R.id.TermineButton);
+        termineButton.setOnClickListener(v -> ZuTerminUebersicht());
     }
 
-    public void beendenHandler(View view){
+    /**
+     * lädt die AufgabeActivity, nachdem der Aufgaben Knopf gedrückt wurde
+     */
+    private void ZuAufgabenUebersicht() {
+        Intent intent = new Intent(Pinnwand.this, AufgabeActivity.class);
+        startActivity(intent);
+    }
 
-//        if(view.getId() == R.id.beendenButton){
-//            finish();
-//            System.exit(0);
-//        }
+    /**
+     * lädt die TerminActivity, nachdem der Aufgaben Knopf gedrückt wurde
+     */
+    private void ZuTerminUebersicht() {
+        Intent intent = new Intent(Pinnwand.this, TerminActivity.class);
+        startActivity(intent);
     }
 }

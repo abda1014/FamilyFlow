@@ -10,4 +10,7 @@
     <string name="stringTextKontoErstellen">Wenn Sie noch kein Konto haben, erstellen Sie eines.</string>
     <string name="ueberschriftLogin">Sign in</string>
     <string name="zurueck">zurück</string>
+    <string name="aufgaben">Aufgaben</string>
+    <string name="listen">Listen</string>
+    <string name="termine">Termine</string>
 </resources>
