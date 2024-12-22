@@ -2,13 +2,13 @@
     <string name="app_name">FamilyFlow</string>
     <string name="titel_bearbeiten">Titel bearbeiten</string>
     <string name="beschreibung_bearbeiten">Beschreibung bearbeiten</string>
-    <string name="nderungen_speichern">Änderungen speichern</string>
+    <string name="aenderungen_speichern">Änderungen speichern</string>
     <string name="aufgabe_details">Aufgabe Details</string>
     <string name="titel_der_aufgabe">Titel der Aufgabe</string>
     <string name="beschreibung">Beschreibung</string>
     <string name="speichern">Speichern</string>
     <string name="personen_zuweisen">Personen zuweisen</string>
-    <string name="aufgaben_bersicht">Aufgaben Übersicht</string>
+    <string name="aufgaben_uebersicht">Aufgaben Übersicht</string>
     <string name="details_anzeigen">Details anzeigen</string>
     <string name="button">Button</string>
 </resources>

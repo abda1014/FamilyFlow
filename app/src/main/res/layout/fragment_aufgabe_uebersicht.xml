@@ -6,7 +6,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/aufgaben_bersicht"
+        android:text="@string/aufgaben_uebersicht"
         android:textSize="20sp"
         android:gravity="center"/>
 
