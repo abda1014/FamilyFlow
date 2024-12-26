@@ -1,3 +1,11 @@
+package hs.karlsruhe.de.familyflow.data;
+
+import android.content.Context;
+
+import androidx.room.Room;
+
+import hs.karlsruhe.de.familyflow.data.AppDatabase;
+
 public class DatabaseManager {
     private static AppDatabase INSTANCE;
 
