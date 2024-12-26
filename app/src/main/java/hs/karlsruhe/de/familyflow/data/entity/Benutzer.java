@@ -1,15 +1,15 @@
-package com.example.familyflow.entity;
+package hs.karlsruhe.de.familyflow.data.entity;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "Nutzer")
-public class Nutzer {
+@Entity(tableName = "Benutzer")
+public class Benutzer {
 
     @NonNull
     @PrimaryKey
-    private String nutzerId;  // UUID als String
+    private String benutzerId;  // UUID als String
 
     private String vorname;
     private String nachname;
@@ -19,31 +19,35 @@ public class Nutzer {
     // Hier vereinfacht als String gespeichert
     private String alterDatum;
 
-    public Nutzer() {
+    private boolean isDeleted; // Neue Variable hinzugefügt
+
+    public Benutzer() {
         // Leerer Konstruktor (für Room)
     }
 
-    public Nutzer(@NonNull String nutzerId,
-                  String vorname,
-                  String nachname,
-                  String email,
-                  String alterDatum) {
-        this.nutzerId = nutzerId;
+    public Benutzer(@NonNull String benutzerId,
+                    String vorname,
+                    String nachname,
+                    String email,
+                    String alterDatum,
+                    boolean isDeleted) { // Konstruktor erweitert
+        this.benutzerId = benutzerId;
         this.vorname = vorname;
         this.nachname = nachname;
         this.email = email;
         this.alterDatum = alterDatum;
+        this.isDeleted = isDeleted;
     }
 
     // -- Getter & Setter --
 
     @NonNull
-    public String getNutzerId() {
-        return nutzerId;
+    public String getBenutzerId() {
+        return benutzerId;
     }
 
-    public void setNutzerId(@NonNull String nutzerId) {
-        this.nutzerId = nutzerId;
+    public void setBenutzerId(@NonNull String benutzerId) {
+        this.benutzerId = benutzerId;
     }
 
     public String getVorname() {

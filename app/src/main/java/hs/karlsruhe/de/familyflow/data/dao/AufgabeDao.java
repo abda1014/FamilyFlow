@@ -1,12 +1,10 @@
-package com.example.familyflow.data.dao;
+package hs.karlsruhe.de.familyflow.data.dao;
 
+import hs.karlsruhe.de.familyflow.data.entity.Aufgabe;
 import androidx.room.Dao;
-import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
-
-import com.example.familyflow.entity.Aufgabe;
 
 import java.util.List;
 

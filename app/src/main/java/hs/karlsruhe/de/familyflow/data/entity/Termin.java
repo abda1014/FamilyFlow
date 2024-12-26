@@ -1,4 +1,4 @@
-package com.example.familyflow.entity;
+package hs.karlsruhe.de.familyflow.data.entity;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
@@ -22,6 +22,8 @@ public class Termin {
 
     private String beschreibung;
 
+    private boolean isDeleted; // Neue Variable hinzugefügt
+
     public Termin() {
         // Leerer Konstruktor
     }
@@ -31,13 +33,15 @@ public class Termin {
                   String datum,
                   String uhrzeit,
                   String wiederholung,
-                  String beschreibung) {
+                  String beschreibung,
+                  boolean isDeleted) { // Konstruktor erweitert
         this.terminId = terminId;
         this.terminname = terminname;
         this.datum = datum;
         this.uhrzeit = uhrzeit;
         this.wiederholung = wiederholung;
         this.beschreibung = beschreibung;
+        this.isDeleted = isDeleted;
     }
 
     // -- Getter & Setter --
@@ -91,7 +95,11 @@ public class Termin {
         this.beschreibung = beschreibung;
     }
 
-    public boolean isDeleted() {return isDeleted;}
+    public boolean isDeleted() {
+        return isDeleted;
+    }
 
-    public void setDeleted(boolean deleted) {isDeleted = deleted;}
+    public void setDeleted(boolean deleted) {
+        isDeleted = deleted;
+    }
 }

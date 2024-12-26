@@ -1,4 +1,4 @@
-package com.example.familyflow.entity;
+package hs.karlsruhe.de.familyflow.data.entity;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
@@ -7,11 +7,11 @@ import androidx.room.ForeignKey;
 import static androidx.room.ForeignKey.CASCADE;
 
 @Entity(
-        tableName = "Benutzer_Aufgaben",
+        tableName = "BenutzerAufgaben",
         primaryKeys = {"benutzerId", "aufgabeId"},
         foreignKeys = {
                 @ForeignKey(
-                        entity = Benutzer.class,    // statt Nutzer.class
+                        entity = Benutzer.class,    // statt Benutzer.class
                         parentColumns = "benutzerId",  // statt nutzerId
                         childColumns = "benutzerId",   // statt nutzerId
                         onDelete = CASCADE
@@ -24,15 +24,15 @@ import static androidx.room.ForeignKey.CASCADE;
                 )
         }
 )
-public class Benutzer_Aufgaben {
+public class BenutzerAufgaben {
 
     @NonNull
-    private String benutzerId;  // statt nutzerId
+    private String benutzerId;  
 
     @NonNull
     private String aufgabeId;
 
-    public Benutzer_Aufgaben(@NonNull String benutzerId, @NonNull String aufgabeId) {
+    public BenutzerAufgaben(@NonNull String benutzerId, @NonNull String aufgabeId) {
         this.benutzerId = benutzerId;
         this.aufgabeId = aufgabeId;
     }
