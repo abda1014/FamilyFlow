@@ -19,7 +19,9 @@ public class Benutzer {
     // Hier vereinfacht als String gespeichert
     private String alterDatum;
 
-    private boolean isDeleted; // Neue Variable hinzugefügt
+    private boolean isDeleted; // Soft Delete Flag
+
+    private String passwordHash; // Passwort-Hash
 
     public Benutzer() {
         // Leerer Konstruktor (für Room)
@@ -30,13 +32,15 @@ public class Benutzer {
                     String nachname,
                     String email,
                     String alterDatum,
-                    boolean isDeleted) { // Konstruktor erweitert
+                    boolean isDeleted,
+                    String passwordHash) {
         this.benutzerId = benutzerId;
         this.vorname = vorname;
         this.nachname = nachname;
         this.email = email;
         this.alterDatum = alterDatum;
         this.isDeleted = isDeleted;
+        this.passwordHash = passwordHash;
     }
 
     // -- Getter & Setter --
@@ -89,4 +93,15 @@ public class Benutzer {
     public void setDeleted(boolean deleted) {
         isDeleted = deleted;
     }
+
+    // **Kein öffentlicher Getter für passwordHash**
+    private String getPasswordHash() {
+        return passwordHash;
+    }
+
+    // Öffentlicher Setter für passwordHash
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
+    }
+
 }
