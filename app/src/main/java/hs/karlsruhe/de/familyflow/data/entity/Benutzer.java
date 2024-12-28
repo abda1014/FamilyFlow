@@ -94,8 +94,8 @@ public class Benutzer {
         isDeleted = deleted;
     }
 
-    // **Kein öffentlicher Getter für passwordHash**
-    private String getPasswordHash() {
+    // Öffentlicher Getter für passwordHash
+    public String getPasswordHash() {
         return passwordHash;
     }
 
@@ -103,5 +103,4 @@ public class Benutzer {
     public void setPasswordHash(String passwordHash) {
         this.passwordHash = passwordHash;
     }
-
 }

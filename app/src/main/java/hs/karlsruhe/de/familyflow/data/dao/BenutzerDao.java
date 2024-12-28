@@ -28,4 +28,8 @@ public interface BenutzerDao {
     // Hier solltest du z. B. NUR jene zurückgeben, die nicht gelöscht sind:
     @Query("SELECT * FROM Benutzer WHERE isDeleted = 0")
     List<Benutzer> getAllActiveBenutzer();
+
+    @Query("SELECT * FROM Benutzer WHERE email = :email AND passwordHash = :passwordHash AND isDeleted = 0 LIMIT 1")
+    Benutzer findBenutzerByEmailAndPassword(String email, String passwordHash);
+
 }

@@ -6,6 +6,7 @@
     <string name="fehlermeldungLogin">Ungültige EIngabe: E-Mail-Adresse oder Passwort ist falsch</string>
     <string name="passwort">Passwort</string>
     <string name="passwortVergessen">Passwort vergessen</string>
+    <string name="loginFunktioniert">Der Login funktioniert</string>
     <string name="logo_beschreibung">App-Logo</string>
     <string name="stringTextKontoErstellen">Wenn Sie noch kein Konto haben, erstellen Sie eines.</string>
     <string name="ueberschriftLogin">Sign in</string>

@@ -11,6 +11,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import hs.karlsruhe.de.familyflow.R;
+import hs.karlsruhe.de.familyflow.data.DatabaseManager;
+import hs.karlsruhe.de.familyflow.data.AppDatabase;
+import hs.karlsruhe.de.familyflow.data.entity.Benutzer;
+import hs.karlsruhe.de.familyflow.data.dao.BenutzerDao;
+import hs.karlsruhe.de.familyflow.data.DBDaten;
+
 
 public class Login extends AppCompatActivity {
 
@@ -19,13 +25,16 @@ public class Login extends AppCompatActivity {
     private TextView fehleranzeige; // Fehleranzeige
 
     // Simulierte Benutzerdaten
-    private final String SIMULATION_MAIL = "HKA@hka.de";
-    private final String SIMULATION_PASSWORT = "Testuser123";
+    // private final String SIMULATION_MAIL = "HKA@hka.de";
+    // private final String SIMULATION_PASSWORT = "Testuser123";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        // Testdaten initialisieren
+        DBDaten.initialisiereDaten(this);
 
         // Initialisiere Frames als ConstraintLayout
         ConstraintLayout frameInitial = findViewById(R.id.frameInitial);
@@ -53,18 +62,38 @@ public class Login extends AppCompatActivity {
     }
 
     private void userLogin() {
-        // Hole Benutzereingaben
         String mail = eingabeMail.getText().toString().trim();
         String passwort = eingabePasswort.getText().toString().trim();
 
-        // Überprüfung Eigabedaten mit den simulierten Werten
-        if (SIMULATION_MAIL.equals(mail) && SIMULATION_PASSWORT.equals(passwort)) {
-            // Weiterleitung zur Pinnwand, falls korrekt
-            Intent intent = new Intent(Login.this, Pinnwand.class);
-            startActivity(intent);
-        } else {
-            // Zeigt Fehlermeldung an, falls falsch
-            fehleranzeige.setVisibility(View.VISIBLE);
+        // Hash des eingegebenen Passworts berechnen
+        String hashedPassword = DBDaten.hashPassword(passwort);
+
+        if (hashedPassword == null) {
+            runOnUiThread(() -> fehleranzeige.setText("Fehler bei der Passwort-Hash-Berechnung."));
+            return;
         }
+
+        new Thread(() -> {
+            AppDatabase db = DatabaseManager.getDatabase(this);
+            BenutzerDao benutzerDao = db.benutzerDao();
+            Benutzer benutzer = benutzerDao.findBenutzerByEmailAndPassword(mail, hashedPassword);
+
+            runOnUiThread(() -> {
+                if (benutzer != null) {
+                    // Weiterleitung zur Pinnwand
+                    //Intent intent = new Intent(Login.this, Pinnwand.class);
+
+                    // Zum Test, ob die Weiterleitung von Login geht.
+                    Intent intent = new Intent(Login.this, LoginTestActivity.class);
+
+                    startActivity(intent);
+                } else {
+                    // Fehlermeldung anzeigen
+                    fehleranzeige.setVisibility(View.VISIBLE);
+                    fehleranzeige.setText("Die eingegebenen Daten sind falsch.");
+                }
+            });
+        }).start();
     }
+
 }
