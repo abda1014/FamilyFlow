@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Light Theme -->
+    <style name="Theme.FamilyFlow" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Primäre Farben -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/brown1</item>
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorOnPrimary">@color/white</item>
+    </style>
+
+    <!-- Dark Theme -->
+    <style name="Theme.FamilyFlow.Dark" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">@color/purple_200</item>
+        <item name="colorPrimaryVariant">@color/brown1</item>
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorOnPrimary">@color/black</item>
+    </style>
+</resources>

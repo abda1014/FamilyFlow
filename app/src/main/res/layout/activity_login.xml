@@ -1,20 +1,214 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/mainFrame"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="hs.karlsruhe.de.familyflow.activities.Login">
 
-    <Button
-        android:id="@+id/buttonLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Frame 1: Login und Registrieren -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/frameInitial"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        tools:visibility="gone">
+
+        <!-- App-Logo -->
+        <ImageView
+            android:id="@+id/imageLogo"
+            android:layout_width="156dp"
+            android:layout_height="138dp"
+            android:layout_marginTop="128dp"
+            android:contentDescription="@string/logo_beschreibung"
+            android:src="@mipmap/family"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Login-Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonLogin"
+            android:layout_width="310dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="72dp"
+            android:backgroundTint="@color/brown1"
+            android:text="@string/buttonLogin"
+            android:textColor="@android:color/white"
+            app:cornerRadius="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageLogo"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <!-- Registrieren-Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonRegistrieren"
+            android:layout_width="310dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/brown1"
+            android:text="@string/buttonRegistrieren"
+            android:textColor="@android:color/white"
+            app:cornerRadius="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/buttonLogin" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Frame 2: Login, Konto anlegen und Passwort vergessen -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/frameLogin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <!-- Eingabefeld Mail-Adresse -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/usernameInputLayout"
+            android:layout_width="311dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:hint="@string/benutzername"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.51"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textUeberschrift">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextMail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Eingabefeld Passwort -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/passwordInputLayout"
+            android:layout_width="311dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="@string/passwort"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/usernameInputLayout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextPasswort"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Login Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonNewLogin"
+            android:layout_width="310dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/brown1"
+            android:text="@string/buttonLogin"
+            android:textColor="@android:color/white"
+            app:cornerRadius="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/buttonVergessen" />
+
+        <!-- Konto anlegen-Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonKontoAnlegen"
+            android:layout_width="310dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:backgroundTint="@color/brown1"
+            android:text="@string/buttonRegistrieren"
+            android:textColor="@android:color/white"
+            app:cornerRadius="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.504"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textKontoErstellen" />
+
+        <!-- Zurück-button -->
+
+        <!-- Passwort vergessen- Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonZurueck"
+            android:layout_width="110dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="88dp"
+            android:backgroundTint="@color/brown1"
+            android:text="@string/zurueck"
+            android:textColor="@android:color/white"
+            app:cornerRadius="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonKontoAnlegen" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonVergessen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:layout_marginTop="36dp"
+            android:backgroundTint="@android:color/white"
+            android:text="@string/passwortVergessen"
+            android:textColor="@color/brown1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/passwordInputLayout" />
+
+        <!-- Infotext zu Konto erstellen -->
+
+        <!-- Text Überschrift -->
+        <TextView
+            android:id="@+id/textKontoErstellen"
+            style="@style/BoldTextStyle"
+            android:layout_width="321dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="48dp"
+            android:gravity="center"
+            android:text="@string/stringTextKontoErstellen"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fehlermeldung" />
+
+        <TextView
+            android:id="@+id/textUeberschrift"
+            style="@style/UeberschriftLogin"
+            android:layout_width="321dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:text="@string/ueberschriftLogin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/fehlermeldung"
+            android:layout_width="240dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:text="@string/fehlermeldungLogin"
+            android:textColor="@android:color/holo_red_dark"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/buttonNewLogin"
+            tools:visibility="visible" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
