@@ -22,5 +22,5 @@
         android:id="@+id/buttonSpeichernBearbeiten"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/nderungen_speichern"/>
+        android:text="@string/aenderungen_speichern"/>
 </LinearLayout>
