@@ -40,7 +40,7 @@
         android:id="@+id/btnSpeichern"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Speichern"
+        android:text="@string/person_speichern"
         app:layout_constraintTop_toBottomOf="@id/btnHinzufuegen"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
