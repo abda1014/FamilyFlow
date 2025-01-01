@@ -6,22 +6,42 @@
         android:icon="@mipmap/family"
         android:supportsRtl="true"
         android:theme="@style/Theme.FamilyFlow">
+
+        <!-- Login Activities -->
         <activity
             android:name=".activities.LoginTestActivity"
             android:exported="false" />
-        <!-- Globales Theme für die App -->
         <activity
             android:name=".activities.Login"
             android:exported="true"
-            android:theme="@style/Theme.FamilyFlow"> <!-- Spezifisches Theme für Login -->
+            android:theme="@style/Theme.FamilyFlow">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- Weitere Activities -->
+        </activity>
+
+        <!-- Pinnwand Activity -->
         <activity
             android:name=".activities.Pinnwand"
+            android:exported="true"
+            android:theme="@style/Theme.FamilyFlow" />
+
+        <!-- Aufgabenmanagement Activities -->
+        <activity
+            android:name=".activities.AufgabeUebersicht"
+            android:exported="true"
+            android:theme="@style/Theme.FamilyFlow" />
+        <activity
+            android:name=".activities.AufgabeDetails"
+            android:exported="true"
+            android:theme="@style/Theme.FamilyFlow" />
+        <activity
+            android:name=".activities.AufgabeErstellen"
+            android:exported="true"
+            android:theme="@style/Theme.FamilyFlow" />
+        <activity
+            android:name=".activities.PersonenZuweisen"
             android:exported="true"
             android:theme="@style/Theme.FamilyFlow" />
     </application>
