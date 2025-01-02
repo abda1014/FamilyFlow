@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="etAufgabenbezeichnung" type="id" />
+    <item name="etFaelligkeitsdatum" type="id" />
+    <item name="btnSpeichern" type="id" />
+    <item name="etNotiz" type="id" />
+    <item name="etStatus" type="id" />
+    <item name="spPersonen" type="id" />
+    <item name="btnHinzufuegen" type="id" />
+    <item name="lvZugewiesenePersonen" type="id" />
+</resources>
