@@ -29,8 +29,6 @@
     <string name="listen">Listen</string>
     <string name="termine">Termine</string>
     <string name="family_title">The Family</string>
-    <string name="event_title">Musikunterricht</string>
-    <string name="event_time">Heute 14:00</string>
     <string name="navigation_person">Person</string>
     <string name="navigation_settings">Einstellungen</string>
     <string name="navigation_bell">Benachrichtigungen</string>
@@ -41,4 +39,5 @@
     <string name="benachrichtigungen">Benachrichtigungen</string>
     <string name="kalender">Kalender</string>
     <string name="chat">Chat</string>
+    <string name="element_hinzufuegen">Element hinzufügen</string>
 </resources>

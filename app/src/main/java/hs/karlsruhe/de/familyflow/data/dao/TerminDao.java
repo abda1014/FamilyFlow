@@ -35,4 +35,10 @@ public interface TerminDao {
     // 5b) (optional) Alle Termine inkl. gelöschter
     @Query("SELECT * FROM Termin")
     List<Termin> getAllTermineIncludingDeleted();
+
+    @Query("SELECT * FROM Termin " +
+            "WHERE isDeleted = 0 AND datetime(datum || ' ' || uhrzeit) > datetime('now') " +
+            "ORDER BY datetime(datum || ' ' || uhrzeit) ASC " +
+            "LIMIT 1")
+    Termin getNextTermin();
 }

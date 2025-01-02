@@ -12,52 +12,73 @@
         android:id="@+id/familyTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/rounded_background"
+        android:layout_marginTop="8dp"
         android:padding="8dp"
         android:text="@string/family_title"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/eventTitle"
+    <LinearLayout
+        android:id="@+id/eventAnzeige"
+        style="?android:attr/buttonBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/event_title"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/familyTitle" />
-
-    <TextView
-        android:id="@+id/eventTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="@string/event_time"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/eventTitle" />
-
-    <ImageView
-        android:id="@+id/eventParticipants"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
         android:layout_marginStart="8dp"
-        android:src="@drawable/sample_avatar"
-        app:layout_constraintStart_toEndOf="@id/eventTime"
-        app:layout_constraintTop_toTopOf="@id/eventTime" />
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="2dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/familyTitle"
+        app:layout_constraintVertical_bias="0.006">
+
+        <TextView
+            android:id="@+id/eventTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="72dp"
+            android:layout_marginTop="12dp"
+            android:text="4rwu6wrzuj"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/eventTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="72dp"
+            android:layout_marginTop="4dp"
+            android:text="qterjsartj"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/eventTitle" />
+
+        <ImageView
+            android:id="@+id/eventParticipants"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="72dp"
+            android:layout_marginTop="20dp"
+            android:contentDescription="Teilnehmer des Termins"
+            app:layout_constraintStart_toEndOf="@id/eventAnzeige"
+            app:layout_constraintTop_toTopOf="@id/eventAnzeige" />
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/addEventButton"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        style="?android:attr/buttonBarStyle"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_marginEnd="16dp"
-        android:src="@drawable/ic_add"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/element_hinzufuegen"
+        android:src="@drawable/addbutton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/eventTime" />
+        app:layout_constraintTop_toBottomOf="@id/eventAnzeige" />
 
     <LinearLayout
         android:id="@+id/navigationPanel"
@@ -67,51 +88,50 @@
         android:layout_marginTop="16dp"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/eventTime"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/eventAnzeige"
+        app:layout_constraintBottom_toTopOf="bottomNavigation">
 
         <ImageButton
             android:id="@+id/kontakte"
             style="?android:attr/buttonBarStyle"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
             android:contentDescription="@string/kontakte"
             android:src="@drawable/kontakte" />
 
         <ImageButton
             android:id="@+id/einstellungen"
             style="?android:attr/buttonBarStyle"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
             android:contentDescription="@string/einstellungen"
             android:src="@drawable/einstellungen" />
 
         <ImageButton
             android:id="@+id/benachrichtigungen"
             style="?android:attr/buttonBarStyle"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
             android:contentDescription="@string/benachrichtigungen"
             android:src="@drawable/benachrichtigungen" />
 
         <ImageButton
             android:id="@+id/kalender"
             style="?android:attr/buttonBarStyle"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
             android:contentDescription="@string/kalender"
             android:src="@drawable/kalender" />
 
         <ImageButton
             android:id="@+id/navigationIcon5"
             style="?android:attr/buttonBarStyle"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
             android:contentDescription="@string/chat"
             android:src="@drawable/chat" />
     </LinearLayout>
 
-    <!-- Untere Navigation -->
     <LinearLayout
         android:id="@+id/bottomNavigation"
         style="?android:attr/buttonBarButtonStyle"
@@ -139,6 +159,7 @@
 
         <Button
             android:id="@+id/ListenButton"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/listen" />
