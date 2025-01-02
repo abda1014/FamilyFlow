@@ -1,5 +1,7 @@
 package hs.karlsruhe.de.familyflow.data.entity;
 
+import android.graphics.drawable.Drawable;
+
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;

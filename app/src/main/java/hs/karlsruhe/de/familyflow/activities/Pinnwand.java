@@ -2,6 +2,8 @@ package hs.karlsruhe.de.familyflow.activities;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,10 +13,12 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Calendar;
+import java.util.List;
 
 import hs.karlsruhe.de.familyflow.R;
 import hs.karlsruhe.de.familyflow.data.AppDatabase;
 import hs.karlsruhe.de.familyflow.data.DatabaseManager;
+import hs.karlsruhe.de.familyflow.data.entity.Benutzer;
 import hs.karlsruhe.de.familyflow.data.entity.Termin;
 
 /**
@@ -66,15 +70,28 @@ public class Pinnwand extends AppCompatActivity {
 
         //befülle die Terminansicht auf der Pinnwand
         if (termin != null) {
+            //Beschreibung setzen
             eventTitleView.setText(termin.getTerminname());
             eventTimeView.setText(termin.getDatum() + " " + termin.getUhrzeit());
 
-            eventImageView.setImageResource(R.drawable.defaultavatar);
+            //Avatarbildchen setzen
+            List<String> nutzerIds = db.benutzerTermineDao().getBeteiligteNutzerIds(termin.getTerminId());
+            eventImageView.setImageDrawable(createCombinedAvatar(nutzerIds, db));
         } else {
-            // Fallback, falls noch keine Termine existieren
+            //Fallback, falls noch keine Termine existieren
             eventTitleView.setText("zurzeit gibt es keine anstehenden Termine");
             eventTimeView.setText(Calendar.getInstance().getTime().toString());
             eventImageView.setImageResource(R.drawable.defaultavatar);
+        }
+    }
+
+    @SuppressLint("UseCompatLoadingForDrawables")
+    private Drawable createCombinedAvatar(List<String> nutzerIds, AppDatabase db) {
+        if (nutzerIds != null && !nutzerIds.isEmpty()) {
+            return getResources().getDrawable(R.drawable.defaultavatar);
+        } else {
+            //Fallback wenn keine Avatare vorhanden sind
+            return getResources().getDrawable(R.drawable.defaultavatar);
         }
     }
 
