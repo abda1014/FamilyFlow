@@ -1,17 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:paddingLeft="@android:dimen/dialog_min_width_major"
-    android:paddingTop="@android:dimen/dialog_min_width_major"
-    android:paddingRight="@android:dimen/dialog_min_width_major"
-    android:paddingBottom="@android:dimen/dialog_min_width_major"
+    android:id="@+id/Pinnwand"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context="hs.karlsruhe.de.familyflow.activities.Pinnwand">
 
-    <Button
-        android:id="@+id/AufgabenButton"
+    <TextView
+        android:id="@+id/familyTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/aufgaben" />
-</RelativeLayout>
+        android:layout_marginTop="8dp"
+        android:padding="8dp"
+        android:text="@string/family_title"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/eventAnzeige"
+        style="?android:attr/buttonBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="2dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/familyTitle"
+        app:layout_constraintVertical_bias="0.006">
+
+        <TextView
+            android:id="@+id/eventTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="72dp"
+            android:layout_marginTop="12dp"
+            android:text="4rwu6wrzuj"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/eventTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="72dp"
+            android:layout_marginTop="4dp"
+            android:text="qterjsartj"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/eventTitle" />
+
+        <ImageView
+            android:id="@+id/eventParticipants"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="72dp"
+            android:layout_marginTop="20dp"
+            android:contentDescription="Teilnehmer des Termins"
+            app:layout_constraintStart_toEndOf="@id/eventAnzeige"
+            app:layout_constraintTop_toTopOf="@id/eventAnzeige" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/addEventButton"
+        style="?android:attr/buttonBarStyle"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/element_hinzufuegen"
+        android:src="@drawable/addbutton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/eventAnzeige" />
+
+    <LinearLayout
+        android:id="@+id/navigationPanel"
+        style="?android:attr/buttonBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/eventAnzeige"
+        app:layout_constraintBottom_toTopOf="bottomNavigation">
+
+        <ImageButton
+            android:id="@+id/kontakte"
+            style="?android:attr/buttonBarStyle"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:contentDescription="@string/kontakte"
+            android:src="@drawable/kontakte" />
+
+        <ImageButton
+            android:id="@+id/einstellungen"
+            style="?android:attr/buttonBarStyle"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:contentDescription="@string/einstellungen"
+            android:src="@drawable/einstellungen" />
+
+        <ImageButton
+            android:id="@+id/benachrichtigungen"
+            style="?android:attr/buttonBarStyle"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:contentDescription="@string/benachrichtigungen"
+            android:src="@drawable/benachrichtigungen" />
+
+        <ImageButton
+            android:id="@+id/kalender"
+            style="?android:attr/buttonBarStyle"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:contentDescription="@string/kalender"
+            android:src="@drawable/kalender" />
+
+        <ImageButton
+            android:id="@+id/navigationIcon5"
+            style="?android:attr/buttonBarStyle"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:contentDescription="@string/chat"
+            android:src="@drawable/chat" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottomNavigation"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <Button
+            android:id="@+id/AufgabenButton"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/aufgaben" />
+
+        <Button
+            android:id="@+id/TermineButton"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/termine" />
+
+        <Button
+            android:id="@+id/ListenButton"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/listen" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
