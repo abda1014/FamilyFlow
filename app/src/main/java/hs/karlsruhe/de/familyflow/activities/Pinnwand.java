@@ -69,13 +69,12 @@ public class Pinnwand extends AppCompatActivity {
             eventTitleView.setText(termin.getTerminname());
             eventTimeView.setText(termin.getDatum() + " " + termin.getUhrzeit());
 
-            //TODO Bildchen laden und setzen
-            //eventImageView.setImageResource(defaultavatar);
+            eventImageView.setImageResource(R.drawable.defaultavatar);
         } else {
             // Fallback, falls noch keine Termine existieren
             eventTitleView.setText("zurzeit gibt es keine anstehenden Termine");
             eventTimeView.setText(Calendar.getInstance().getTime().toString());
-            //TODO defaultavatar laden
+            eventImageView.setImageResource(R.drawable.defaultavatar);
         }
     }
 

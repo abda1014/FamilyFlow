@@ -5,18 +5,15 @@
     android:id="@+id/Pinnwand"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     tools:context="hs.karlsruhe.de.familyflow.activities.Pinnwand">
 
     <TextView
         android:id="@+id/familyTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:padding="8dp"
+        android:layout_marginTop="16dp"
         android:text="@string/family_title"
-        android:textColor="@color/black"
-        android:textStyle="bold"
+        android:textColor="@color/brown1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,33 +21,30 @@
     <LinearLayout
         android:id="@+id/eventAnzeige"
         style="?android:attr/buttonBarStyle"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginTop="2dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/familyTitle"
-        app:layout_constraintVertical_bias="0.006">
+        app:layout_constraintTop_toBottomOf="@id/familyTitle">
 
         <TextView
             android:id="@+id/eventTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="72dp"
-            android:layout_marginTop="12dp"
-            android:text="4rwu6wrzuj"
-            android:textColor="@color/black"
+            android:text="4rwu6wrzuj34"
+            android:textColor="@color/brown1"
             android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
         <TextView
             android:id="@+id/eventTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="72dp"
             android:layout_marginTop="4dp"
             android:text="qterjsartj"
             android:textColor="@color/black"
@@ -61,18 +55,16 @@
             android:id="@+id/eventParticipants"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginStart="72dp"
-            android:layout_marginTop="20dp"
             android:contentDescription="Teilnehmer des Termins"
-            app:layout_constraintStart_toEndOf="@id/eventAnzeige"
-            app:layout_constraintTop_toTopOf="@id/eventAnzeige" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </LinearLayout>
 
     <ImageView
         android:id="@+id/addEventButton"
         style="?android:attr/buttonBarStyle"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
         android:contentDescription="@string/element_hinzufuegen"
@@ -84,12 +76,12 @@
         android:id="@+id/navigationPanel"
         style="?android:attr/buttonBarStyle"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/eventAnzeige"
-        app:layout_constraintBottom_toTopOf="bottomNavigation">
+        app:layout_constraintTop_toBottomOf="@id/eventAnzeige">
 
         <ImageButton
             android:id="@+id/kontakte"
@@ -135,10 +127,13 @@
     <LinearLayout
         android:id="@+id/bottomNavigation"
         style="?android:attr/buttonBarButtonStyle"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
