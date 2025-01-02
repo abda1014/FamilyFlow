@@ -28,6 +28,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.activity:activity:1.9.3'
     implementation 'androidx.constraintlayout:constraintlayout:2.2.0'
+    implementation 'androidx.room:room-common:2.6.1'
 
     testImplementation 'junit:junit:4.13.2'
 
@@ -37,8 +38,4 @@ dependencies {
     // Room-Abhängigkeiten (für Java):
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
-
-    // Optional (nur ergänzen, wenn du es nutzt):
-    implementation "androidx.room:room-rxjava3:$room_version"
-    implementation "androidx.room:room-livedata:$room_version"
 }
