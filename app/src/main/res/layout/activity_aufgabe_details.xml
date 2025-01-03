@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- Überschrift oder Label -->
     <TextView
         android:id="@+id/details_label"
         android:layout_width="0dp"
@@ -14,8 +16,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintMargin="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/details_label" /> <!-- Vertikale Einschränkung hinzugefügt -->
 
+    <!-- Textbereich für Details -->
     <TextView
         android:id="@+id/details_text"
         android:layout_width="0dp"
@@ -26,8 +29,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintMarginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/details_label" />
+        app:layout_constraintTop_toBottomOf="@id/details_label" /> <!-- Vertikale Einschränkung hinzugefügt -->
 
+    <!-- Bearbeiten-Button -->
     <Button
         android:id="@+id/edit_button"
         android:layout_width="0dp"
@@ -36,5 +40,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintMarginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/details_text" />
+        app:layout_constraintTop_toBottomOf="@id/details_text" /> <!-- Vertikale Einschränkung hinzugefügt -->
 </androidx.constraintlayout.widget.ConstraintLayout>

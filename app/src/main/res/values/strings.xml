@@ -11,12 +11,12 @@
     <string name="stringTextKontoErstellen">Wenn Sie noch kein Konto haben, erstellen Sie eines.</string>
     <string name="ueberschriftLogin">Sign in</string>
     <string name="zurueck">zurück</string>
-    <string name="suche_nach_aufgaben">Suche nach Aufgaben</string>
-    <string name="sortieren_nach_datum">Sortieren nach Datum</string>
-    <string name="sortieren_alphabetisch">Sortieren alphabetisch</string>
     <string name="details_zur_aufgabe">Details zur Aufgabe</string>
     <string name="details_hier_einf_gen">Details hier einfügen...</string>
     <string name="bearbeiten">Bearbeiten</string>
+    <string name="suche_nach_aufgaben">Suche nach Aufgaben</string>
+    <string name="sortieren_nach_datum">Sortieren nach Datum</string>
+    <string name="sortieren_alphabetisch">Sortieren alphabetisch</string>
     <string name="aufgabenbezeichnung">Aufgabenbezeichnung</string>
     <string name="status">Status</string>
     <string name="f_lligkeitsdatum">Fälligkeitsdatum</string>
