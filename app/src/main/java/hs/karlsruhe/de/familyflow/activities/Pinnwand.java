@@ -83,7 +83,7 @@ public class Pinnwand extends AppCompatActivity {
      * lädt die AufgabeActivity, nachdem der Aufgaben Knopf gedrückt wurde
      */
     private void ZuAufgabenUebersicht() {
-        Intent intent = new Intent(Pinnwand.this, AufgabeActivity.class);
+        Intent intent = new Intent(Pinnwand.this, AufgabeUebersicht.class);
         startActivity(intent);
     }
 
