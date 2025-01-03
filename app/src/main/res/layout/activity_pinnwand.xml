@@ -5,18 +5,29 @@
     android:id="@+id/Pinnwand"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
+    android:background="@color/white"
     tools:context="hs.karlsruhe.de.familyflow.activities.Pinnwand">
+
+    <ImageView
+        android:id="@+id/backgroundImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/pinnwandbackground"
+        android:contentDescription="@string/hintergrund"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <TextView
         android:id="@+id/familyTitle"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:padding="8dp"
+        android:layout_marginTop="16dp"
         android:text="@string/family_title"
-        android:textColor="@color/black"
-        android:textStyle="bold"
+        android:textColor="@color/brown1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,59 +35,69 @@
     <LinearLayout
         android:id="@+id/eventAnzeige"
         style="?android:attr/buttonBarStyle"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
         android:layout_marginTop="2dp"
+        android:paddingBottom="4dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/familyTitle"
-        app:layout_constraintVertical_bias="0.006">
-
-        <TextView
-            android:id="@+id/eventTitle"
+        android:layout_width="match_parent">
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="72dp"
-            android:layout_marginTop="12dp"
-            android:text="4rwu6wrzuj"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/eventTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/brown1"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
 
-        <TextView
-            android:id="@+id/eventTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="72dp"
-            android:layout_marginTop="4dp"
-            android:text="qterjsartj"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/eventTitle" />
+            <TextView
+                android:id="@+id/eventTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textSize="12sp"
+                android:textColor="@color/brown1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/eventTitle" />
+        </LinearLayout>
 
         <ImageView
             android:id="@+id/eventParticipants"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginStart="72dp"
-            android:layout_marginTop="20dp"
-            android:contentDescription="Teilnehmer des Termins"
-            app:layout_constraintStart_toEndOf="@id/eventAnzeige"
-            app:layout_constraintTop_toTopOf="@id/eventAnzeige" />
+            android:contentDescription="@string/teilnehmer_des_termins"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </LinearLayout>
+
+    <View
+        app:layout_constraintTop_toBottomOf="@id/eventAnzeige"
+        android:layout_width="match_parent"
+        android:layout_marginEnd="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/grey" />
 
     <ImageView
         android:id="@+id/addEventButton"
         style="?android:attr/buttonBarStyle"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:contentDescription="@string/element_hinzufuegen"
         android:src="@drawable/addbutton"
+        app:tint="@color/brown1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/eventAnzeige" />
 
@@ -84,12 +105,12 @@
         android:id="@+id/navigationPanel"
         style="?android:attr/buttonBarStyle"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/eventAnzeige"
-        app:layout_constraintBottom_toTopOf="bottomNavigation">
+        app:layout_constraintTop_toBottomOf="@id/eventAnzeige">
 
         <ImageButton
             android:id="@+id/kontakte"
@@ -97,6 +118,7 @@
             android:layout_width="72dp"
             android:layout_height="72dp"
             android:contentDescription="@string/kontakte"
+            app:tint="@color/brown1"
             android:src="@drawable/kontakte" />
 
         <ImageButton
@@ -105,6 +127,7 @@
             android:layout_width="72dp"
             android:layout_height="72dp"
             android:contentDescription="@string/einstellungen"
+            app:tint="@color/brown1"
             android:src="@drawable/einstellungen" />
 
         <ImageButton
@@ -113,6 +136,7 @@
             android:layout_width="72dp"
             android:layout_height="72dp"
             android:contentDescription="@string/benachrichtigungen"
+            app:tint="@color/brown1"
             android:src="@drawable/benachrichtigungen" />
 
         <ImageButton
@@ -121,6 +145,7 @@
             android:layout_width="72dp"
             android:layout_height="72dp"
             android:contentDescription="@string/kalender"
+            app:tint="@color/brown1"
             android:src="@drawable/kalender" />
 
         <ImageButton
@@ -129,39 +154,52 @@
             android:layout_width="72dp"
             android:layout_height="72dp"
             android:contentDescription="@string/chat"
+            app:tint="@color/brown1"
             android:src="@drawable/chat" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/bottomNavigation"
         style="?android:attr/buttonBarButtonStyle"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
         <Button
+            android:textColor="@color/brown1"
             android:id="@+id/AufgabenButton"
             style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/aufgaben" />
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="@string/aufgaben"
+            tools:ignore="VisualLintButtonSize" />
 
         <Button
+            android:textColor="@color/brown1"
             android:id="@+id/TermineButton"
             style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/termine" />
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="@string/termine"
+            tools:ignore="VisualLintButtonSize" />
 
         <Button
+            android:textColor="@color/brown1"
             android:id="@+id/ListenButton"
             style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/listen" />
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="@string/listen"
+            tools:ignore="VisualLintButtonSize" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

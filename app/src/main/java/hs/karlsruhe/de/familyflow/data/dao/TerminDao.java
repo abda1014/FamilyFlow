@@ -5,6 +5,7 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import hs.karlsruhe.de.familyflow.data.entity.Benutzer;
 import hs.karlsruhe.de.familyflow.data.entity.Termin;
 
 import java.util.List;
