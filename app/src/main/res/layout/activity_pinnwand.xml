@@ -5,7 +5,20 @@
     android:id="@+id/Pinnwand"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context="hs.karlsruhe.de.familyflow.activities.Pinnwand">
+
+    <ImageView
+        android:id="@+id/backgroundImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/pinnwandbackground"
+        android:contentDescription="@string/hintergrund"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <TextView
         android:id="@+id/familyTitle"
@@ -29,7 +42,8 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/familyTitle">
+        app:layout_constraintTop_toBottomOf="@id/familyTitle"
+        android:layout_width="match_parent">
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

@@ -41,4 +41,5 @@
     <string name="chat">Chat</string>
     <string name="element_hinzufuegen">Element hinzufügen</string>
     <string name="teilnehmer_des_termins">Teilnehmer des Termins</string>
+    <string name="hintergrund">Hintergrund</string>
 </resources>
