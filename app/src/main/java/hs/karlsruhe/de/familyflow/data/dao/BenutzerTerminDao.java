@@ -40,4 +40,7 @@ public interface BenutzerTerminDao {
     @Transaction
     @Query("SELECT * FROM Benutzer WHERE isDeleted = 0")
     List<BenutzerTermin> getAlleBenutzerMitTerminen();
+
+    @Query("SELECT benutzerId FROM Termin WHERE terminId = :terminId")
+    List<String> getBeteiligteNutzerIds(String terminId);
 }

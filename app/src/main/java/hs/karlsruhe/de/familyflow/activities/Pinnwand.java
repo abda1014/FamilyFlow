@@ -21,7 +21,7 @@ import hs.karlsruhe.de.familyflow.data.entity.Termin;
  * Die Pinnwand:
  * Beinhaltet die Navigation zu den anderen Activities und den Inhalt der Pinnwand
  */
-@SuppressLint("SetTextI18n")
+@SuppressLint({"SetTextI18n", "UseCompatLoadingForDrawables"})
 public class Pinnwand extends AppCompatActivity {
 
     /**
@@ -29,7 +29,6 @@ public class Pinnwand extends AppCompatActivity {
      * @param savedInstanceState If the activity is being re-initialized after
      *     previously being shut down then this Bundle contains the data it most
      *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
-     *
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,16 +65,17 @@ public class Pinnwand extends AppCompatActivity {
 
         //befülle die Terminansicht auf der Pinnwand
         if (termin != null) {
+            //Beschreibung setzen
             eventTitleView.setText(termin.getTerminname());
             eventTimeView.setText(termin.getDatum() + " " + termin.getUhrzeit());
 
-            //TODO Bildchen laden und setzen
-            //eventImageView.setImageResource(defaultavatar);
+            //Avatarbildchen setzen
+            eventImageView.setImageDrawable(getResources().getDrawable(R.drawable.defaultavatar));
         } else {
-            // Fallback, falls noch keine Termine existieren
+            //Fallback, falls noch keine Termine existieren
             eventTitleView.setText("zurzeit gibt es keine anstehenden Termine");
             eventTimeView.setText(Calendar.getInstance().getTime().toString());
-            //TODO defaultavatar laden
+            eventImageView.setImageResource(R.drawable.defaultavatar);
         }
     }
 
