@@ -2,8 +2,6 @@ package hs.karlsruhe.de.familyflow.activities;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,19 +11,17 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Calendar;
-import java.util.List;
 
 import hs.karlsruhe.de.familyflow.R;
 import hs.karlsruhe.de.familyflow.data.AppDatabase;
 import hs.karlsruhe.de.familyflow.data.DatabaseManager;
-import hs.karlsruhe.de.familyflow.data.entity.Benutzer;
 import hs.karlsruhe.de.familyflow.data.entity.Termin;
 
 /**
  * Die Pinnwand:
  * Beinhaltet die Navigation zu den anderen Activities und den Inhalt der Pinnwand
  */
-@SuppressLint("SetTextI18n")
+@SuppressLint({"SetTextI18n", "UseCompatLoadingForDrawables"})
 public class Pinnwand extends AppCompatActivity {
 
     /**
@@ -33,7 +29,6 @@ public class Pinnwand extends AppCompatActivity {
      * @param savedInstanceState If the activity is being re-initialized after
      *     previously being shut down then this Bundle contains the data it most
      *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
-     *
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,23 +70,12 @@ public class Pinnwand extends AppCompatActivity {
             eventTimeView.setText(termin.getDatum() + " " + termin.getUhrzeit());
 
             //Avatarbildchen setzen
-            List<String> nutzerIds = db.benutzerTermineDao().getBeteiligteNutzerIds(termin.getTerminId());
-            eventImageView.setImageDrawable(createCombinedAvatar(nutzerIds, db));
+            eventImageView.setImageDrawable(getResources().getDrawable(R.drawable.defaultavatar));
         } else {
             //Fallback, falls noch keine Termine existieren
             eventTitleView.setText("zurzeit gibt es keine anstehenden Termine");
             eventTimeView.setText(Calendar.getInstance().getTime().toString());
             eventImageView.setImageResource(R.drawable.defaultavatar);
-        }
-    }
-
-    @SuppressLint("UseCompatLoadingForDrawables")
-    private Drawable createCombinedAvatar(List<String> nutzerIds, AppDatabase db) {
-        if (nutzerIds != null && !nutzerIds.isEmpty()) {
-            return getResources().getDrawable(R.drawable.defaultavatar);
-        } else {
-            //Fallback wenn keine Avatare vorhanden sind
-            return getResources().getDrawable(R.drawable.defaultavatar);
         }
     }
 

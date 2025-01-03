@@ -22,6 +22,7 @@
 
     <TextView
         android:id="@+id/familyTitle"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -52,7 +53,6 @@
                 android:id="@+id/eventTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="4rwu6wrzuj34"
                 android:textColor="@color/brown1"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -64,7 +64,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="qterjsartj"
+                android:textSize="12sp"
                 android:textColor="@color/brown1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/eventTitle" />
