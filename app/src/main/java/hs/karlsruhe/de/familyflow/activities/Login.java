@@ -81,10 +81,10 @@ public class Login extends AppCompatActivity {
             runOnUiThread(() -> {
                 if (benutzer != null) {
                     // Weiterleitung zur Pinnwand
-                    //Intent intent = new Intent(Login.this, Pinnwand.class);
+                    Intent intent = new Intent(Login.this, Pinnwand.class);
 
                     // Zum Test, ob die Weiterleitung von Login geht.
-                    Intent intent = new Intent(Login.this, LoginTestActivity.class);
+                    //Intent intent = new Intent(Login.this, LoginTestActivity.class);
 
                     startActivity(intent);
                 } else {
