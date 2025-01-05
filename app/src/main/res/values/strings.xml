@@ -42,4 +42,18 @@
     <string name="element_hinzufuegen">Element hinzufügen</string>
     <string name="teilnehmer_des_termins">Teilnehmer des Termins</string>
     <string name="hintergrund">Hintergrund</string>
+    <string name="search_hint" />
+    <string name="sort_by_date" />
+    <string name="sort_by_name" />
+    <string name="neuen_termin_erstellen" />
+    <string name="titel_eingeben" />
+    <string name="termin_datum" />
+    <string name="datum_waehlen" />
+    <string name="startzeit" />
+    <string name="endzeit" />
+    <string name="notizen_hinzufuegen" />
+    <string name="zuweisen" />
+    <string name="details_zum_termin">Details zum Termin</string>
+    <string name="suche_nach_terminen">Suche nach Termine</string>
+    <string name="terminbezeichnung">Terminbezeichnung</string>
 </resources>
