@@ -4,6 +4,7 @@ import android.graphics.drawable.Drawable;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "Benutzer")
@@ -29,6 +30,7 @@ public class Benutzer {
         // Leerer Konstruktor (für Room)
     }
 
+    @Ignore
     public Benutzer(@NonNull String benutzerId,
                     String vorname,
                     String nachname,

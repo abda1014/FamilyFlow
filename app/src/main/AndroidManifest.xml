@@ -10,7 +10,7 @@
         <!-- Login Activities -->
         <activity
             android:name=".activities.LoginTestActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".activities.Login"
             android:exported="true"
