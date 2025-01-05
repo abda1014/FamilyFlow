@@ -55,29 +55,35 @@ public class Pinnwand extends AppCompatActivity {
     /**
      * Initialisiert die Anzeige des nächsten Events, oder wenn keines existiert mit einer Standardanzeige
      */
-    public void InitialisiereEventAnzeige(){
-        AppDatabase db = DatabaseManager.getDatabase(this);
-        Termin termin = db.terminDao().getNextTermin();
+    public void InitialisiereEventAnzeige() {
+        // Asynchronen Task starten, um die Datenbank im Hintergrund zu laden
+        new Thread(() -> {
+            AppDatabase db = DatabaseManager.getDatabase(this);
+            Termin termin = db.terminDao().getNextTermin();
 
-        TextView eventTitleView = findViewById(R.id.eventTitle);
-        TextView eventTimeView = findViewById(R.id.eventTime);
-        ImageView eventImageView = findViewById(R.id.eventParticipants);
+            runOnUiThread(() -> {
+                TextView eventTitleView = findViewById(R.id.eventTitle);
+                TextView eventTimeView = findViewById(R.id.eventTime);
+                ImageView eventImageView = findViewById(R.id.eventParticipants);
 
-        //befülle die Terminansicht auf der Pinnwand
-        if (termin != null) {
-            //Beschreibung setzen
-            eventTitleView.setText(termin.getTerminname());
-            eventTimeView.setText(termin.getDatum() + " " + termin.getUhrzeit());
+                //befülle die Terminansicht auf der Pinnwand
+                if (termin != null) {
+                    //Beschreibung setzen
+                    eventTitleView.setText(termin.getTerminname());
+                    eventTimeView.setText(termin.getDatum() + " " + termin.getUhrzeit());
 
-            //Avatarbildchen setzen
-            eventImageView.setImageDrawable(getResources().getDrawable(R.drawable.defaultavatar));
-        } else {
-            //Fallback, falls noch keine Termine existieren
-            eventTitleView.setText("zurzeit gibt es keine anstehenden Termine");
-            eventTimeView.setText(Calendar.getInstance().getTime().toString());
-            eventImageView.setImageResource(R.drawable.defaultavatar);
-        }
+                    //Avatarbildchen setzen
+                    eventImageView.setImageDrawable(getResources().getDrawable(R.drawable.defaultavatar));
+                } else {
+                    //Fallback, falls noch keine Termine existieren
+                    eventTitleView.setText("zurzeit gibt es keine anstehenden Termine");
+                    eventTimeView.setText(Calendar.getInstance().getTime().toString());
+                    eventImageView.setImageResource(R.drawable.defaultavatar);
+                }
+            });
+        }).start(); // Startet den Thread
     }
+
 
     /**
      * lädt die AufgabeActivity, nachdem der Aufgaben Knopf gedrückt wurde
