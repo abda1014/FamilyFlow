@@ -2,6 +2,7 @@ package hs.karlsruhe.de.familyflow.data.entity;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "Termin")
@@ -27,7 +28,7 @@ public class Termin {
     public Termin() {
         // Leerer Konstruktor
     }
-
+    @Ignore
     public Termin(@NonNull String terminId,
                   String terminname,
                   String datum,

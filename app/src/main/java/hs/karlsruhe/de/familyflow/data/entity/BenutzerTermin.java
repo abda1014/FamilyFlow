@@ -3,17 +3,22 @@ package hs.karlsruhe.de.familyflow.data.entity;
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Index;
 
 import static androidx.room.ForeignKey.CASCADE;
 
 @Entity(
         tableName = "BenutzerTerminn",
         primaryKeys = {"benutzerId", "terminId"},
+        indices = {
+                @Index(value = "benutzerId"),
+                @Index(value = "terminId")
+        },
         foreignKeys = {
                 @ForeignKey(
-                        entity = Benutzer.class,    // statt Benutzer.class
-                        parentColumns = "benutzerId",  // statt nutzerId
-                        childColumns = "benutzerId",   // statt nutzerId
+                        entity = Benutzer.class,
+                        parentColumns = "benutzerId",
+                        childColumns = "benutzerId",
                         onDelete = CASCADE
                 ),
                 @ForeignKey(
@@ -27,7 +32,7 @@ import static androidx.room.ForeignKey.CASCADE;
 public class BenutzerTermin {
 
     @NonNull
-    private String benutzerId;  // statt nutzerId
+    private String benutzerId;
 
     @NonNull
     private String terminId;

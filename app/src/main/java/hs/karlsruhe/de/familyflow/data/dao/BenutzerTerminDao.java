@@ -4,6 +4,7 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.RoomWarnings;
 import androidx.room.Transaction;
 
 import hs.karlsruhe.de.familyflow.data.entity.Benutzer;
@@ -29,18 +30,15 @@ public interface BenutzerTerminDao {
 
     // Abrufen aller Termine für einen bestimmten Benutzer
     @Transaction
-    @Query("SELECT * FROM Benutzer WHERE benutzerId = :nutzerId AND isDeleted = 0")
-    BenutzerTermin getBenutzerWithTermine(String nutzerId);
-
-    // Alternativ: Direkte Abfrage aller Termine für einen Benutzer
-    @Query("SELECT * FROM Termin WHERE benutzerId = :nutzerId AND isDeleted = 0")
-    List<Termin> getTermineForBenutzer(String nutzerId);
+    @Query(" SELECT T.* FROM Termin T INNER JOIN benutzerterminn BT ON T.terminId = BT.terminId WHERE BT.benutzerId = :benutzerId AND T.isDeleted = 0")
+    List<Termin> getTermineForBenutzer(String benutzerId);
 
     // Abrufen aller Benutzer mit ihren Terminen
     @Transaction
-    @Query("SELECT * FROM Benutzer WHERE isDeleted = 0")
+    @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
+    @Query("SELECT * FROM Benutzer b inner join benutzerterminn bt inner join termin t on b.benutzerId=bt.benutzerId and bt.terminId=t.terminId WHERE t.isDeleted = 0")
     List<BenutzerTermin> getAlleBenutzerMitTerminen();
 
-    @Query("SELECT benutzerId FROM Termin WHERE terminId = :terminId")
+    @Query("SELECT benutzerId FROM Termin t inner join benutzerterminn bt on bt.terminId= t.terminId where t.terminId = :terminId")
     List<String> getBeteiligteNutzerIds(String terminId);
 }
