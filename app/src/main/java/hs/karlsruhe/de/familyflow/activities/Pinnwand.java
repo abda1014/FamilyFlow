@@ -97,7 +97,7 @@ public class Pinnwand extends AppCompatActivity {
      * lädt die TerminActivity, nachdem der Aufgaben Knopf gedrückt wurde
      */
     private void ZuTerminUebersicht() {
-        Intent intent = new Intent(Pinnwand.this, TerminActivity.class);
+        Intent intent = new Intent(Pinnwand.this, TerminUebersicht.class);
         startActivity(intent);
     }
 }
