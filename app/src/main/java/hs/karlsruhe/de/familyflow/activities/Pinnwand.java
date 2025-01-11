@@ -78,17 +78,17 @@ public class Pinnwand extends AppCompatActivity {
                     eventTitleView.setText(termin.getTerminname());
                     eventTimeView.setText(termin.getDatum() + " " + termin.getUhrzeit());
 
-            //Avatarbildchen setzen
-            eventImageView.setImageDrawable(getResources().getDrawable(R.drawable.defaultavatar));
-        } else {
-            //Fallback, falls noch keine Termine existieren
-            eventTitleView.setText("zurzeit gibt es keine anstehenden Termine");
-            //Uhrzeit und Datum setzen
-            SimpleDateFormat datumsFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm");
-            eventTimeView.setText(datumsFormat.format(Calendar.getInstance().getTime()));
-            //default Avatar einfügen
-            eventImageView.setImageResource(R.drawable.defaultavatar);
-        }
+                    //Avatarbildchen setzen
+                    eventImageView.setImageDrawable(getResources().getDrawable(R.drawable.defaultavatar));
+                } else {
+                    //Fallback, falls noch keine Termine existieren
+                    eventTitleView.setText("zurzeit gibt es keine anstehenden Termine");
+                    //Uhrzeit und Datum setzen
+                    SimpleDateFormat datumsFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+                    eventTimeView.setText(datumsFormat.format(Calendar.getInstance().getTime()));
+                    //default Avatar einfügen
+                    eventImageView.setImageResource(R.drawable.defaultavatar);
+                }
             });
         }).start(); // Startet den Thread
     }
