@@ -2,6 +2,7 @@ package hs.karlsruhe.de.familyflow.data.entity;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "Aufgabe")
@@ -17,12 +18,17 @@ public class Aufgabe {
     // Hier als String oder später per TypeConverter
     private String faelligkeitsdatum;
     private String notiz;
+
+    public boolean isDeleted() {
+        return isDeleted;
+    }
+
     private boolean isDeleted; // Neue Variable hinzugefügt
 
     public Aufgabe() {
         // Leerer Konstruktor
     }
-
+    @Ignore
     public Aufgabe(@NonNull String aufgabeId,
                    String aufgabenbezeichnung,
                    String status,

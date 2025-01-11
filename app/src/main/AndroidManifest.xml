@@ -10,7 +10,7 @@
         <!-- Login Activities -->
         <activity
             android:name=".activities.LoginTestActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".activities.Login"
             android:exported="true"
@@ -42,6 +42,24 @@
             android:theme="@style/Theme.FamilyFlow" />
         <activity
             android:name=".activities.PersonenZuweisen"
+            android:exported="true"
+            android:theme="@style/Theme.FamilyFlow" />
+
+        <!-- Terminmanagement Activities -->
+        <activity
+            android:name=".activities.TerminUebersicht"
+            android:exported="true"
+            android:theme="@style/Theme.FamilyFlow" />
+        <activity
+            android:name=".activities.TerminDetails"
+            android:exported="true"
+            android:theme="@style/Theme.FamilyFlow" />
+        <activity
+            android:name=".activities.TerminErstellen"
+            android:exported="true"
+            android:theme="@style/Theme.FamilyFlow" />
+        <activity
+            android:name=".activities.TerminPersonenZuweisen"
             android:exported="true"
             android:theme="@style/Theme.FamilyFlow" />
     </application>

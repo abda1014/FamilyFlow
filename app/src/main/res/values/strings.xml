@@ -11,12 +11,12 @@
     <string name="stringTextKontoErstellen">Wenn Sie noch kein Konto haben, erstellen Sie eines.</string>
     <string name="ueberschriftLogin">Sign in</string>
     <string name="zurueck">zurück</string>
-    <string name="suche_nach_aufgaben">Suche nach Aufgaben</string>
-    <string name="sortieren_nach_datum">Sortieren nach Datum</string>
-    <string name="sortieren_alphabetisch">Sortieren alphabetisch</string>
     <string name="details_zur_aufgabe">Details zur Aufgabe</string>
     <string name="details_hier_einf_gen">Details hier einfügen...</string>
     <string name="bearbeiten">Bearbeiten</string>
+    <string name="suche_nach_aufgaben">Suche nach Aufgaben</string>
+    <string name="sortieren_nach_datum">Sortieren nach Datum</string>
+    <string name="sortieren_alphabetisch">Sortieren alphabetisch</string>
     <string name="aufgabenbezeichnung">Aufgabenbezeichnung</string>
     <string name="status">Status</string>
     <string name="f_lligkeitsdatum">Fälligkeitsdatum</string>
@@ -42,4 +42,18 @@
     <string name="element_hinzufuegen">Element hinzufügen</string>
     <string name="teilnehmer_des_termins">Teilnehmer des Termins</string>
     <string name="hintergrund">Hintergrund</string>
+    <string name="search_hint" />
+    <string name="sort_by_date" />
+    <string name="sort_by_name" />
+    <string name="neuen_termin_erstellen" />
+    <string name="titel_eingeben" />
+    <string name="termin_datum" />
+    <string name="datum_waehlen" />
+    <string name="startzeit" />
+    <string name="endzeit" />
+    <string name="notizen_hinzufuegen" />
+    <string name="zuweisen" />
+    <string name="details_zum_termin">Details zum Termin</string>
+    <string name="suche_nach_terminen">Suche nach Termine</string>
+    <string name="terminbezeichnung">Terminbezeichnung</string>
 </resources>

@@ -61,19 +61,22 @@ public class Pinnwand extends AppCompatActivity {
     /**
      * Initialisiert die Anzeige des nächsten Events, oder wenn keines existiert mit einer Standardanzeige
      */
-    public void InitialisiereEventAnzeige(){
-        AppDatabase db = DatabaseManager.getDatabase(this);
-        Termin termin = db.terminDao().getNextTermin();
+    public void InitialisiereEventAnzeige() {
+        // Asynchronen Task starten, um die Datenbank im Hintergrund zu laden
+        new Thread(() -> {
+            AppDatabase db = DatabaseManager.getDatabase(this);
+            Termin termin = db.terminDao().getNextTermin();
 
-        TextView eventTitleView = findViewById(R.id.eventTitle);
-        TextView eventTimeView = findViewById(R.id.eventTime);
-        ImageView eventImageView = findViewById(R.id.eventParticipants);
+            runOnUiThread(() -> {
+                TextView eventTitleView = findViewById(R.id.eventTitle);
+                TextView eventTimeView = findViewById(R.id.eventTime);
+                ImageView eventImageView = findViewById(R.id.eventParticipants);
 
-        //befülle die Terminansicht auf der Pinnwand
-        if (termin != null) {
-            //Beschreibung setzen
-            eventTitleView.setText(termin.getTerminname());
-            eventTimeView.setText(termin.getDatum() + " " + termin.getUhrzeit());
+                //befülle die Terminansicht auf der Pinnwand
+                if (termin != null) {
+                    //Beschreibung setzen
+                    eventTitleView.setText(termin.getTerminname());
+                    eventTimeView.setText(termin.getDatum() + " " + termin.getUhrzeit());
 
             //Avatarbildchen setzen
             eventImageView.setImageDrawable(getResources().getDrawable(R.drawable.defaultavatar));
@@ -86,13 +89,16 @@ public class Pinnwand extends AppCompatActivity {
             //default Avatar einfügen
             eventImageView.setImageResource(R.drawable.defaultavatar);
         }
+            });
+        }).start(); // Startet den Thread
     }
+
 
     /**
      * lädt die AufgabeActivity, nachdem der Aufgaben Knopf gedrückt wurde
      */
     private void ZuAufgabenUebersicht() {
-        Intent intent = new Intent(Pinnwand.this, AufgabeActivity.class);
+        Intent intent = new Intent(Pinnwand.this, AufgabeUebersicht.class);
         startActivity(intent);
     }
 
@@ -100,7 +106,7 @@ public class Pinnwand extends AppCompatActivity {
      * lädt die TerminActivity, nachdem der Aufgaben Knopf gedrückt wurde
      */
     private void ZuTerminUebersicht() {
-        Intent intent = new Intent(Pinnwand.this, TerminActivity.class);
+        Intent intent = new Intent(Pinnwand.this, TerminUebersicht.class);
         startActivity(intent);
     }
 

@@ -11,17 +11,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import hs.karlsruhe.de.familyflow.R;
 
-public class AufgabeErstellen extends AppCompatActivity {
+public class TerminErstellen extends AppCompatActivity {
 
-    private EditText etAufgabenbezeichnung, etStatus, etFaelligkeitsdatum, etNotiz;
+    private EditText etTerminbezeichnung, etStatus, etFaelligkeitsdatum, etNotiz;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_aufgabe_erstellen);
+        setContentView(R.layout.activity_termin_erstellen);
 
         // Views initialisieren
-        etAufgabenbezeichnung = findViewById(R.id.aufgabenbezeichnung);
+        etTerminbezeichnung = findViewById(R.id.terminbezeichnung);
         etStatus = findViewById(R.id.status);
         etFaelligkeitsdatum = findViewById(R.id.faelligkeitsdatum);
         etNotiz = findViewById(R.id.notiz);
@@ -31,16 +31,16 @@ public class AufgabeErstellen extends AppCompatActivity {
         btnSpeichern.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String aufgabenbezeichnung = etAufgabenbezeichnung.getText().toString();
+                String terminbezeichnung = etTerminbezeichnung.getText().toString();
                 String status = etStatus.getText().toString();
                 String faelligkeitsdatum = etFaelligkeitsdatum.getText().toString();
                 String notiz = etNotiz.getText().toString();
 
-                if (aufgabenbezeichnung.isEmpty() || status.isEmpty() || faelligkeitsdatum.isEmpty()) {
-                    Toast.makeText(AufgabeErstellen.this, "Bitte alle Felder ausfüllen", Toast.LENGTH_SHORT).show();
+                if (terminbezeichnung.isEmpty() || status.isEmpty() || faelligkeitsdatum.isEmpty()) {
+                    Toast.makeText(TerminErstellen.this, "Bitte alle Felder ausfüllen", Toast.LENGTH_SHORT).show();
                 } else {
-                    // Speichern der Aufgabe (hier Platzhalter)
-                    Toast.makeText(AufgabeErstellen.this, "Aufgabe erstellt!", Toast.LENGTH_SHORT).show();
+                    // Speichern der Termin (hier Platzhalter)
+                    Toast.makeText(TerminErstellen.this, "Termin erstellt!", Toast.LENGTH_SHORT).show();
                     finish();
                 }
             }

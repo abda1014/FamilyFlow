@@ -4,6 +4,7 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.RoomWarnings;
 import androidx.room.Transaction;
 
 import hs.karlsruhe.de.familyflow.data.entity.Aufgabe;
@@ -27,16 +28,13 @@ public interface BenutzerAufgabeDao {
     void deleteAufgabe(String aufgabeId);
 
     // Abrufen aller Aufgaben für einen bestimmten Benutzer
-    @Transaction
-    @Query("SELECT * FROM Benutzer WHERE benutzerId = :benutzerId AND isDeleted = 0")
+    @Transaction@SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
+    @Query("SELECT * FROM benutzeraufgaben ba inner join Aufgabe a on ba.aufgabeId=a.aufgabeId WHERE benutzerId = :benutzerId AND a.isDeleted = 0")
     BenutzerAufgaben getBenutzerWithAufgaben(String benutzerId);
 
-    // Alternativ: Direkte Abfrage aller Aufgaben für einen Benutzer
-    @Query("SELECT * FROM Aufgabe WHERE benutzerId = :benutzerId AND isDeleted = 0")
-    List<Aufgabe> getAufgabenForBenutzer(String benutzerId);
-
     // Abrufen aller Benutzer mit ihren Aufgaben
+    @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
     @Transaction
-    @Query("SELECT * FROM Benutzer WHERE isDeleted = 0")
+    @Query("SELECT * FROM Benutzer b inner join BenutzerAufgaben ba inner join Aufgabe a on b.benutzerId=ba.benutzerId and ba.aufgabeId=a.aufgabeId where a.isDeleted = 0")
     List<BenutzerAufgaben> getAlleBenutzerMitAufgaben();
 }

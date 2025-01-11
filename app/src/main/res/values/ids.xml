@@ -8,4 +8,13 @@
     <item name="spPersonen" type="id" />
     <item name="btnHinzufuegen" type="id" />
     <item name="lvZugewiesenePersonen" type="id" />
+    <item name="termin_titel" type="id" />
+    <item name="termin_datum" type="id" />
+    <item name="termin_uhrzeit" type="id" />
+    <item name="termin_notizen" type="id" />
+    <item name="bearbeiten_button" type="id" />
+    <item name="termin_datum_label" type="id" />
+    <item name="termin_startzeit" type="id" />
+    <item name="termin_endzeit" type="id" />
+    <item name="speichern_button" type="id" />
 </resources>

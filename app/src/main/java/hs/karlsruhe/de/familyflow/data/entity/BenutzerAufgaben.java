@@ -1,19 +1,28 @@
 package hs.karlsruhe.de.familyflow.data.entity;
 
+import static androidx.room.ForeignKey.CASCADE;
+
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Index;
 
-import static androidx.room.ForeignKey.CASCADE;
+import hs.karlsruhe.de.familyflow.data.entity.Aufgabe;
+import hs.karlsruhe.de.familyflow.data.entity.Benutzer;
 
 @Entity(
         tableName = "BenutzerAufgaben",
         primaryKeys = {"benutzerId", "aufgabeId"},
+        indices = {
+                // Index the foreign key columns to avoid full-table scans
+                @Index(value = "benutzerId"),
+                @Index(value = "aufgabeId")
+        },
         foreignKeys = {
                 @ForeignKey(
-                        entity = Benutzer.class,    // statt Benutzer.class
-                        parentColumns = "benutzerId",  // statt nutzerId
-                        childColumns = "benutzerId",   // statt nutzerId
+                        entity = Benutzer.class,
+                        parentColumns = "benutzerId",
+                        childColumns = "benutzerId",
                         onDelete = CASCADE
                 ),
                 @ForeignKey(
@@ -27,7 +36,7 @@ import static androidx.room.ForeignKey.CASCADE;
 public class BenutzerAufgaben {
 
     @NonNull
-    private String benutzerId;  
+    private String benutzerId;
 
     @NonNull
     private String aufgabeId;
@@ -38,7 +47,6 @@ public class BenutzerAufgaben {
     }
 
     // -- Getter & Setter --
-
     @NonNull
     public String getBenutzerId() {
         return benutzerId;
