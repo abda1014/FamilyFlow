@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import hs.karlsruhe.de.familyflow.R;
@@ -21,7 +23,7 @@ import hs.karlsruhe.de.familyflow.data.entity.Termin;
  * Die Pinnwand:
  * Beinhaltet die Navigation zu den anderen Activities und den Inhalt der Pinnwand
  */
-@SuppressLint({"SetTextI18n", "UseCompatLoadingForDrawables"})
+@SuppressLint({"SetTextI18n", "UseCompatLoadingForDrawables", "SimpleDateFormat"})
 public class Pinnwand extends AppCompatActivity {
 
     /**
@@ -50,6 +52,10 @@ public class Pinnwand extends AppCompatActivity {
         //initialisiere Termine Button
         Button termineButton = findViewById(R.id.TermineButton);
         termineButton.setOnClickListener(v -> ZuTerminUebersicht());
+
+        //initialisiere Einstellungen Button
+        ImageButton settingsButton = findViewById(R.id.einstellungen);
+        settingsButton.setOnClickListener(v -> ZuEinstellungen());
     }
 
     /**
@@ -74,7 +80,10 @@ public class Pinnwand extends AppCompatActivity {
         } else {
             //Fallback, falls noch keine Termine existieren
             eventTitleView.setText("zurzeit gibt es keine anstehenden Termine");
-            eventTimeView.setText(Calendar.getInstance().getTime().toString());
+            //Uhrzeit und Datum setzen
+            SimpleDateFormat datumsFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+            eventTimeView.setText(datumsFormat.format(Calendar.getInstance().getTime()));
+            //default Avatar einfügen
             eventImageView.setImageResource(R.drawable.defaultavatar);
         }
     }
@@ -93,5 +102,10 @@ public class Pinnwand extends AppCompatActivity {
     private void ZuTerminUebersicht() {
         Intent intent = new Intent(Pinnwand.this, TerminActivity.class);
         startActivity(intent);
+    }
+
+    private void ZuEinstellungen() {
+//        Intent intent = new Intent(Pinnwand.this, Einstellungen.class);
+//        startActivity(intent);
     }
 }
