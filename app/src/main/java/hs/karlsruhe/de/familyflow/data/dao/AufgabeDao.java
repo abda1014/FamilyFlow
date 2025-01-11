@@ -32,5 +32,15 @@ public interface AufgabeDao {
     // Eine Aufgabe per ID (egal, ob gelöscht oder nicht)
     @Query("SELECT * FROM Aufgabe WHERE aufgabeId = :id LIMIT 1")
     Aufgabe findAufgabeById(String id);
+
+    /**
+     * Anfrage um die Aufgabe mit der nächsten Fälligkeit abzufragen
+     * @return die Aufgabe mit der nächsten Fälligkeit oder null, wenn keine vorhanden
+     */
+    @Query("SELECT * FROM Aufgabe " +
+            "WHERE isDeleted = 0 AND datetime(faelligkeitsdatum) > datetime('now') " +
+            "ORDER BY datetime(faelligkeitsdatum) ASC " +
+            "LIMIT 1")
+    Aufgabe getNextAufgabe();
 }
 
