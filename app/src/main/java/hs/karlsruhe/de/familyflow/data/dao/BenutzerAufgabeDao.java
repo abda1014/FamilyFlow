@@ -7,7 +7,6 @@ import androidx.room.Query;
 import androidx.room.RoomWarnings;
 import androidx.room.Transaction;
 
-import hs.karlsruhe.de.familyflow.data.entity.Aufgabe;
 import hs.karlsruhe.de.familyflow.data.entity.BenutzerAufgaben;
 
 import java.util.List;
@@ -17,7 +16,7 @@ public interface BenutzerAufgabeDao {
 
     // Einfügen einer neuen Aufgabe
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAufgabe(Aufgabe aufgabe);
+    void insertAufgabe(BenutzerAufgaben aufgabe);
 
     // Aktualisieren einer bestehenden Aufgabe
     @Query("UPDATE Aufgabe SET aufgabenbezeichnung = :bezeichnung, status = :status, faelligkeitsdatum = :datum, notiz = :notiz, isDeleted = :isDeleted WHERE aufgabeId = :aufgabeId")

@@ -77,4 +77,6 @@
     <string name="delete_account">Konto löschen</string>
     <string name="manage_subscription">Abo verwalten</string>
     <string name="logout">Ausloggen</string>
+    <string name="loeschen">Löschen</string>
+    <string name="aufgabenbezeichnung_hint">Aufgabenbezeichnung bearbeiten</string>
 </resources>

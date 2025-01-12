@@ -9,79 +9,68 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.UUID;
 
 import hs.karlsruhe.de.familyflow.R;
+import hs.karlsruhe.de.familyflow.data.AppDatabase;
+import hs.karlsruhe.de.familyflow.data.DatabaseManager;
+import hs.karlsruhe.de.familyflow.data.dao.AufgabeDao;
+import hs.karlsruhe.de.familyflow.data.entity.Aufgabe;
 
 public class AufgabeErstellen extends AppCompatActivity {
 
     private EditText etAufgabenbezeichnung, etStatus, etFaelligkeitsdatum, etNotiz;
+    private AufgabeDao aufgabeDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aufgabe_erstellen);
 
+        // Room-Datenbank und DAO initialisieren
+        AppDatabase db = DatabaseManager.getDatabase(this);
+        aufgabeDao = db.aufgabeDao();
+
         // Views initialisieren
-        etAufgabenbezeichnung = findViewById(R.id.aufgabenbezeichnung);
-        etStatus = findViewById(R.id.status);
-        etFaelligkeitsdatum = findViewById(R.id.faelligkeitsdatum);
-        etNotiz = findViewById(R.id.notiz);
-        Button btnSpeichern = findViewById(R.id.save_button);
+        etAufgabenbezeichnung = findViewById(R.id.editTextAufgabenbezeichnung);
+        etStatus = findViewById(R.id.editTextStatus);
+        etFaelligkeitsdatum = findViewById(R.id.editTextFaelligkeitsdatum);
+        etNotiz = findViewById(R.id.editTextNotiz);
 
-        InitialisiereClickHandler(findViewById(R.id.AufgabeErstellen));
+        Button btnSpeichern = findViewById(R.id.buttonAufgabeSpeichern);
+        btnSpeichern.setOnClickListener(v -> saveTask());
+    }
 
-        // Klick-Listener für den Speichern-Button
-        btnSpeichern.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String aufgabenbezeichnung = etAufgabenbezeichnung.getText().toString();
-                String status = etStatus.getText().toString();
-                String faelligkeitsdatum = etFaelligkeitsdatum.getText().toString();
-                String notiz = etNotiz.getText().toString();
+    private void saveTask() {
+        String aufgabenbezeichnung = etAufgabenbezeichnung.getText().toString();
+        String status = etStatus.getText().toString();
+        String faelligkeitsdatum = etFaelligkeitsdatum.getText().toString();
+        String notiz = etNotiz.getText().toString();
 
-                if (aufgabenbezeichnung.isEmpty() || status.isEmpty() || faelligkeitsdatum.isEmpty()) {
-                    Toast.makeText(AufgabeErstellen.this, "Bitte alle Felder ausfüllen", Toast.LENGTH_SHORT).show();
-                } else {
-                    // Speichern der Aufgabe (hier Platzhalter)
+        // Eingabefelder validieren
+        if (aufgabenbezeichnung.isEmpty() || status.isEmpty() || faelligkeitsdatum.isEmpty()) {
+            Toast.makeText(AufgabeErstellen.this, "Bitte alle Pflichtfelder ausfüllen", Toast.LENGTH_SHORT).show();
+        } else {
+            // Neue Aufgabe erstellen
+            Aufgabe neueAufgabe = new Aufgabe(
+                    UUID.randomUUID().toString(),
+                    aufgabenbezeichnung,
+                    status,
+                    faelligkeitsdatum,
+                    notiz,
+                    false // Inaktiv (kann bei Bedarf angepasst werden)
+            );
+
+            // Aufgabe in der Datenbank speichern
+            new Thread(() -> {
+                aufgabeDao.insertAufgabe(neueAufgabe);
+                runOnUiThread(() -> {
                     Toast.makeText(AufgabeErstellen.this, "Aufgabe erstellt!", Toast.LENGTH_SHORT).show();
-                    finish();
-                }
-            }
-        });
-    }
-    /**
-     * ClickHandler für die Buttons von AufgabeErstellen um zu den anderen Activities zu navigieren
-     * @param view Die AufgabeErstellen View, die das Click Event erhalten hat
-     */
-    public void InitialisiereClickHandler(View view) {
-        //initialisiere Aufgaben Button
-        Button abbruchAufgabeUebersicht = findViewById(R.id.buttonAbbruchAufgabeUebersicht);
-        abbruchAufgabeUebersicht.setOnClickListener(v -> ZuAufgabeUebersicht());
-
-        //initialisiere Termine Button
-        Button aufgabeDetails = findViewById(R.id.buttonAufgabeDetails);
-        aufgabeDetails.setOnClickListener(v -> ZuAufgabeDetails());
-
-        //initialisiere Termine Button
-        Button aufgabePersonenZuweisen = findViewById(R.id.buttonAufgabePersonenZuweisen);
-        aufgabePersonenZuweisen.setOnClickListener(v -> ZuAufgabePersonenZuweisen());
-    }
-
-    private void ZuAufgabeUebersicht() {
-        Intent intent = new Intent(AufgabeErstellen.this, AufgabeUebersicht.class);
-        startActivity(intent);
-    }
-
-    /**
-     * Lädt die AufgabeErstellen Activity, nachdem der Aufgabe erstellen Knopf gedrückt wurde
-     */
-    private void ZuAufgabeDetails() {
-        Intent intent = new Intent(AufgabeErstellen.this, AufgabeDetails.class);
-        startActivity(intent);
-    }
-
-    private void ZuAufgabePersonenZuweisen() {
-        Intent intent = new Intent(AufgabeErstellen.this, PersonenZuweisen.class);
-        startActivity(intent);
+                    finish(); // Activity beenden und zur Aufgabenübersicht zurückkehren
+                });
+            }).start();
+        }
     }
 }
+
+

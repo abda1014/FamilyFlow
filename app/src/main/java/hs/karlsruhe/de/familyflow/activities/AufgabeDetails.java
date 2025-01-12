@@ -2,50 +2,66 @@ package hs.karlsruhe.de.familyflow.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import hs.karlsruhe.de.familyflow.R;
+import hs.karlsruhe.de.familyflow.data.AppDatabase;
+import hs.karlsruhe.de.familyflow.data.DatabaseManager;
+import hs.karlsruhe.de.familyflow.data.dao.AufgabeDao;
+import hs.karlsruhe.de.familyflow.data.entity.Aufgabe;
 
 public class AufgabeDetails extends AppCompatActivity {
+
+    private AufgabeDao aufgabeDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aufgabe_details);
 
-        // Beispiel: Hole die Aufgabe aus dem Intent
-        String aufgabe = getIntent().getStringExtra("aufgabe");
+        // Room-Datenbank und DAO initialisieren
+        AppDatabase db = DatabaseManager.getDatabase(this);
+        aufgabeDao = db.aufgabeDao();
 
-        TextView textView = findViewById(R.id.details_text);
-        textView.setText(aufgabe); // Zeige die Details
-        InitialisiereClickHandler(findViewById(R.id.AufgabeDetails));
-    }
-    /**
-     * ClickHandler für die Buttons von AufgabeDetails um zu den anderen Activities zu navigieren
-     * @param view Die AufgabeDetails View, die das Click Event erhalten hat
-     */
-    public void InitialisiereClickHandler(View view) {
-        //initialisiere Aufgaben Button
-        Button zurueckAufgabeUebersicht = findViewById(R.id.buttonZurueckAufgabeUebersicht);
-        zurueckAufgabeUebersicht.setOnClickListener(v -> ZuAufgabeUebersicht());
+        String aufgabeId = getIntent().getStringExtra("aufgabeId");
 
-        //initialisiere Termine Button
-        Button aufgabeBearbeiten = findViewById(R.id.buttonAufgabeBearbeiten);
-        aufgabeBearbeiten.setOnClickListener(v -> ZuAufgabeBearbeiten());
+
+
+        // Aufgabe aus DB laden
+        loadAufgabeDetails(aufgabeId);
     }
 
-    private void ZuAufgabeUebersicht() {
-        Intent intent = new Intent(AufgabeDetails.this, AufgabeUebersicht.class);
-        startActivity(intent);
-    }
+    private void loadAufgabeDetails(String aufgabeId) {
+        Log.d("AufgabeDetails", "Start loading details for ID: " + aufgabeId);
+        new Thread(() -> {
+            Aufgabe aufgabe = aufgabeDao.findAufgabeById(aufgabeId);
+            if (aufgabe == null) {
+                Log.e("AufgabeDetails", "Aufgabe nicht gefunden!");
+                runOnUiThread(() -> {
+                    Toast.makeText(this, "Aufgabe nicht gefunden!", Toast.LENGTH_SHORT).show();
+                    finish();
+                });
+                return;
+            }
+            runOnUiThread(() -> {
+                Log.d("AufgabeDetails", "Aufgabe geladen: " + aufgabe.getAufgabenbezeichnung());
+                TextView tvBezeichnung = findViewById(R.id.aufgabenbezeichnung);
+                TextView tvStatus = findViewById(R.id.status);
+                TextView tvFaelligkeit = findViewById(R.id.faelligkeitsdatum);
 
-    /**
-     * lädt die TerminActivity, nachdem der Aufgaben Knopf gedrückt wurde
-     */
-    private void ZuAufgabeBearbeiten() {
-        Intent intent = new Intent(AufgabeDetails.this, AufgabeErstellen.class);
-        startActivity(intent);
+                tvBezeichnung.setText(aufgabe.getAufgabenbezeichnung());
+                tvStatus.setText(aufgabe.getStatus());
+                tvFaelligkeit.setText(aufgabe.getFaelligkeitsdatum());
+            });
+        }).start();
     }
 }
+
+
+
