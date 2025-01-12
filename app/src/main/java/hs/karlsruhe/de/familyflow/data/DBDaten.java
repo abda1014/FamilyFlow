@@ -47,6 +47,43 @@ public class DBDaten {
                 }
             }
 
+            // Standard Password, um sich leicht mit allen Testnutzern anmelden zu können
+            String standardPassword = "123123123";
+            String hashedStandardPassword = hashPassword(standardPassword);
+
+            // weitere existierende Nutzer anlegen
+            if (hashedStandardPassword != null) {
+                String emailGustav = "gustav@hka.de";
+                Benutzer existierenderBenutzer = benutzerDao.findBenutzerByEmailAndPassword(emailGustav, hashedStandardPassword);
+                if (existierenderBenutzer == null) {
+                    Benutzer gustav = new Benutzer(
+                            UUID.randomUUID().toString(), "Gustav", "Klein",
+                            emailGustav, "1990-05-15", false, hashedStandardPassword
+                    );
+                    benutzerDao.insertBenutzer(gustav);
+                }
+
+                String emailAnna = "anna@hka.de";
+                existierenderBenutzer = benutzerDao.findBenutzerByEmailAndPassword(emailAnna, hashedStandardPassword);
+                if (existierenderBenutzer == null) {
+                    Benutzer anna = new Benutzer(
+                            UUID.randomUUID().toString(), "Anna", "Klein",
+                            emailAnna, "1995-09-10", false, hashedStandardPassword
+                    );
+                    benutzerDao.insertBenutzer(anna);
+                }
+
+                String emailLisa = "lisa@hka.de";
+                existierenderBenutzer = benutzerDao.findBenutzerByEmailAndPassword(emailLisa, hashedStandardPassword);
+                if (existierenderBenutzer == null) {
+                    Benutzer lisa = new Benutzer(
+                            UUID.randomUUID().toString(), "Lisa", "Klein",
+                            emailLisa, "2001-03-25", false, hashedStandardPassword
+                    );
+                    benutzerDao.insertBenutzer(lisa);
+                }
+            }
+
             //hinzufügen von schon existierenden Terminen wenn noch nicht getan
             TerminDao terminDao = db.terminDao();
             if(terminDao.getNextTermin() == null){
