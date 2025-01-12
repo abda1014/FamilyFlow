@@ -8,7 +8,7 @@
         android:theme="@style/Theme.FamilyFlow">
         <activity
             android:name=".activities.Einstellungen"
-            android:exported="false" />
+            android:exported="true" />
         <!-- Login Activities -->
         <activity
             android:name=".activities.LoginTestActivity"

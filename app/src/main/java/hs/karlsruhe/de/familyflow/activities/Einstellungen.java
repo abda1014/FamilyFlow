@@ -12,29 +12,38 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+
+
 import hs.karlsruhe.de.familyflow.R;
+
+
 
 public class Einstellungen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_einstellung);
-        //InitialisiereClickHandler(findViewById(R.id.settingsFrame));
 
+        // Logout-Button finden
+       Button buttonLogout = findViewById(R.id.buttonLogout);
+
+        // Setze den OnClickListener für den Logout-Button
+        buttonLogout.setOnClickListener(v -> {
+            // Beispiel-Action für Logout: Benutzer zurück zum Login-Bildschirm leiten
+            logoutUser();
+        });
     }
 
+    // Logout-Logik
+    private void logoutUser() {
+        // Hier kannst du den Benutzer abmelden (z.B. bei Firebase Auth oder SharedPreferences)
 
-    public void InitialisiereClickHandler(View view) {
-
-        //initialisiere Auslog-Button
-        ImageButton settingsButton = findViewById(R.id.buttonLogout);
-        settingsButton.setOnClickListener(v -> Ausloggen());
-    }
-
-    private void Ausloggen() {
+        // Beispiel: Zur LoginActivity zurück navigieren
         Intent intent = new Intent(Einstellungen.this, Login.class);
         startActivity(intent);
+
+        // Schließe die aktuelle Activity, um sie aus dem Stack zu entfernen
+        finish();
     }
 }
