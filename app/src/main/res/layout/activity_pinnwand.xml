@@ -75,6 +75,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:contentDescription="@string/teilnehmer_des_termins"
+            android:src="@drawable/defaultavatar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </LinearLayout>
