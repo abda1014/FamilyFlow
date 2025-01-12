@@ -6,7 +6,9 @@
         android:icon="@mipmap/family"
         android:supportsRtl="true"
         android:theme="@style/Theme.FamilyFlow">
-
+        <activity
+            android:name=".activities.Einstellungen"
+            android:exported="false" />
         <!-- Login Activities -->
         <activity
             android:name=".activities.LoginTestActivity"
@@ -17,17 +19,14 @@
             android:theme="@style/Theme.FamilyFlow">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- Pinnwand Activity -->
+        </activity> <!-- Pinnwand Activity -->
         <activity
             android:name=".activities.Pinnwand"
             android:exported="true"
-            android:theme="@style/Theme.FamilyFlow" />
-
-        <!-- Aufgabenmanagement Activities -->
+            android:theme="@style/Theme.FamilyFlow" /> <!-- Aufgabenmanagement Activities -->
         <activity
             android:name=".activities.AufgabeUebersicht"
             android:exported="true"
@@ -43,9 +42,7 @@
         <activity
             android:name=".activities.PersonenZuweisen"
             android:exported="true"
-            android:theme="@style/Theme.FamilyFlow" />
-
-        <!-- Terminmanagement Activities -->
+            android:theme="@style/Theme.FamilyFlow" /> <!-- Terminmanagement Activities -->
         <activity
             android:name=".activities.TerminUebersicht"
             android:exported="true"

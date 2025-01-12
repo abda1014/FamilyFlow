@@ -111,7 +111,7 @@ public class Pinnwand extends AppCompatActivity {
     }
 
     private void ZuEinstellungen() {
-//        Intent intent = new Intent(Pinnwand.this, Einstellungen.class);
-//        startActivity(intent);
+        Intent intent = new Intent(Pinnwand.this, Einstellungen.class);
+        startActivity(intent);
     }
 }
