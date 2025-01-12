@@ -86,8 +86,6 @@ public class Pinnwand extends AppCompatActivity {
                     //Uhrzeit und Datum setzen
                     SimpleDateFormat datumsFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm");
                     eventTimeView.setText(datumsFormat.format(Calendar.getInstance().getTime()));
-                    //default Avatar einfügen
-                    eventImageView.setImageResource(R.drawable.defaultavatar);
                 }
             });
         }).start(); // Startet den Thread
@@ -110,6 +108,9 @@ public class Pinnwand extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * lädt die EinstellungenActivity, nachdem der Einstellungen Knopf gedrückt wurde
+     */
     private void ZuEinstellungen() {
         Intent intent = new Intent(Pinnwand.this, Einstellungen.class);
         startActivity(intent);
