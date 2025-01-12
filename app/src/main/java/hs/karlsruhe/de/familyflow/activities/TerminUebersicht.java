@@ -3,99 +3,131 @@ package hs.karlsruhe.de.familyflow.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Button;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
-import hs.karlsruhe.de.familyflow.R;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
+import hs.karlsruhe.de.familyflow.R;
+import hs.karlsruhe.de.familyflow.data.AppDatabase;
+import hs.karlsruhe.de.familyflow.data.DatabaseManager;
+import hs.karlsruhe.de.familyflow.data.dao.AufgabeDao;
+import hs.karlsruhe.de.familyflow.data.dao.TerminDao;
+import hs.karlsruhe.de.familyflow.data.entity.Aufgabe;
+import hs.karlsruhe.de.familyflow.data.entity.Termin;
 
 public class TerminUebersicht extends AppCompatActivity {
 
-    private ArrayList<String> termineListe; // Beispiel-Liste
+    private ArrayList<String> termineListe; // Liste zur Anzeige der Terminbezeichnung
     private ArrayAdapter<String> adapter;
+    private TerminDao terminDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_termin_uebersicht);
 
-        EditText searchBar = findViewById(R.id.search_bar);
-        ListView listView = findViewById(R.id.termine_liste);
+        // Room-Datenbank und DAO initialisieren
+        AppDatabase db = DatabaseManager.getDatabase(this);
+        terminDao = db.terminDao();
 
-        // Beispiel-Termineliste
+        // Zurück-Button
+        Button buttonZurueckPinnwand = findViewById(R.id.buttonZurueckPinnwand);
+        buttonZurueckPinnwand.setOnClickListener(v -> finish()); // Zurück zur vorherigen Activity
+
+        ListView listViewTermine = findViewById(R.id.listViewTermine);
+
         termineListe = new ArrayList<>();
-        termineListe.add("Termin 1");
-        termineListe.add("Termin 2");
-        termineListe.add("Termin 3");
-
-        // Adapter initialisieren
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, termineListe);
-        listView.setAdapter(adapter);
+        listViewTermine.setAdapter(adapter);
 
-        // Sortierfunktion hinzufügen
-        findViewById(R.id.sort_by_date).setOnClickListener(v -> sortByDate());
-        findViewById(R.id.sort_alphabetically).setOnClickListener(v -> sortAlphabetically());
+        // Aufgaben aus der Datenbank laden
+        loadTermine();
 
         // Item-Klick: Navigiere zu Details
-        listView.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> {
+        listViewTermine.setOnItemClickListener((parent, view, position, id) -> {
             Intent intent = new Intent(this, TerminDetails.class);
-            intent.putExtra("termin", termineListe.get(position));
+            intent.putExtra("terminId", termineListe.get(position)); // Terminnummer übergeben
             startActivity(intent);
         });
 
-        InitialisiereClickHandler(findViewById(R.id.TerminUebersicht));
-
-        // Suche nach Text in der Liste
-        searchBar.addTextChangedListener(new android.text.TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                adapter.getFilter().filter(s);
-            }
-
-            @Override
-            public void afterTextChanged(android.text.Editable s) {}
+        // Button "Neuer Termin" klickbar machen
+        Button buttonNeuerTermin = findViewById(R.id.button_neuer_termin);
+        buttonNeuerTermin.setOnClickListener(v -> {
+            // Navigiere zu TerminErstellen
+            Intent intent = new Intent(TerminUebersicht.this, TerminErstellen.class);
+            startActivity(intent);
         });
+
+        // Button für Sortierung nach Datum
+        Button buttonSortiereDatum = findViewById(R.id.buttonSortiereDatum);
+        buttonSortiereDatum.setOnClickListener(v -> sortiereNachDatum());
+
+        // Button für Sortierung nach Alphabet
+        Button buttonSortiereAlphabetisch = findViewById(R.id.buttonSortiereAlphabetisch);
+        buttonSortiereAlphabetisch.setOnClickListener(v -> sortiereAlphabetisch());
     }
 
-    private void sortByDate() {
-        // Beispiel: Sortieren nach Datum (derzeit nur alphabetisch simuliert)
-        Collections.sort(termineListe);
-        adapter.notifyDataSetChanged();
+    private void loadTermine() {
+        new Thread(() -> {
+            List<Termin> termine = terminDao.getAllActiveTermine();
+            runOnUiThread(() -> {
+                for (Termin termin : termine) {
+                    termineListe.add(termin.getTerminname());
+                }
+                adapter.notifyDataSetChanged();
+            });
+        }).start();
     }
 
-    private void sortAlphabetically() {
-        Collections.sort(termineListe);
-        adapter.notifyDataSetChanged();
+    // Termine nach Datum sortieren
+    private void sortiereNachDatum() {
+        new Thread(() -> {
+            List<Termin> termine = terminDao.getAllActiveTermine();
+            Collections.sort(termine, new Comparator<Termin>() {
+                @Override
+                public int compare(Termin o1, Termin o2) {
+                    // Beispiel: Datum in lexikographischer Reihenfolge vergleichen
+                    return o1.getDatum().compareTo(o2.getDatum());
+                }
+            });
+            runOnUiThread(() -> {
+                termineListe.clear();
+                for (Termin termin : termine) {
+                    termineListe.add(termin.getTerminname());
+                }
+                adapter.notifyDataSetChanged();
+                Toast.makeText(TerminUebersicht.this, "Termine nach Datum sortiert!", Toast.LENGTH_SHORT).show();
+            });
+        }).start();
     }
 
-    public void InitialisiereClickHandler(View view) {
-        //initialisiere Aufgaben Button
-        Button zurueckPinnwand = findViewById(R.id.buttonZurueckPinnwand);
-        zurueckPinnwand.setOnClickListener(v -> ZuPinnwand());
-
-        //initialisiere Termine Button
-        Button terminErstellen = findViewById(R.id.buttonTerminErstellen);
-        terminErstellen.setOnClickListener(v -> ZuTerminErstellen());
-    }
-
-    private void ZuPinnwand() {
-        Intent intent = new Intent(TerminUebersicht.this, Pinnwand.class);
-        startActivity(intent);
-    }
-
-    /**
-     * Lädt die AufgabeErstellen Activity, nachdem der Aufgabe erstellen Knopf gedrückt wurde
-     */
-    private void ZuTerminErstellen() {
-        Intent intent = new Intent(TerminUebersicht.this, TerminErstellen.class);
-        startActivity(intent);
+    // Termine alphabetisch sortieren
+    private void sortiereAlphabetisch() {
+        new Thread(() -> {
+            List<Termin> termine = terminDao.getAllActiveTermine();
+            Collections.sort(termine, new Comparator<Termin>() {
+                @Override
+                public int compare(Termin o1, Termin o2) {
+                    // Alphabetische Reihenfolge nach Terminname
+                    return o1.getTerminname().compareTo(o2.getTerminname());
+                }
+            });
+            runOnUiThread(() -> {
+                termineListe.clear();
+                for (Termin termin : termine) {
+                    termineListe.add(termin.getTerminname());
+                }
+                adapter.notifyDataSetChanged();
+                Toast.makeText(TerminUebersicht.this, "Termine alphabetisch sortiert!", Toast.LENGTH_SHORT).show();
+            });
+        }).start();
     }
 }

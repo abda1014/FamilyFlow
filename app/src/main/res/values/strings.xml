@@ -79,4 +79,8 @@
     <string name="logout">Ausloggen</string>
     <string name="loeschen">Löschen</string>
     <string name="aufgabenbezeichnung_hint">Aufgabenbezeichnung bearbeiten</string>
+    <string name="terminname">Terminname</string>
+    <string name="beschreibung">Beschreibung</string>
+    <string name="datum">Datum</string>
+    <string name="terminname_hint">Terminname</string>
 </resources>

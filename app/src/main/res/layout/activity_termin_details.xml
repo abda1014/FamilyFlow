@@ -1,80 +1,53 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/TerminDetails"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/eventAnzeige"
-        style="?android:attr/buttonBarStyle"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_margin="16dp">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <!-- Überschrift oder Label -->
         <TextView
-            android:id="@+id/details_label"
+            android:id="@+id/terminname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/details_zum_termin"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:text="@string/terminname"
+            android:textSize="18sp"
+            android:layout_marginBottom="8dp" />
 
-        <!-- Textbereich für Details -->
         <TextView
-            android:id="@+id/details_text"
+            android:id="@+id/beschreibung"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="@string/details_hier_einf_gen"
+            android:text="@string/beschreibung"
             android:textSize="16sp"
-            android:layout_marginTop="16dp"/>
+            android:layout_marginBottom="8dp" />
 
-        <!-- Bearbeiten-Button -->
+        <TextView
+            android:id="@+id/datum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/datum"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp" />
+
         <Button
-            android:id="@+id/edit_button"
+            android:id="@+id/buttonTerminBearbeiten"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/bearbeiten"
-            android:layout_marginTop="16dp"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/bottomNavigation"
-        style="?android:attr/buttonBarButtonStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+            android:backgroundTint="@color/brown1"
+            android:layout_marginBottom="8dp" />
 
         <Button
-            android:textColor="@color/brown1"
-            android:id="@+id/buttonZurueckTerminUebersicht"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:text="@string/zurueckTerminUebersicht"
-            tools:ignore="VisualLintButtonSize" />
+            android:id="@+id/buttonTerminLoeschen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/loeschen"
+            android:backgroundTint="@color/brown1"
+            android:layout_marginBottom="8dp" />
 
-        <Button
-            android:textColor="@color/brown1"
-            android:id="@+id/buttonTerminBearbeiten"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:text="@string/terminBearbeiten"
-            tools:ignore="VisualLintButtonSize" />
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
