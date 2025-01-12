@@ -56,4 +56,13 @@
     <string name="details_zum_termin">Details zum Termin</string>
     <string name="suche_nach_terminen">Suche nach Termine</string>
     <string name="terminbezeichnung">Terminbezeichnung</string>
+    <string name="settings_title">Einstellungen</string>
+    <string name="sound_settings">Ton anpassen</string>
+    <string name="brightness_settings">Helligkeit</string>
+    <string name="layout_settings">Layout</string>
+    <string name="manage_roles">Rollen verwalten</string>
+    <string name="leave_group">Gruppe verlassen</string>
+    <string name="delete_account">Konto löschen</string>
+    <string name="manage_subscription">Abo verwalten</string>
+    <string name="logout">Ausloggen</string>
 </resources>
