@@ -67,4 +67,5 @@
     <string name="zurueckTerminUebersicht">Übersicht</string>
     <string name="terminBearbeiten">Bearbeiten</string>
     <string name="terminErstellen">Termin erstellen</string>
+    <string name="terminDetails">Termin speichern</string>
 </resources>
