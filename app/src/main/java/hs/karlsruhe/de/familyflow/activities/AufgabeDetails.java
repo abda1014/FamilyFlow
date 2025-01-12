@@ -20,23 +20,23 @@ public class AufgabeDetails extends AppCompatActivity {
 
         TextView textView = findViewById(R.id.details_text);
         textView.setText(aufgabe); // Zeige die Details
-        InitialisiereClickHandler(findViewById(R.id.details_label));
+        InitialisiereClickHandler(findViewById(R.id.AufgabeDetails));
     }
     /**
-     * ClickHandler für die Buttons auf der Pinnwand um zu den anderen Activities zu navigieren
-     * @param view Die Pinnwand View, die das Click Event erhalten hat
+     * ClickHandler für die Buttons von AufgabeDetails um zu den anderen Activities zu navigieren
+     * @param view Die AufgabeDetails View, die das Click Event erhalten hat
      */
     public void InitialisiereClickHandler(View view) {
         //initialisiere Aufgaben Button
-        Button aufgabenButton = findViewById(R.id.AufgabenButton);
-        aufgabenButton.setOnClickListener(v -> ZuAufgabenUebersicht());
+        Button zurueckAufgabeUebersicht = findViewById(R.id.buttonZurueckAufgabeUebersicht);
+        zurueckAufgabeUebersicht.setOnClickListener(v -> ZuAufgabeUebersicht());
 
         //initialisiere Termine Button
-        Button termineButton = findViewById(R.id.TermineButton);
-        termineButton.setOnClickListener(v -> ZuPinnwand());
+        Button aufgabeBearbeiten = findViewById(R.id.buttonAufgabeBearbeiten);
+        aufgabeBearbeiten.setOnClickListener(v -> ZuAufgabeBearbeiten());
     }
 
-    private void ZuAufgabenUebersicht() {
+    private void ZuAufgabeUebersicht() {
         Intent intent = new Intent(AufgabeDetails.this, AufgabeUebersicht.class);
         startActivity(intent);
     }
@@ -44,8 +44,8 @@ public class AufgabeDetails extends AppCompatActivity {
     /**
      * lädt die TerminActivity, nachdem der Aufgaben Knopf gedrückt wurde
      */
-    private void ZuPinnwand() {
-        Intent intent = new Intent(AufgabeDetails.this, Pinnwand.class);
+    private void ZuAufgabeBearbeiten() {
+        Intent intent = new Intent(AufgabeDetails.this, AufgabeErstellen.class);
         startActivity(intent);
     }
 }

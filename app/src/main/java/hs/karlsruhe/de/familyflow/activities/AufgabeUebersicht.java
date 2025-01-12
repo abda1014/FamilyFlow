@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -47,6 +48,8 @@ public class AufgabeUebersicht extends AppCompatActivity {
             startActivity(intent);
         });
 
+        InitialisiereClickHandler(findViewById(R.id.AufgabeUebersicht));
+
         // Suche nach Text in der Liste
         searchBar.addTextChangedListener(new android.text.TextWatcher() {
             @Override
@@ -71,5 +74,32 @@ public class AufgabeUebersicht extends AppCompatActivity {
     private void sortAlphabetically() {
         Collections.sort(aufgabenListe);
         adapter.notifyDataSetChanged();
+    }
+
+    /**
+     * ClickHandler für die Buttons auf der Aufgabenübersicht um zu den anderen Activities zu navigieren
+     * @param view Die Aufgabenübersicht View, die das Click Event erhalten hat
+     */
+    public void InitialisiereClickHandler(View view) {
+        //initialisiere Aufgaben Button
+        Button zurueckPinnwand = findViewById(R.id.buttonZurueckPinnwand);
+        zurueckPinnwand.setOnClickListener(v -> ZuPinnwand());
+
+        //initialisiere Termine Button
+        Button aufgabeErstellen = findViewById(R.id.buttonAufgabeErstellen);
+        aufgabeErstellen.setOnClickListener(v -> ZuAufgabeErstellen());
+    }
+
+    private void ZuPinnwand() {
+        Intent intent = new Intent(AufgabeUebersicht.this, Pinnwand.class);
+        startActivity(intent);
+    }
+
+    /**
+     * Lädt die AufgabeErstellen Activity, nachdem der Aufgabe erstellen Knopf gedrückt wurde
+     */
+    private void ZuAufgabeErstellen() {
+        Intent intent = new Intent(AufgabeUebersicht.this, AufgabeErstellen.class);
+        startActivity(intent);
     }
 }

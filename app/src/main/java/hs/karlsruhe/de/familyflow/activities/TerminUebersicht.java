@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -47,6 +48,8 @@ public class TerminUebersicht extends AppCompatActivity {
             startActivity(intent);
         });
 
+        InitialisiereClickHandler(findViewById(R.id.TerminUebersicht));
+
         // Suche nach Text in der Liste
         searchBar.addTextChangedListener(new android.text.TextWatcher() {
             @Override
@@ -71,5 +74,28 @@ public class TerminUebersicht extends AppCompatActivity {
     private void sortAlphabetically() {
         Collections.sort(termineListe);
         adapter.notifyDataSetChanged();
+    }
+
+    public void InitialisiereClickHandler(View view) {
+        //initialisiere Aufgaben Button
+        Button zurueckPinnwand = findViewById(R.id.buttonZurueckPinnwand);
+        zurueckPinnwand.setOnClickListener(v -> ZuPinnwand());
+
+        //initialisiere Termine Button
+        Button terminErstellen = findViewById(R.id.buttonTerminErstellen);
+        terminErstellen.setOnClickListener(v -> ZuTerminErstellen());
+    }
+
+    private void ZuPinnwand() {
+        Intent intent = new Intent(TerminUebersicht.this, Pinnwand.class);
+        startActivity(intent);
+    }
+
+    /**
+     * Lädt die AufgabeErstellen Activity, nachdem der Aufgabe erstellen Knopf gedrückt wurde
+     */
+    private void ZuTerminErstellen() {
+        Intent intent = new Intent(TerminUebersicht.this, TerminErstellen.class);
+        startActivity(intent);
     }
 }

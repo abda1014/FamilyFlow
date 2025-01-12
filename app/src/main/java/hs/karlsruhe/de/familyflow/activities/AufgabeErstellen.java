@@ -1,5 +1,6 @@
 package hs.karlsruhe.de.familyflow.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -27,6 +28,8 @@ public class AufgabeErstellen extends AppCompatActivity {
         etNotiz = findViewById(R.id.notiz);
         Button btnSpeichern = findViewById(R.id.save_button);
 
+        InitialisiereClickHandler(findViewById(R.id.AufgabeErstellen));
+
         // Klick-Listener für den Speichern-Button
         btnSpeichern.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,5 +48,40 @@ public class AufgabeErstellen extends AppCompatActivity {
                 }
             }
         });
+    }
+    /**
+     * ClickHandler für die Buttons von AufgabeErstellen um zu den anderen Activities zu navigieren
+     * @param view Die AufgabeErstellen View, die das Click Event erhalten hat
+     */
+    public void InitialisiereClickHandler(View view) {
+        //initialisiere Aufgaben Button
+        Button abbruchAufgabeUebersicht = findViewById(R.id.buttonAbbruchAufgabeUebersicht);
+        abbruchAufgabeUebersicht.setOnClickListener(v -> ZuAufgabeUebersicht());
+
+        //initialisiere Termine Button
+        Button aufgabeDetails = findViewById(R.id.buttonAufgabeDetails);
+        aufgabeDetails.setOnClickListener(v -> ZuAufgabeDetails());
+
+        //initialisiere Termine Button
+        Button aufgabePersonenZuweisen = findViewById(R.id.buttonAufgabePersonenZuweisen);
+        aufgabePersonenZuweisen.setOnClickListener(v -> ZuAufgabePersonenZuweisen());
+    }
+
+    private void ZuAufgabeUebersicht() {
+        Intent intent = new Intent(AufgabeErstellen.this, AufgabeUebersicht.class);
+        startActivity(intent);
+    }
+
+    /**
+     * Lädt die AufgabeErstellen Activity, nachdem der Aufgabe erstellen Knopf gedrückt wurde
+     */
+    private void ZuAufgabeDetails() {
+        Intent intent = new Intent(AufgabeErstellen.this, AufgabeDetails.class);
+        startActivity(intent);
+    }
+
+    private void ZuAufgabePersonenZuweisen() {
+        Intent intent = new Intent(AufgabeErstellen.this, PersonenZuweisen.class);
+        startActivity(intent);
     }
 }
