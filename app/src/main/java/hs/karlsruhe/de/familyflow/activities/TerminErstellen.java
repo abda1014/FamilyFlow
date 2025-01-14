@@ -1,7 +1,7 @@
 package hs.karlsruhe.de.familyflow.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,7 +19,7 @@ import hs.karlsruhe.de.familyflow.data.entity.Termin;
 
 public class TerminErstellen extends AppCompatActivity {
 
-    private EditText etTerminname, etBeschreibung, etDatum, etNotiz;
+    private EditText etTerminname, etDatum, etUhrzeit, etWiederholung, etBeschreibung;
     private TerminDao terminDao;
 
     @Override
@@ -33,33 +33,39 @@ public class TerminErstellen extends AppCompatActivity {
 
         // Views initialisieren
         etTerminname = findViewById(R.id.editTextTerminname);
-        etBeschreibung = findViewById(R.id.editTextBeschreibung);
         etDatum = findViewById(R.id.editTextDatum);
-        etNotiz = findViewById(R.id.editTextNotiz);
+        etUhrzeit = findViewById(R.id.editTextUhrzeit);
+        etWiederholung = findViewById(R.id.editTextWiederholung);
+        etBeschreibung = findViewById(R.id.editTextBeschreibung);
 
         Button btnSpeichern = findViewById(R.id.buttonTerminSpeichern);
-        btnSpeichern.setOnClickListener(v -> saveTask());
+        btnSpeichern.setOnClickListener(v -> saveTermin());
     }
 
-    private void saveTask() {
+    private void saveTermin() {
         String terminname = etTerminname.getText().toString();
-        String beschreibung = etBeschreibung.getText().toString();
         String datum = etDatum.getText().toString();
-        String notiz = etNotiz.getText().toString();
+        String uhrzeit = etUhrzeit.getText().toString();
+        String wiederholung = etWiederholung.getText().toString();
+        String beschreibung = etBeschreibung.getText().toString();
 
         // Eingabefelder validieren
         if (terminname.isEmpty() || beschreibung.isEmpty() || datum.isEmpty()) {
             Toast.makeText(TerminErstellen.this, "Bitte alle Pflichtfelder ausfüllen", Toast.LENGTH_SHORT).show();
         } else {
             // Neuen Termin erstellen
+            String terminId = UUID.randomUUID().toString();
             Termin neuerTermin = new Termin(
-                    UUID.randomUUID().toString(),
+                    terminId,
                     terminname,
-                    beschreibung,
                     datum,
-                    notiz,
+                    uhrzeit,
+                    wiederholung,
+                    beschreibung,
                     false // Inaktiv (kann bei Bedarf angepasst werden)
             );
+
+            Log.d("TerminErstellen", "Neuer Termin erstellt mit ID: " + terminId);
 
             // Termin in der Datenbank speichern
             new Thread(() -> {
@@ -72,5 +78,3 @@ public class TerminErstellen extends AppCompatActivity {
         }
     }
 }
-
-

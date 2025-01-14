@@ -18,19 +18,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="16dp" />
 
-    <!-- Status -->
-    <EditText
-        android:id="@+id/editTextBeschreibung"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:autofillHints=""
-        android:hint="@string/status"
-        android:inputType="text"
-        app:layout_constraintTop_toBottomOf="@id/editTextTerminname"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="16dp" />
-
     <!-- Datum -->
     <EditText
         android:id="@+id/editTextDatum"
@@ -39,20 +26,46 @@
         android:autofillHints=""
         android:hint="@string/datum"
         android:inputType="date"
-        app:layout_constraintTop_toBottomOf="@id/editTextBeschreibung"
+        app:layout_constraintTop_toBottomOf="@id/editTextTerminname"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="16dp" />
 
     <!-- Notiz -->
     <EditText
-        android:id="@+id/editTextNotiz"
+        android:id="@+id/editTextUhrzeit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:autofillHints=""
-        android:hint="@string/notiz"
+        android:hint="@string/uhrzeit"
         android:inputType="text"
         app:layout_constraintTop_toBottomOf="@id/editTextDatum"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="16dp" />
+
+    <!-- Notiz -->
+    <EditText
+        android:id="@+id/editTextWiederholung"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:hint="@string/wiederholung"
+        android:inputType="text"
+        app:layout_constraintTop_toBottomOf="@id/editTextUhrzeit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="16dp" />
+
+    <!-- Status -->
+    <EditText
+        android:id="@+id/editTextBeschreibung"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:hint="@string/beschreibung"
+        android:inputType="text"
+        app:layout_constraintTop_toBottomOf="@id/editTextWiederholung"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="16dp" />
@@ -63,7 +76,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/speichern"
-        app:layout_constraintTop_toBottomOf="@id/editTextNotiz"
+        app:layout_constraintTop_toBottomOf="@id/editTextBeschreibung"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:backgroundTint="@color/brown1"

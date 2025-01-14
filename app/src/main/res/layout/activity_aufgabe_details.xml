@@ -1,53 +1,80 @@
-<ScrollView
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="16dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <!-- Aufgabenbezeichnung -->
+    <EditText
+        android:id="@+id/editTextAufgabenbezeichnung"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:autofillHints=""
+        android:hint="@string/aufgabenbezeichnung"
+        android:inputType="text"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="8dp" />
 
-        <TextView
-            android:id="@+id/aufgabenbezeichnung"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/aufgabenbezeichnung"
-            android:textSize="18sp"
-            android:layout_marginBottom="8dp" />
+    <!-- Status -->
+    <EditText
+        android:id="@+id/editTextStatus"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:hint="@string/status"
+        android:inputType="text"
+        app:layout_constraintTop_toBottomOf="@id/editTextAufgabenbezeichnung"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="8dp" />
 
-        <TextView
-            android:id="@+id/status"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/status"
-            android:textSize="16sp"
-            android:layout_marginBottom="8dp" />
+    <!-- Faelligkeitsdatum -->
+    <EditText
+        android:id="@+id/editTextFaelligkeitsdatum"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:hint="@string/f_lligkeitsdatum"
+        android:inputType="text"
+        app:layout_constraintTop_toBottomOf="@id/editTextStatus"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="8dp" />
 
-        <TextView
-            android:id="@+id/faelligkeitsdatum"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/f_lligkeitsdatum"
-            android:textSize="16sp"
-            android:layout_marginBottom="16dp" />
+    <!-- Noziz -->
+    <EditText
+        android:id="@+id/editTextNotiz"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:hint="@string/notiz"
+        android:inputType="text"
+        app:layout_constraintTop_toBottomOf="@id/editTextFaelligkeitsdatum"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="8dp" />
 
-        <Button
-            android:id="@+id/buttonAufgabeBearbeiten"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/bearbeiten"
-            android:backgroundTint="@color/brown1"
-            android:layout_marginBottom="8dp" />
+    <!-- Speichern-Button -->
+    <Button
+        android:id="@+id/buttonAufgabeSpeichern"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/speichern"
+        app:layout_constraintTop_toBottomOf="@id/editTextNotiz"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp" />
 
-        <Button
-            android:id="@+id/buttonAufgabeLoeschen"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/loeschen"
-            android:backgroundTint="@color/brown1"
-            android:layout_marginBottom="8dp" />
+    <!-- Löschen-Button -->
+    <Button
+        android:id="@+id/buttonAufgabeLoeschen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/loeschen"
+        app:layout_constraintTop_toBottomOf="@id/buttonAufgabeSpeichern"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp" />
 
-    </LinearLayout>
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

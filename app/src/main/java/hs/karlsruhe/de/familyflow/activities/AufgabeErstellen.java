@@ -1,8 +1,7 @@
 package hs.karlsruhe.de.familyflow.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -15,6 +14,8 @@ import hs.karlsruhe.de.familyflow.R;
 import hs.karlsruhe.de.familyflow.data.AppDatabase;
 import hs.karlsruhe.de.familyflow.data.DatabaseManager;
 import hs.karlsruhe.de.familyflow.data.dao.AufgabeDao;
+import hs.karlsruhe.de.familyflow.data.dao.AufgabeDao;
+import hs.karlsruhe.de.familyflow.data.entity.Aufgabe;
 import hs.karlsruhe.de.familyflow.data.entity.Aufgabe;
 
 public class AufgabeErstellen extends AppCompatActivity {
@@ -38,10 +39,10 @@ public class AufgabeErstellen extends AppCompatActivity {
         etNotiz = findViewById(R.id.editTextNotiz);
 
         Button btnSpeichern = findViewById(R.id.buttonAufgabeSpeichern);
-        btnSpeichern.setOnClickListener(v -> saveTask());
+        btnSpeichern.setOnClickListener(v -> saveAufgabe());
     }
 
-    private void saveTask() {
+    private void saveAufgabe() {
         String aufgabenbezeichnung = etAufgabenbezeichnung.getText().toString();
         String status = etStatus.getText().toString();
         String faelligkeitsdatum = etFaelligkeitsdatum.getText().toString();
@@ -52,8 +53,9 @@ public class AufgabeErstellen extends AppCompatActivity {
             Toast.makeText(AufgabeErstellen.this, "Bitte alle Pflichtfelder ausfüllen", Toast.LENGTH_SHORT).show();
         } else {
             // Neue Aufgabe erstellen
+            String aufgabeId = UUID.randomUUID().toString();
             Aufgabe neueAufgabe = new Aufgabe(
-                    UUID.randomUUID().toString(),
+                    aufgabeId,
                     aufgabenbezeichnung,
                     status,
                     faelligkeitsdatum,
@@ -61,16 +63,16 @@ public class AufgabeErstellen extends AppCompatActivity {
                     false // Inaktiv (kann bei Bedarf angepasst werden)
             );
 
+            Log.d("AufgabeErstellen", "Neue Aufgabe erstellt mit ID: " + aufgabeId);
+
             // Aufgabe in der Datenbank speichern
             new Thread(() -> {
                 aufgabeDao.insertAufgabe(neueAufgabe);
                 runOnUiThread(() -> {
                     Toast.makeText(AufgabeErstellen.this, "Aufgabe erstellt!", Toast.LENGTH_SHORT).show();
-                    finish(); // Activity beenden und zur Aufgabenübersicht zurückkehren
+                    finish(); // Activity beenden und zur Aufgabeübersicht zurückkehren
                 });
             }).start();
         }
     }
 }
-
-

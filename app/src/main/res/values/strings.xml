@@ -83,4 +83,6 @@
     <string name="beschreibung">Beschreibung</string>
     <string name="datum">Datum</string>
     <string name="terminname_hint">Terminname</string>
+    <string name="uhrzeit">Uhrzeit</string>
+    <string name="wiederholung">Wiederholung</string>
 </resources>

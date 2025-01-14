@@ -1,8 +1,8 @@
 package hs.karlsruhe.de.familyflow.activities;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Button;
@@ -18,14 +18,13 @@ import java.util.List;
 import hs.karlsruhe.de.familyflow.R;
 import hs.karlsruhe.de.familyflow.data.AppDatabase;
 import hs.karlsruhe.de.familyflow.data.DatabaseManager;
-import hs.karlsruhe.de.familyflow.data.dao.AufgabeDao;
 import hs.karlsruhe.de.familyflow.data.dao.TerminDao;
-import hs.karlsruhe.de.familyflow.data.entity.Aufgabe;
 import hs.karlsruhe.de.familyflow.data.entity.Termin;
 
 public class TerminUebersicht extends AppCompatActivity {
 
     private ArrayList<String> termineListe; // Liste zur Anzeige der Terminbezeichnung
+    private ArrayList<String> termineIdListe; // Liste zur Speicherung der Termin-IDs
     private ArrayAdapter<String> adapter;
     private TerminDao terminDao;
 
@@ -45,16 +44,18 @@ public class TerminUebersicht extends AppCompatActivity {
         ListView listViewTermine = findViewById(R.id.listViewTermine);
 
         termineListe = new ArrayList<>();
+        termineIdListe = new ArrayList<>();
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, termineListe);
         listViewTermine.setAdapter(adapter);
 
-        // Aufgaben aus der Datenbank laden
+        // Termine aus der Datenbank laden
         loadTermine();
 
         // Item-Klick: Navigiere zu Details
         listViewTermine.setOnItemClickListener((parent, view, position, id) -> {
+            String terminId = termineIdListe.get(position); // Die richtige Termin-ID abrufen
             Intent intent = new Intent(this, TerminDetails.class);
-            intent.putExtra("terminId", termineListe.get(position)); // Terminnummer übergeben
+            intent.putExtra("terminId", terminId); // Termin-ID übergeben
             startActivity(intent);
         });
 
@@ -79,9 +80,14 @@ public class TerminUebersicht extends AppCompatActivity {
         new Thread(() -> {
             List<Termin> termine = terminDao.getAllActiveTermine();
             runOnUiThread(() -> {
+                termineListe.clear();
+                termineIdListe.clear(); // IDs löschen, bevor sie neu geladen werden
+
                 for (Termin termin : termine) {
-                    termineListe.add(termin.getTerminname());
+                    termineListe.add(termin.getTerminname()); // Namen hinzufügen
+                    termineIdListe.add(termin.getTerminId()); // IDs hinzufügen
                 }
+
                 adapter.notifyDataSetChanged();
             });
         }).start();
@@ -91,18 +97,18 @@ public class TerminUebersicht extends AppCompatActivity {
     private void sortiereNachDatum() {
         new Thread(() -> {
             List<Termin> termine = terminDao.getAllActiveTermine();
-            Collections.sort(termine, new Comparator<Termin>() {
-                @Override
-                public int compare(Termin o1, Termin o2) {
-                    // Beispiel: Datum in lexikographischer Reihenfolge vergleichen
-                    return o1.getDatum().compareTo(o2.getDatum());
-                }
-            });
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                Collections.sort(termine, Comparator.comparing(Termin::getDatum));
+            }
             runOnUiThread(() -> {
                 termineListe.clear();
+                termineIdListe.clear();
+
                 for (Termin termin : termine) {
                     termineListe.add(termin.getTerminname());
+                    termineIdListe.add(termin.getTerminId());
                 }
+
                 adapter.notifyDataSetChanged();
                 Toast.makeText(TerminUebersicht.this, "Termine nach Datum sortiert!", Toast.LENGTH_SHORT).show();
             });
@@ -113,18 +119,18 @@ public class TerminUebersicht extends AppCompatActivity {
     private void sortiereAlphabetisch() {
         new Thread(() -> {
             List<Termin> termine = terminDao.getAllActiveTermine();
-            Collections.sort(termine, new Comparator<Termin>() {
-                @Override
-                public int compare(Termin o1, Termin o2) {
-                    // Alphabetische Reihenfolge nach Terminname
-                    return o1.getTerminname().compareTo(o2.getTerminname());
-                }
-            });
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                Collections.sort(termine, Comparator.comparing(Termin::getTerminname));
+            }
             runOnUiThread(() -> {
                 termineListe.clear();
+                termineIdListe.clear();
+
                 for (Termin termin : termine) {
                     termineListe.add(termin.getTerminname());
+                    termineIdListe.add(termin.getTerminId());
                 }
+
                 adapter.notifyDataSetChanged();
                 Toast.makeText(TerminUebersicht.this, "Termine alphabetisch sortiert!", Toast.LENGTH_SHORT).show();
             });

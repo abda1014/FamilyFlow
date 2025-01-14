@@ -1,53 +1,93 @@
-<ScrollView
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="16dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <!-- Terminname -->
+    <EditText
+        android:id="@+id/editTextTerminname"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:autofillHints=""
+        android:hint="@string/terminname"
+        android:inputType="text"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="8dp" />
 
-        <TextView
-            android:id="@+id/terminname"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/terminname"
-            android:textSize="18sp"
-            android:layout_marginBottom="8dp" />
+    <!-- Datum -->
+    <EditText
+        android:id="@+id/editTextDatum"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:hint="@string/datum"
+        android:inputType="text"
+        app:layout_constraintTop_toBottomOf="@id/editTextTerminname"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="8dp" />
 
-        <TextView
-            android:id="@+id/beschreibung"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/beschreibung"
-            android:textSize="16sp"
-            android:layout_marginBottom="8dp" />
+    <!-- Uhrzeit -->
+    <EditText
+        android:id="@+id/editTextUhrzeit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:hint="@string/uhrzeit"
+        android:inputType="text"
+        app:layout_constraintTop_toBottomOf="@id/editTextDatum"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="8dp" />
 
-        <TextView
-            android:id="@+id/datum"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/datum"
-            android:textSize="16sp"
-            android:layout_marginBottom="16dp" />
+    <!-- Wiederholung -->
+    <EditText
+        android:id="@+id/editTextWiederholung"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:hint="@string/wiederholung"
+        android:inputType="text"
+        app:layout_constraintTop_toBottomOf="@id/editTextUhrzeit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="8dp" />
 
-        <Button
-            android:id="@+id/buttonTerminBearbeiten"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/bearbeiten"
-            android:backgroundTint="@color/brown1"
-            android:layout_marginBottom="8dp" />
+    <!-- Beschreibung -->
+    <EditText
+        android:id="@+id/editTextBeschreibung"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:hint="@string/beschreibung"
+        android:inputType="text"
+        app:layout_constraintTop_toBottomOf="@id/editTextWiederholung"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="8dp" />
 
-        <Button
-            android:id="@+id/buttonTerminLoeschen"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/loeschen"
-            android:backgroundTint="@color/brown1"
-            android:layout_marginBottom="8dp" />
+    <!-- Speichern-Button -->
+    <Button
+        android:id="@+id/buttonTerminSpeichern"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/speichern"
+        app:layout_constraintTop_toBottomOf="@id/editTextBeschreibung"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp" />
 
-    </LinearLayout>
-</ScrollView>
+    <!-- Löschen-Button -->
+    <Button
+        android:id="@+id/buttonTerminLoeschen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/loeschen"
+        app:layout_constraintTop_toBottomOf="@id/buttonTerminSpeichern"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
