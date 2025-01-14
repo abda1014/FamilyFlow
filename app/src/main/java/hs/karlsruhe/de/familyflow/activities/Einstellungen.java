@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -26,9 +25,18 @@ public class Einstellungen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_einstellung);
+
         Button buttonLogout = findViewById(R.id.buttonLogout);
         buttonLogout.setOnClickListener(v -> {
             showLogoutConfirmationDialog();
+        });
+
+        // Profil-Button
+        Button buttonProfil = findViewById(R.id.buttonProfil);
+        buttonProfil.setOnClickListener(v -> {
+            // Starte die Profil-Activity
+            Intent intent = new Intent(Einstellungen.this, Profil.class);
+            startActivity(intent);
         });
     }
 

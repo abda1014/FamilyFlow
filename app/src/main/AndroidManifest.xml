@@ -7,9 +7,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FamilyFlow">
         <activity
+            android:name=".activities.Profil"
+            android:exported="true" />
+        <activity
             android:name=".activities.Einstellungen"
             android:exported="true" />
-        <!-- Login Activities -->
         <activity
             android:name=".activities.LoginTestActivity"
             android:exported="true" />
