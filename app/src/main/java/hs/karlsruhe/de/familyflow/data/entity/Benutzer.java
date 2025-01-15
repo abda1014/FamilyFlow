@@ -1,6 +1,7 @@
 package hs.karlsruhe.de.familyflow.data.entity;
 
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
@@ -13,7 +14,7 @@ public class Benutzer {
     @NonNull
     @PrimaryKey
     private String benutzerId;  // UUID als String
-
+    private Uri image;
     private String vorname;
     private String nachname;
     private String email;
@@ -26,6 +27,9 @@ public class Benutzer {
 
     private String passwordHash; // Passwort-Hash
 
+    private Uri imageProfil;
+
+
     public Benutzer() {
         // Leerer Konstruktor (für Room)
     }
@@ -36,7 +40,8 @@ public class Benutzer {
                     String email,
                     String alterDatum,
                     boolean isDeleted,
-                    String passwordHash) {
+                    String passwordHash,
+                    Uri imageProfil) {
         this.benutzerId = benutzerId;
         this.vorname = vorname;
         this.nachname = nachname;
@@ -44,6 +49,7 @@ public class Benutzer {
         this.alterDatum = alterDatum;
         this.isDeleted = isDeleted;
         this.passwordHash = passwordHash;
+        this.imageProfil = imageProfil;
     }
 
     // -- Getter & Setter --
@@ -105,5 +111,10 @@ public class Benutzer {
     // Öffentlicher Setter für passwordHash
     public void setPasswordHash(String passwordHash) {
         this.passwordHash = passwordHash;
+    }
+
+    // Getter und Setter für das Profilbild
+    public Uri getProfilBildUri() {
+        return imageProfil;
     }
 }
