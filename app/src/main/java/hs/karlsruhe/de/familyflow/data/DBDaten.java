@@ -26,7 +26,7 @@ public class DBDaten {
             AppDatabase db = DatabaseManager.getDatabase(context);
             BenutzerDao benutzerDao = db.benutzerDao();
 
-            String imageUrl = "https://raw.githubusercontent.com/abda1014/FamilyFlow/main/Profilbild/profilbild_1.png";
+            String imageUrl = "https://raw.githubusercontent.com/abda1014/FamilyFlow/Profilbild/app/src/main/res/mipmap-hdpi/profilbild_1.png";
 
             // Passwort-Hash für Testbenutzer generieren
             String email = "HKA@hka.de";
@@ -55,7 +55,7 @@ public class DBDaten {
             }
 
             // Standard Password, um sich leicht mit allen Testnutzern anmelden zu können
-            String standardPassword = "123123123";
+            String standardPassword = "123";
             String hashedStandardPassword = hashPassword(standardPassword);
 
             // weitere existierende Nutzer anlegen
@@ -64,7 +64,7 @@ public class DBDaten {
                 Benutzer existierenderBenutzer = benutzerDao.findBenutzerByEmailAndPassword(emailGustav, hashedStandardPassword);
                 if (existierenderBenutzer == null) {
                     Benutzer gustav = new Benutzer(
-                            "2", "Gustav", "Klein",
+                            UUID.randomUUID().toString(), "Gustav", "Klein",
                             emailGustav, "1990-05-15", false, hashedStandardPassword, imageUrl
                     );
                     benutzerDao.insertBenutzer(gustav);
