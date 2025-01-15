@@ -33,6 +33,7 @@ public abstract class AppDatabase extends RoomDatabase {
      public abstract BenutzerAufgabeDao benutzerAufgabenDao();
      public abstract BenutzerTerminDao benutzerTermineDao();
 
+     /**
      // Singleton-Instanz
      private static AppDatabase instance;
 
@@ -45,4 +46,5 @@ public abstract class AppDatabase extends RoomDatabase {
           }
           return instance;
      }
+      **/
 }

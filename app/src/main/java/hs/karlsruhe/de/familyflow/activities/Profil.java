@@ -12,6 +12,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import hs.karlsruhe.de.familyflow.R;
 import hs.karlsruhe.de.familyflow.data.AppDatabase;
+import hs.karlsruhe.de.familyflow.data.DatabaseManager;
 import hs.karlsruhe.de.familyflow.data.entity.Benutzer;
 import hs.karlsruhe.de.familyflow.data.dao.BenutzerDao;
 
@@ -41,7 +42,7 @@ public class Profil extends AppCompatActivity {
         if (userId != null) {
             executorService.execute(() -> {
                 // Datenbankzugriff initialisieren
-                AppDatabase db = AppDatabase.getDatabase(this);
+                AppDatabase db = DatabaseManager.getDatabase(this);
                 BenutzerDao benutzerDao = db.benutzerDao();
                 Benutzer benutzer = benutzerDao.findBenutzerById(userId);  // Benutzer anhand der gespeicherten ID finden
 
