@@ -26,7 +26,7 @@ public class DBDaten {
             AppDatabase db = DatabaseManager.getDatabase(context);
             BenutzerDao benutzerDao = db.benutzerDao();
 
-            String imageUrl = "https://raw.githubusercontent.com/abda1014/FamilyFlow/main/Profilbild/profilbild_1.png\n";
+            String imageUrl = "https://raw.githubusercontent.com/abda1014/FamilyFlow/main/Profilbild/profilbild_1.png";
 
             // Passwort-Hash für Testbenutzer generieren
             String email = "HKA@hka.de";

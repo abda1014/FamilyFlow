@@ -15,6 +15,11 @@ import hs.karlsruhe.de.familyflow.data.dao.BenutzerDao;
 import hs.karlsruhe.de.familyflow.data.entity.Benutzer;
 import androidx.room.Room;
 import android.net.Uri;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.annotation.GlideModule;
+import com.bumptech.glide.module.AppGlideModule;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -44,13 +49,24 @@ public class Profil extends AppCompatActivity {
                 Log.d("ProfilActivity", "Benutzer gefunden: " + benutzer.getVorname());
             }
 
-            // Ergebnis zurück an den Hauptthread (UI-Thread) übergeben
+            // Ergebnis zurück an den Hauptthread übergeben
             runOnUiThread(() -> {
                 if (benutzer != null) {
                     // Weiterleitung zur Pinnwand
                     String imageProfilUrl = benutzer.getImageProfil();
-                    ImageView imageView = findViewById(R.id.imageViewProfil);
-                    imageView.setImageURI(Uri.parse(imageProfilUrl));
+
+
+                    // Überprüfen, ob die URL gültig ist
+                    if (imageProfilUrl != null && !imageProfilUrl.isEmpty()) {
+                        // Verwenden von Glide, um das Bild zu laden
+                        ImageView imageView = findViewById(R.id.imageViewProfil);
+                        Glide.with(Profil.this)  // Context angeben
+                                .load(imageProfilUrl)  // Bild-URL
+                                .into(imageView);  // Das ImageView, in das das Bild geladen wird
+                    } else {
+                        // Fehler, wenn keine Bild-URL vorhanden ist
+                        Toast.makeText(Profil.this, "Kein Profilbild vorhanden", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
                     // Fehler: Benutzer wurde nicht gefunden
                     Toast.makeText(Profil.this, "Benutzer nicht gefunden", Toast.LENGTH_SHORT).show();
