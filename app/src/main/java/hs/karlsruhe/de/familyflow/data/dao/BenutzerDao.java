@@ -29,9 +29,6 @@ public interface BenutzerDao {
     @Query("SELECT * FROM Benutzer WHERE isDeleted = 0")
     List<Benutzer> getAllActiveBenutzer();
 
-    @Query("SELECT imageProfil FROM Benutzer WHERE benutzerId = :benutzerId")
-    String getProfilBildUri(String benutzerId);
-
     @Query("SELECT * FROM Benutzer WHERE email = :email AND passwordHash = :passwordHash AND isDeleted = 0 LIMIT 1")
     Benutzer findBenutzerByEmailAndPassword(String email, String passwordHash);
 

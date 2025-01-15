@@ -14,7 +14,6 @@ public class Benutzer {
     @NonNull
     @PrimaryKey
     private String benutzerId;  // UUID als String
-    private Uri image;
     private String vorname;
     private String nachname;
     private String email;
@@ -27,7 +26,7 @@ public class Benutzer {
 
     private String passwordHash; // Passwort-Hash
 
-    private Uri imageProfil;
+    private String imageProfil;
 
 
     public Benutzer() {
@@ -41,7 +40,7 @@ public class Benutzer {
                     String alterDatum,
                     boolean isDeleted,
                     String passwordHash,
-                    Uri imageProfil) {
+                    String imageProfil) {
         this.benutzerId = benutzerId;
         this.vorname = vorname;
         this.nachname = nachname;
@@ -114,7 +113,10 @@ public class Benutzer {
     }
 
     // Getter und Setter für das Profilbild
-    public Uri getProfilBildUri() {
+    public String getImageProfil() {
         return imageProfil;
+    }
+    public void setImageProfil(String imageProfil) {
+        this.imageProfil = imageProfil;
     }
 }
