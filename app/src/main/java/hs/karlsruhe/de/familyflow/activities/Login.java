@@ -1,6 +1,7 @@
 package hs.karlsruhe.de.familyflow.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -80,6 +81,13 @@ public class Login extends AppCompatActivity {
 
             runOnUiThread(() -> {
                 if (benutzer != null) {
+
+                    // Benutzer-ID speichern, um sie später abzurufen
+                    SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("user_id", benutzer.getBenutzerId());  // Die ID des Benutzers speichern
+                    editor.apply();
+
                     // Weiterleitung zur Pinnwand
                     Intent intent = new Intent(Login.this, Pinnwand.class);
 
