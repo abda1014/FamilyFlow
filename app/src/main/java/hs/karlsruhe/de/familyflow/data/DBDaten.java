@@ -26,7 +26,12 @@ public class DBDaten {
             AppDatabase db = DatabaseManager.getDatabase(context);
             BenutzerDao benutzerDao = db.benutzerDao();
 
-            String imageUrl = "https://raw.githubusercontent.com/abda1014/FamilyFlow/Profilbild/app/src/main/res/mipmap-hdpi/profilbild_1.png";
+            String imageUrl_1 = "https://raw.githubusercontent.com/abda1014/FamilyFlow/main/app/src/main/res/mipmap-hdpi/happy_profil.png";
+            String imageUrl_2 = "https://raw.githubusercontent.com/abda1014/FamilyFlow/Profilbild/app/src/main/res/mipmap-hdpi/angry_profil.png";
+            String imageUrl_3 = "https://raw.githubusercontent.com/abda1014/FamilyFlow/main/app/src/main/res/mipmap-hdpi/glasses.png";
+            String imageUrl_4 = "https://raw.githubusercontent.com/abda1014/FamilyFlow/main/app/src/main/res/mipmap-hdpi/money.png";
+
+
 
             // Passwort-Hash für Testbenutzer generieren
             String email = "HKA@hka.de";
@@ -46,7 +51,7 @@ public class DBDaten {
                     neuerBenutzer.setNachname("User");
                     neuerBenutzer.setAlterDatum("2000-01-01");
                     neuerBenutzer.setDeleted(false);
-                    neuerBenutzer.setImageProfil(imageUrl);
+                    neuerBenutzer.setImageProfil(imageUrl_1);
 
                     benutzerDao.insertBenutzer(neuerBenutzer);
 
@@ -65,7 +70,7 @@ public class DBDaten {
                 if (existierenderBenutzer == null) {
                     Benutzer gustav = new Benutzer(
                             UUID.randomUUID().toString(), "Gustav", "Klein",
-                            emailGustav, "1990-05-15", false, hashedStandardPassword, imageUrl
+                            emailGustav, "1990-05-15", false, hashedStandardPassword, imageUrl_2
                     );
                     benutzerDao.insertBenutzer(gustav);
                 }
@@ -75,7 +80,7 @@ public class DBDaten {
                 if (existierenderBenutzer == null) {
                     Benutzer anna = new Benutzer(
                             UUID.randomUUID().toString(), "Anna", "Klein",
-                            emailAnna, "1995-09-10", false, hashedStandardPassword, imageUrl
+                            emailAnna, "1995-09-10", false, hashedStandardPassword, imageUrl_3
                     );
                     benutzerDao.insertBenutzer(anna);
                 }
@@ -85,7 +90,7 @@ public class DBDaten {
                 if (existierenderBenutzer == null) {
                     Benutzer lisa = new Benutzer(
                             UUID.randomUUID().toString(), "Lisa", "Klein",
-                            emailLisa, "2001-03-25", false, hashedStandardPassword, imageUrl
+                            emailLisa, "2001-03-25", false, hashedStandardPassword, imageUrl_4
                     );
                     benutzerDao.insertBenutzer(lisa);
                 }
