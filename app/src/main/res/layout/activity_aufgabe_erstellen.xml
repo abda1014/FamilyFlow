@@ -57,13 +57,25 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="16dp" />
 
+    <Spinner
+        android:id="@+id/spinnerBenutzer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/editTextNotiz"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:spinnerMode="dropdown" />
+
+
+
     <!-- Speichern Button -->
     <Button
         android:id="@+id/buttonAufgabeSpeichern"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/speichern"
-        app:layout_constraintTop_toBottomOf="@id/editTextNotiz"
+        app:layout_constraintTop_toBottomOf="@id/spinnerBenutzer"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:backgroundTint="@color/brown1"

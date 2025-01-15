@@ -2,20 +2,28 @@ package hs.karlsruhe.de.familyflow.activities;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.List;
 
 import hs.karlsruhe.de.familyflow.R;
 import hs.karlsruhe.de.familyflow.data.AppDatabase;
 import hs.karlsruhe.de.familyflow.data.DatabaseManager;
 import hs.karlsruhe.de.familyflow.data.dao.AufgabeDao;
 import hs.karlsruhe.de.familyflow.data.dao.AufgabeDao;
+import hs.karlsruhe.de.familyflow.data.dao.BenutzerAufgabeDao;
+import hs.karlsruhe.de.familyflow.data.dao.BenutzerDao;
 import hs.karlsruhe.de.familyflow.data.entity.Aufgabe;
 import hs.karlsruhe.de.familyflow.data.entity.Aufgabe;
+import hs.karlsruhe.de.familyflow.data.entity.Benutzer;
+import hs.karlsruhe.de.familyflow.data.entity.BenutzerAufgaben;
 
 public class AufgabeDetails extends AppCompatActivity {
 
@@ -23,6 +31,8 @@ public class AufgabeDetails extends AppCompatActivity {
     private Button btnSpeichern, btnLoeschen;
     private AufgabeDao aufgabeDao;
     private String aufgabeId; // ID der Aufgabes
+    private Spinner spinnerBenutzer;
+    private BenutzerDao benutzerDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +42,7 @@ public class AufgabeDetails extends AppCompatActivity {
         // Room-Datenbank und DAO initialisieren
         AppDatabase db = DatabaseManager.getDatabase(this);
         aufgabeDao = db.aufgabeDao();
+        benutzerDao = db.benutzerDao();
 
         // Intent-Daten abrufen
         aufgabeId = getIntent().getStringExtra("aufgabeId");
@@ -41,11 +52,13 @@ public class AufgabeDetails extends AppCompatActivity {
         etStatus = findViewById(R.id.editTextStatus);
         etFaelligkeitsdatum = findViewById(R.id.editTextFaelligkeitsdatum);
         etNotiz = findViewById(R.id.editTextNotiz);
+        spinnerBenutzer = findViewById(R.id.spinnerBenutzer);
         btnSpeichern = findViewById(R.id.buttonAufgabeSpeichern);
         btnLoeschen = findViewById(R.id.buttonAufgabeLoeschen);
 
         // Aufgabe laden und in die Felder einfügen
         loadAufgabeDetails();
+        loadBenutzerInSpinner();
 
         // Speichern-Button: Änderungen speichern
         btnSpeichern.setOnClickListener(v -> saveChanges());
@@ -65,15 +78,30 @@ public class AufgabeDetails extends AppCompatActivity {
                 return;
             }
 
-            // Aufgabe-Daten in die Felder einfügen
+            // Benutzerzuweisung abrufen
+            BenutzerAufgabeDao benutzerAufgabeDao = DatabaseManager.getDatabase(this).benutzerAufgabenDao();
+            BenutzerAufgaben benutzerAufgabe = benutzerAufgabeDao.getBenutzerWithAufgaben(aufgabeId);
+
             runOnUiThread(() -> {
                 etAufgabenbezeichnung.setText(aufgabe.getAufgabenbezeichnung());
                 etStatus.setText(aufgabe.getStatus());
                 etFaelligkeitsdatum.setText(aufgabe.getFaelligkeitsdatum());
                 etNotiz.setText(aufgabe.getNotiz());
+
+                // Benutzer im Spinner auswählen
+                if (benutzerAufgabe != null) {
+                    for (int i = 0; i < spinnerBenutzer.getAdapter().getCount(); i++) {
+                        Benutzer benutzer = (Benutzer) spinnerBenutzer.getItemAtPosition(i);
+                        if (benutzer.getBenutzerId().equals(benutzerAufgabe.getBenutzerId())) {
+                            spinnerBenutzer.setSelection(i);
+                            break;
+                        }
+                    }
+                }
             });
         }).start();
     }
+
 
     private void saveChanges() {
         String aufgabenbezeichnung = etAufgabenbezeichnung.getText().toString();
@@ -117,6 +145,18 @@ public class AufgabeDetails extends AppCompatActivity {
                     finish();
                 });
             }
+        }).start();
+    }
+
+    private void loadBenutzerInSpinner() {
+        new Thread(() -> {
+            List<Benutzer> benutzerListe = benutzerDao.getAllActiveBenutzer();
+            runOnUiThread(() -> {
+                ArrayAdapter<Benutzer> adapter = new ArrayAdapter<>(this,
+                        android.R.layout.simple_spinner_item, benutzerListe);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinnerBenutzer.setAdapter(adapter);
+            });
         }).start();
     }
 }
