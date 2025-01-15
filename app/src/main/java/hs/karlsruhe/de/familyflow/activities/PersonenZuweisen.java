@@ -1,73 +1,48 @@
 package hs.karlsruhe.de.familyflow.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import hs.karlsruhe.de.familyflow.R;
+import hs.karlsruhe.de.familyflow.data.AppDatabase;
+import hs.karlsruhe.de.familyflow.data.DatabaseManager;
+import hs.karlsruhe.de.familyflow.data.dao.AufgabeDao;
+import hs.karlsruhe.de.familyflow.data.dao.BenutzerAufgabeDao;
+import hs.karlsruhe.de.familyflow.data.dao.BenutzerDao;
+import hs.karlsruhe.de.familyflow.data.entity.Aufgabe;
+import hs.karlsruhe.de.familyflow.data.entity.Benutzer;
+import hs.karlsruhe.de.familyflow.data.entity.BenutzerAufgaben;
 
 public class PersonenZuweisen extends AppCompatActivity {
 
-    private Spinner spPersonen;
-    private ArrayList<String> zugewiesenePersonen;
-    private ArrayAdapter<String> adapter;
+    private BenutzerDao benutzerDao;
+    private AufgabeDao aufgabeDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personen_zuweisen);
 
-        // Views initialisieren
-        spPersonen = findViewById(R.id.spPersonen);
-        Button btnHinzufuegen = findViewById(R.id.btnHinzufuegen);
-        Button btnSpeichern = findViewById(R.id.btnSpeichern);
-        ListView lvPersonenListe = findViewById(R.id.personen_liste);
+        AppDatabase db = DatabaseManager.getDatabase(this);
+        benutzerDao = db.benutzerDao();
+        aufgabeDao = db.aufgabeDao();
 
-        // Daten initialisieren
-        zugewiesenePersonen = new ArrayList<>();
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, zugewiesenePersonen);
-        lvPersonenListe.setAdapter(adapter);
-
-        // Spinner-Daten (Beispielwerte)
-        ArrayList<String> personenListe = new ArrayList<>();
-        personenListe.add("Person 1");
-        personenListe.add("Person 2");
-        personenListe.add("Person 3");
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, personenListe);
-        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spPersonen.setAdapter(spinnerAdapter);
-
-        // Klick-Listener für Hinzufügen-Button
-        btnHinzufuegen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String ausgewaehltePerson = spPersonen.getSelectedItem().toString();
-                if (!zugewiesenePersonen.contains(ausgewaehltePerson)) {
-                    zugewiesenePersonen.add(ausgewaehltePerson);
-                    adapter.notifyDataSetChanged();
-                    Toast.makeText(PersonenZuweisen.this, "Person hinzugefügt", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(PersonenZuweisen.this, "Person bereits zugewiesen", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        // Klick-Listener für Speichern-Button
-        btnSpeichern.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Speichern der zugewiesenen Personen (Platzhalter)
-                Toast.makeText(PersonenZuweisen.this, "Personen erfolgreich zugewiesen", Toast.LENGTH_SHORT).show();
-                finish();
-            }
+        Button btnSpeichern = findViewById(R.id.buttonPersonenSpeichern);
+        btnSpeichern.setOnClickListener(v -> {
+            // Eventuell Daten verarbeiten (Zuweisung noch implementieren)
+            Toast.makeText(this, "Personen gespeichert", Toast.LENGTH_SHORT).show();
         });
     }
 }
+
+
+

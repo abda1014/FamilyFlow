@@ -1,105 +1,141 @@
 package hs.karlsruhe.de.familyflow.activities;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Button;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
-import hs.karlsruhe.de.familyflow.R;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
+import hs.karlsruhe.de.familyflow.R;
+import hs.karlsruhe.de.familyflow.data.AppDatabase;
+import hs.karlsruhe.de.familyflow.data.DatabaseManager;
+import hs.karlsruhe.de.familyflow.data.dao.AufgabeDao;
+import hs.karlsruhe.de.familyflow.data.dao.AufgabeDao;
+import hs.karlsruhe.de.familyflow.data.entity.Aufgabe;
+import hs.karlsruhe.de.familyflow.data.entity.Aufgabe;
 
 public class AufgabeUebersicht extends AppCompatActivity {
 
-    private ArrayList<String> aufgabenListe; // Beispiel-Liste
+    private ArrayList<String> aufgabenListe; // Liste zur Anzeige der Aufgabebezeichnung
+    private ArrayList<String> aufgabenIdListe; // Liste zur Speicherung der Aufgabe-IDs
     private ArrayAdapter<String> adapter;
+    private AufgabeDao aufgabeDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aufgabe_uebersicht);
 
-        EditText searchBar = findViewById(R.id.search_bar);
-        ListView listView = findViewById(R.id.aufgaben_liste);
+        // Room-Datenbank und DAO initialisieren
+        AppDatabase db = DatabaseManager.getDatabase(this);
+        aufgabeDao = db.aufgabeDao();
 
-        // Beispiel-Aufgabenliste
+        // Zurück-Button
+        Button buttonZurueckPinnwand = findViewById(R.id.buttonZurueckPinnwand);
+        buttonZurueckPinnwand.setOnClickListener(v -> finish()); // Zurück zur vorherigen Activity
+
+        ListView listViewAufgaben = findViewById(R.id.listViewAufgaben);
+
         aufgabenListe = new ArrayList<>();
-        aufgabenListe.add("Aufgabe 1");
-        aufgabenListe.add("Aufgabe 2");
-        aufgabenListe.add("Aufgabe 3");
-
-        // Adapter initialisieren
+        aufgabenIdListe = new ArrayList<>();
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, aufgabenListe);
-        listView.setAdapter(adapter);
+        listViewAufgaben.setAdapter(adapter);
 
-        // Sortierfunktion hinzufügen
-        findViewById(R.id.sort_by_date).setOnClickListener(v -> sortByDate());
-        findViewById(R.id.sort_alphabetically).setOnClickListener(v -> sortAlphabetically());
+        // Aufgaben aus der Datenbank laden
+        loadAufgaben();
 
         // Item-Klick: Navigiere zu Details
-        listView.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> {
+        listViewAufgaben.setOnItemClickListener((parent, view, position, id) -> {
+            String aufgabeId = aufgabenIdListe.get(position); // Die richtige Aufgabe-ID abrufen
             Intent intent = new Intent(this, AufgabeDetails.class);
-            intent.putExtra("aufgabe", aufgabenListe.get(position));
+            intent.putExtra("aufgabeId", aufgabeId); // Aufgabe-ID übergeben
             startActivity(intent);
         });
 
-        InitialisiereClickHandler(findViewById(R.id.AufgabeUebersicht));
-
-        // Suche nach Text in der Liste
-        searchBar.addTextChangedListener(new android.text.TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                adapter.getFilter().filter(s);
-            }
-
-            @Override
-            public void afterTextChanged(android.text.Editable s) {}
+        // Button "Neuer Aufgabe" klickbar machen
+        Button buttonNeueAufgabe = findViewById(R.id.button_neue_aufgabe);
+        buttonNeueAufgabe.setOnClickListener(v -> {
+            // Navigiere zu AufgabeErstellen
+            Intent intent = new Intent(AufgabeUebersicht.this, AufgabeErstellen.class);
+            startActivity(intent);
         });
+
+        // Button für Sortierung nach Datum
+        Button buttonSortiereDatum = findViewById(R.id.buttonSortiereDatum);
+        buttonSortiereDatum.setOnClickListener(v -> sortiereNachFaelligkeitsdatum());
+
+        // Button für Sortierung nach Alphabet
+        Button buttonSortiereAlphabetisch = findViewById(R.id.buttonSortiereAlphabetisch);
+        buttonSortiereAlphabetisch.setOnClickListener(v -> sortiereAlphabetisch());
     }
 
-    private void sortByDate() {
-        // Beispiel: Sortieren nach Datum (derzeit nur alphabetisch simuliert)
-        Collections.sort(aufgabenListe);
-        adapter.notifyDataSetChanged();
+    private void loadAufgaben() {
+        new Thread(() -> {
+            List<Aufgabe> aufgaben = aufgabeDao.getAllActiveAufgaben();
+            runOnUiThread(() -> {
+                aufgabenListe.clear();
+                aufgabenIdListe.clear(); // IDs löschen, bevor sie neu geladen werden
+
+                for (Aufgabe aufgabe : aufgaben) {
+                    aufgabenListe.add(aufgabe.getAufgabenbezeichnung()); // Namen hinzufügen
+                    aufgabenIdListe.add(aufgabe.getAufgabeId()); // IDs hinzufügen
+                }
+
+                adapter.notifyDataSetChanged();
+            });
+        }).start();
     }
 
-    private void sortAlphabetically() {
-        Collections.sort(aufgabenListe);
-        adapter.notifyDataSetChanged();
+    // Aufgaben nach Datum sortieren
+    private void sortiereNachFaelligkeitsdatum() {
+        new Thread(() -> {
+            List<Aufgabe> aufgaben = aufgabeDao.getAllActiveAufgaben();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                Collections.sort(aufgaben, Comparator.comparing(Aufgabe::getFaelligkeitsdatum));
+            }
+            runOnUiThread(() -> {
+                aufgabenListe.clear();
+                aufgabenIdListe.clear();
+
+                for (Aufgabe aufgabe : aufgaben) {
+                    aufgabenListe.add(aufgabe.getAufgabenbezeichnung());
+                    aufgabenIdListe.add(aufgabe.getAufgabeId());
+                }
+
+                adapter.notifyDataSetChanged();
+                Toast.makeText(AufgabeUebersicht.this, "Aufgaben nach Datum sortiert!", Toast.LENGTH_SHORT).show();
+            });
+        }).start();
     }
 
-    /**
-     * ClickHandler für die Buttons auf der Aufgabenübersicht um zu den anderen Activities zu navigieren
-     * @param view Die Aufgabenübersicht View, die das Click Event erhalten hat
-     */
-    public void InitialisiereClickHandler(View view) {
-        //initialisiere Aufgaben Button
-        Button zurueckPinnwand = findViewById(R.id.buttonZurueckPinnwand);
-        zurueckPinnwand.setOnClickListener(v -> ZuPinnwand());
+    // Aufgaben alphabetisch sortieren
+    private void sortiereAlphabetisch() {
+        new Thread(() -> {
+            List<Aufgabe> aufgaben = aufgabeDao.getAllActiveAufgaben();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                Collections.sort(aufgaben, Comparator.comparing(Aufgabe::getAufgabenbezeichnung));
+            }
+            runOnUiThread(() -> {
+                aufgabenListe.clear();
+                aufgabenIdListe.clear();
 
-        //initialisiere Termine Button
-        Button aufgabeErstellen = findViewById(R.id.buttonAufgabeErstellen);
-        aufgabeErstellen.setOnClickListener(v -> ZuAufgabeErstellen());
-    }
+                for (Aufgabe aufgabe : aufgaben) {
+                    aufgabenListe.add(aufgabe.getAufgabenbezeichnung());
+                    aufgabenIdListe.add(aufgabe.getAufgabeId());
+                }
 
-    private void ZuPinnwand() {
-        Intent intent = new Intent(AufgabeUebersicht.this, Pinnwand.class);
-        startActivity(intent);
-    }
-
-    /**
-     * Lädt die AufgabeErstellen Activity, nachdem der Aufgabe erstellen Knopf gedrückt wurde
-     */
-    private void ZuAufgabeErstellen() {
-        Intent intent = new Intent(AufgabeUebersicht.this, AufgabeErstellen.class);
-        startActivity(intent);
+                adapter.notifyDataSetChanged();
+                Toast.makeText(AufgabeUebersicht.this, "Aufgaben alphabetisch sortiert!", Toast.LENGTH_SHORT).show();
+            });
+        }).start();
     }
 }

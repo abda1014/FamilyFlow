@@ -7,7 +7,6 @@ import androidx.room.Query;
 import androidx.room.RoomWarnings;
 import androidx.room.Transaction;
 
-import hs.karlsruhe.de.familyflow.data.entity.Benutzer;
 import hs.karlsruhe.de.familyflow.data.entity.Termin;
 import hs.karlsruhe.de.familyflow.data.entity.BenutzerTermin;
 
@@ -18,7 +17,7 @@ public interface BenutzerTerminDao {
 
     // Einfügen eines neuen Termins
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertTermin(Termin termin);
+    void insertTermin(BenutzerTermin termin);
 
     // Aktualisieren eines bestehenden Termins
     @Query("UPDATE Termin SET terminname = :terminname, datum = :datum, uhrzeit = :uhrzeit, wiederholung = :wiederholung, beschreibung = :beschreibung, isDeleted = :isDeleted WHERE terminId = :terminId")

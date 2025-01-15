@@ -1,47 +1,84 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/TerminDetails"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="16dp">
 
-    <LinearLayout
-        android:id="@+id/eventAnzeige"
-        style="?android:attr/buttonBarStyle"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_margin="16dp">
+    <!-- Terminname -->
+    <EditText
+        android:id="@+id/editTextTerminname"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:hint="@string/terminname"
+        android:inputType="text"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="8dp" />
 
-        <!-- Überschrift oder Label -->
-        <TextView
-            android:id="@+id/details_label"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/details_zum_termin"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+    <!-- Datum -->
+    <EditText
+        android:id="@+id/editTextDatum"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:hint="@string/datum"
+        android:inputType="text"
+        app:layout_constraintTop_toBottomOf="@id/editTextTerminname"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="8dp" />
 
-        <!-- Textbereich für Details -->
-        <TextView
-            android:id="@+id/details_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="@string/details_hier_einf_gen"
-            android:textSize="16sp"
-            android:layout_marginTop="16dp"/>
+    <!-- Uhrzeit -->
+    <EditText
+        android:id="@+id/editTextUhrzeit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:hint="@string/uhrzeit"
+        android:inputType="text"
+        app:layout_constraintTop_toBottomOf="@id/editTextDatum"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="8dp" />
 
-        <!-- Bearbeiten-Button -->
-        <Button
-            android:id="@+id/edit_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/bearbeiten"
-            android:layout_marginTop="16dp"/>
-    </LinearLayout>
+    <!-- Wiederholung -->
+    <EditText
+        android:id="@+id/editTextWiederholung"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:hint="@string/wiederholung"
+        android:inputType="text"
+        app:layout_constraintTop_toBottomOf="@id/editTextUhrzeit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="8dp" />
+
+    <!-- Beschreibung -->
+    <EditText
+        android:id="@+id/editTextBeschreibung"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:hint="@string/beschreibung"
+        android:inputType="text"
+        app:layout_constraintTop_toBottomOf="@id/editTextWiederholung"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="8dp" />
+
+    <Spinner
+        android:id="@+id/spinnerBenutzer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/editTextBeschreibung"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:spinnerMode="dropdown" />
 
     <LinearLayout
         android:id="@+id/bottomNavigation"
@@ -50,31 +87,33 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginBottom="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <Button
-            android:textColor="@color/brown1"
-            android:id="@+id/buttonZurueckTerminUebersicht"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:text="@string/zurueckTerminUebersicht"
-            tools:ignore="VisualLintButtonSize" />
+    <!-- Speichern-Button -->
+    <Button
+        android:id="@+id/buttonTerminSpeichern"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/speichern"
+        android:backgroundTint="@color/brown1"
+        app:layout_constraintTop_toBottomOf="@id/editTextBeschreibung"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp" />
 
-        <Button
-            android:textColor="@color/brown1"
-            android:id="@+id/buttonTerminBearbeiten"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:text="@string/terminBearbeiten"
-            tools:ignore="VisualLintButtonSize" />
+    <!-- Löschen-Button -->
+    <Button
+        android:id="@+id/buttonTerminLoeschen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/loeschen"
+        android:backgroundTint="@color/brown1"
+        app:layout_constraintTop_toBottomOf="@id/buttonTerminSpeichern"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

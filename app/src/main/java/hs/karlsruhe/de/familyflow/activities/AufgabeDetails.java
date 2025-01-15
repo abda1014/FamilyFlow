@@ -1,51 +1,162 @@
 package hs.karlsruhe.de.familyflow.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.util.Log;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.List;
+
 import hs.karlsruhe.de.familyflow.R;
+import hs.karlsruhe.de.familyflow.data.AppDatabase;
+import hs.karlsruhe.de.familyflow.data.DatabaseManager;
+import hs.karlsruhe.de.familyflow.data.dao.AufgabeDao;
+import hs.karlsruhe.de.familyflow.data.dao.AufgabeDao;
+import hs.karlsruhe.de.familyflow.data.dao.BenutzerAufgabeDao;
+import hs.karlsruhe.de.familyflow.data.dao.BenutzerDao;
+import hs.karlsruhe.de.familyflow.data.entity.Aufgabe;
+import hs.karlsruhe.de.familyflow.data.entity.Aufgabe;
+import hs.karlsruhe.de.familyflow.data.entity.Benutzer;
+import hs.karlsruhe.de.familyflow.data.entity.BenutzerAufgaben;
 
 public class AufgabeDetails extends AppCompatActivity {
+
+    private EditText etAufgabenbezeichnung, etStatus, etFaelligkeitsdatum, etNotiz;
+    private Button btnSpeichern, btnLoeschen;
+    private AufgabeDao aufgabeDao;
+    private String aufgabeId; // ID der Aufgabes
+    private Spinner spinnerBenutzer;
+    private BenutzerDao benutzerDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aufgabe_details);
 
-        // Beispiel: Hole die Aufgabe aus dem Intent
-        String aufgabe = getIntent().getStringExtra("aufgabe");
+        // Room-Datenbank und DAO initialisieren
+        AppDatabase db = DatabaseManager.getDatabase(this);
+        aufgabeDao = db.aufgabeDao();
+        benutzerDao = db.benutzerDao();
 
-        TextView textView = findViewById(R.id.details_text);
-        textView.setText(aufgabe); // Zeige die Details
-        InitialisiereClickHandler(findViewById(R.id.AufgabeDetails));
+        // Intent-Daten abrufen
+        aufgabeId = getIntent().getStringExtra("aufgabeId");
+
+        // Views initialisieren
+        etAufgabenbezeichnung = findViewById(R.id.editTextAufgabenbezeichnung);
+        etStatus = findViewById(R.id.editTextStatus);
+        etFaelligkeitsdatum = findViewById(R.id.editTextFaelligkeitsdatum);
+        etNotiz = findViewById(R.id.editTextNotiz);
+        spinnerBenutzer = findViewById(R.id.spinnerBenutzer);
+        btnSpeichern = findViewById(R.id.buttonAufgabeSpeichern);
+        btnLoeschen = findViewById(R.id.buttonAufgabeLoeschen);
+
+        // Aufgabe laden und in die Felder einfügen
+        loadAufgabeDetails();
+        loadBenutzerInSpinner();
+
+        // Speichern-Button: Änderungen speichern
+        btnSpeichern.setOnClickListener(v -> saveChanges());
+
+        // Löschen-Button: Aufgabe löschen
+        btnLoeschen.setOnClickListener(v -> softDeleteAufgabe());
     }
-    /**
-     * ClickHandler für die Buttons von AufgabeDetails um zu den anderen Activities zu navigieren
-     * @param view Die AufgabeDetails View, die das Click Event erhalten hat
-     */
-    public void InitialisiereClickHandler(View view) {
-        //initialisiere Aufgaben Button
-        Button zurueckAufgabeUebersicht = findViewById(R.id.buttonZurueckAufgabeUebersicht);
-        zurueckAufgabeUebersicht.setOnClickListener(v -> ZuAufgabeUebersicht());
 
-        //initialisiere Termine Button
-        Button aufgabeBearbeiten = findViewById(R.id.buttonAufgabeBearbeiten);
-        aufgabeBearbeiten.setOnClickListener(v -> ZuAufgabeBearbeiten());
+    private void loadAufgabeDetails() {
+        new Thread(() -> {
+            Aufgabe aufgabe = aufgabeDao.findAufgabeById(aufgabeId);
+            if (aufgabe == null) {
+                runOnUiThread(() -> {
+                    Toast.makeText(this, "Aufgabe nicht gefunden!", Toast.LENGTH_SHORT).show();
+                    finish();
+                });
+                return;
+            }
+
+            // Benutzerzuweisung abrufen
+            BenutzerAufgabeDao benutzerAufgabeDao = DatabaseManager.getDatabase(this).benutzerAufgabenDao();
+            BenutzerAufgaben benutzerAufgabe = benutzerAufgabeDao.getBenutzerWithAufgaben(aufgabeId);
+
+            runOnUiThread(() -> {
+                etAufgabenbezeichnung.setText(aufgabe.getAufgabenbezeichnung());
+                etStatus.setText(aufgabe.getStatus());
+                etFaelligkeitsdatum.setText(aufgabe.getFaelligkeitsdatum());
+                etNotiz.setText(aufgabe.getNotiz());
+
+                // Benutzer im Spinner auswählen
+                if (benutzerAufgabe != null) {
+                    for (int i = 0; i < spinnerBenutzer.getAdapter().getCount(); i++) {
+                        Benutzer benutzer = (Benutzer) spinnerBenutzer.getItemAtPosition(i);
+                        if (benutzer.getBenutzerId().equals(benutzerAufgabe.getBenutzerId())) {
+                            spinnerBenutzer.setSelection(i);
+                            break;
+                        }
+                    }
+                }
+            });
+        }).start();
     }
 
-    private void ZuAufgabeUebersicht() {
-        Intent intent = new Intent(AufgabeDetails.this, AufgabeUebersicht.class);
-        startActivity(intent);
+
+    private void saveChanges() {
+        String aufgabenbezeichnung = etAufgabenbezeichnung.getText().toString();
+        String status = etStatus.getText().toString();
+        String faelligkeitsdatum = etFaelligkeitsdatum.getText().toString();
+        String notiz = etNotiz.getText().toString();
+
+        // Eingabefelder validieren
+        if (aufgabenbezeichnung.isEmpty() || status.isEmpty() || faelligkeitsdatum.isEmpty()) {
+            Toast.makeText(this, "Bitte alle Pflichtfelder ausfüllen", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Änderungen speichern
+        new Thread(() -> {
+            Aufgabe aufgabe = aufgabeDao.findAufgabeById(aufgabeId);
+            if (aufgabe != null) {
+                aufgabe.setAufgabenbezeichnung(aufgabenbezeichnung);
+                aufgabe.setStatus(status);
+                aufgabe.setFaelligkeitsdatum(faelligkeitsdatum);
+                aufgabe.setNotiz(notiz);
+
+                aufgabeDao.updateAufgabe(aufgabe);
+
+                runOnUiThread(() -> {
+                    Toast.makeText(this, "Änderungen gespeichert!", Toast.LENGTH_SHORT).show();
+                    finish();
+                });
+            }
+        }).start();
     }
 
-    /**
-     * lädt die TerminActivity, nachdem der Aufgaben Knopf gedrückt wurde
-     */
-    private void ZuAufgabeBearbeiten() {
-        Intent intent = new Intent(AufgabeDetails.this, AufgabeErstellen.class);
-        startActivity(intent);
+    private void softDeleteAufgabe() {
+        new Thread(() -> {
+            Aufgabe aufgabe = aufgabeDao.findAufgabeById(aufgabeId);
+            if (aufgabe != null) {
+                aufgabeDao.softDeleteAufgabe(String.valueOf(aufgabe));
+
+                runOnUiThread(() -> {
+                    Toast.makeText(this, "Aufgabe gelöscht!", Toast.LENGTH_SHORT).show();
+                    finish();
+                });
+            }
+        }).start();
+    }
+
+    private void loadBenutzerInSpinner() {
+        new Thread(() -> {
+            List<Benutzer> benutzerListe = benutzerDao.getAllActiveBenutzer();
+            runOnUiThread(() -> {
+                ArrayAdapter<Benutzer> adapter = new ArrayAdapter<>(this,
+                        android.R.layout.simple_spinner_item, benutzerListe);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinnerBenutzer.setAdapter(adapter);
+            });
+        }).start();
     }
 }

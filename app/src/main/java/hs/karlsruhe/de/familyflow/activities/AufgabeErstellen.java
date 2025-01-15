@@ -1,87 +1,113 @@
 package hs.karlsruhe.de.familyflow.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.util.Log;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.List;
+import java.util.UUID;
 
 import hs.karlsruhe.de.familyflow.R;
+import hs.karlsruhe.de.familyflow.data.AppDatabase;
+import hs.karlsruhe.de.familyflow.data.DatabaseManager;
+import hs.karlsruhe.de.familyflow.data.dao.AufgabeDao;
+import hs.karlsruhe.de.familyflow.data.dao.AufgabeDao;
+import hs.karlsruhe.de.familyflow.data.dao.BenutzerAufgabeDao;
+import hs.karlsruhe.de.familyflow.data.dao.BenutzerDao;
+import hs.karlsruhe.de.familyflow.data.entity.Aufgabe;
+import hs.karlsruhe.de.familyflow.data.entity.Aufgabe;
+import hs.karlsruhe.de.familyflow.data.entity.Benutzer;
+import hs.karlsruhe.de.familyflow.data.entity.BenutzerAufgaben;
 
 public class AufgabeErstellen extends AppCompatActivity {
 
     private EditText etAufgabenbezeichnung, etStatus, etFaelligkeitsdatum, etNotiz;
+    private AufgabeDao aufgabeDao;
+    private Spinner spinnerBenutzer;
+    private BenutzerDao benutzerDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aufgabe_erstellen);
 
+        // Room-Datenbank und DAO initialisieren
+        AppDatabase db = DatabaseManager.getDatabase(this);
+        aufgabeDao = db.aufgabeDao();
+        benutzerDao = db.benutzerDao();
+
         // Views initialisieren
-        etAufgabenbezeichnung = findViewById(R.id.aufgabenbezeichnung);
-        etStatus = findViewById(R.id.status);
-        etFaelligkeitsdatum = findViewById(R.id.faelligkeitsdatum);
-        etNotiz = findViewById(R.id.notiz);
-        Button btnSpeichern = findViewById(R.id.save_button);
+        etAufgabenbezeichnung = findViewById(R.id.editTextAufgabenbezeichnung);
+        etStatus = findViewById(R.id.editTextStatus);
+        etFaelligkeitsdatum = findViewById(R.id.editTextFaelligkeitsdatum);
+        etNotiz = findViewById(R.id.editTextNotiz);
+        spinnerBenutzer = findViewById(R.id.spinnerBenutzer);
 
-        InitialisiereClickHandler(findViewById(R.id.AufgabeErstellen));
-
-        // Klick-Listener für den Speichern-Button
-        btnSpeichern.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String aufgabenbezeichnung = etAufgabenbezeichnung.getText().toString();
-                String status = etStatus.getText().toString();
-                String faelligkeitsdatum = etFaelligkeitsdatum.getText().toString();
-                String notiz = etNotiz.getText().toString();
-
-                if (aufgabenbezeichnung.isEmpty() || status.isEmpty() || faelligkeitsdatum.isEmpty()) {
-                    Toast.makeText(AufgabeErstellen.this, "Bitte alle Felder ausfüllen", Toast.LENGTH_SHORT).show();
-                } else {
-                    // Speichern der Aufgabe (hier Platzhalter)
-                    Toast.makeText(AufgabeErstellen.this, "Aufgabe erstellt!", Toast.LENGTH_SHORT).show();
-                    finish();
-                }
-            }
-        });
-    }
-    /**
-     * ClickHandler für die Buttons von AufgabeErstellen um zu den anderen Activities zu navigieren
-     * @param view Die AufgabeErstellen View, die das Click Event erhalten hat
-     */
-    public void InitialisiereClickHandler(View view) {
-        //initialisiere Aufgaben Button
-        Button abbruchAufgabeUebersicht = findViewById(R.id.buttonAbbruchAufgabeUebersicht);
-        abbruchAufgabeUebersicht.setOnClickListener(v -> ZuAufgabeUebersicht());
-
-        //initialisiere Termine Button
-        Button aufgabeDetails = findViewById(R.id.buttonAufgabeDetails);
-        aufgabeDetails.setOnClickListener(v -> ZuAufgabeDetails());
-
-        //initialisiere Termine Button
-        Button aufgabePersonenZuweisen = findViewById(R.id.buttonAufgabePersonenZuweisen);
-        aufgabePersonenZuweisen.setOnClickListener(v -> ZuAufgabePersonenZuweisen());
+        Button btnSpeichern = findViewById(R.id.buttonAufgabeSpeichern);
+        // Benutzerliste laden und im Spinner anzeigen
+        loadBenutzerInSpinner();
+        btnSpeichern.setOnClickListener(v -> saveAufgabe());
     }
 
-    private void ZuAufgabeUebersicht() {
-        Intent intent = new Intent(AufgabeErstellen.this, AufgabeUebersicht.class);
-        startActivity(intent);
+    private void saveAufgabe() {
+        String aufgabenbezeichnung = etAufgabenbezeichnung.getText().toString();
+        String status = etStatus.getText().toString();
+        String faelligkeitsdatum = etFaelligkeitsdatum.getText().toString();
+        String notiz = etNotiz.getText().toString();
+
+        if (aufgabenbezeichnung.isEmpty() || status.isEmpty() || faelligkeitsdatum.isEmpty()) {
+            Toast.makeText(AufgabeErstellen.this, "Bitte alle Pflichtfelder ausfüllen", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Hole den ausgewählten Benutzer
+        Benutzer ausgewählterBenutzer = (Benutzer) spinnerBenutzer.getSelectedItem();
+        if (ausgewählterBenutzer == null) {
+            Toast.makeText(this, "Bitte eine Person auswählen!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        String aufgabeId = UUID.randomUUID().toString();
+        Aufgabe neueAufgabe = new Aufgabe(
+                aufgabeId,
+                aufgabenbezeichnung,
+                status,
+                faelligkeitsdatum,
+                notiz,
+                false
+        );
+
+        new Thread(() -> {
+            aufgabeDao.insertAufgabe(neueAufgabe);
+
+            // Zuweisung zwischen Benutzer und Aufgabe speichern
+            BenutzerAufgaben benutzerAufgabe = new BenutzerAufgaben(ausgewählterBenutzer.getBenutzerId(), aufgabeId);
+            BenutzerAufgabeDao benutzerAufgabeDao = DatabaseManager.getDatabase(this).benutzerAufgabenDao();
+            benutzerAufgabeDao.insertAufgabe(benutzerAufgabe);
+
+            runOnUiThread(() -> {
+                Toast.makeText(this, "Aufgabe erstellt und Person zugewiesen!", Toast.LENGTH_SHORT).show();
+                finish();
+            });
+        }).start();
     }
 
-    /**
-     * Lädt die AufgabeErstellen Activity, nachdem der Aufgabe erstellen Knopf gedrückt wurde
-     */
-    private void ZuAufgabeDetails() {
-        Intent intent = new Intent(AufgabeErstellen.this, AufgabeDetails.class);
-        startActivity(intent);
+    private void loadBenutzerInSpinner() {
+        new Thread(() -> {
+            List<Benutzer> benutzerListe = benutzerDao.getAllActiveBenutzer();
+            runOnUiThread(() -> {
+                ArrayAdapter<Benutzer> adapter = new ArrayAdapter<>(this,
+                        android.R.layout.simple_spinner_item, benutzerListe);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinnerBenutzer.setAdapter(adapter);
+            });
+        }).start();
     }
 
-    private void ZuAufgabePersonenZuweisen() {
-        Intent intent = new Intent(AufgabeErstellen.this, PersonenZuweisen.class);
-        startActivity(intent);
-    }
 }
