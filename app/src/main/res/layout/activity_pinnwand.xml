@@ -22,6 +22,7 @@
 
     <TextView
         android:id="@+id/familyTitle"
+        style="@style/UeberschriftLogin"
         android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -34,60 +35,65 @@
 
     <LinearLayout
         android:id="@+id/eventAnzeige"
-        style="?android:attr/buttonBarStyle"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginTop="2dp"
-        android:paddingBottom="4dp"
+        android:layout_margin="16dp"
+        android:padding="16dp"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/rounded_corner_background"
+        android:elevation="4dp"
+        android:gravity="center_vertical"
         app:layout_constraintTop_toBottomOf="@id/familyTitle"
-        android:layout_width="match_parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="start">
+
             <TextView
                 android:id="@+id/eventTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/brown1"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                />
+                android:text="@string/event_title_placeholder"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:ellipsize="end"
+                android:maxLines="1" />
 
             <TextView
                 android:id="@+id/eventTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:textSize="12sp"
-                android:textColor="@color/brown1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/eventTitle" />
+                android:text="@string/event_time_placeholder"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <ImageView
             android:id="@+id/eventParticipants"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
             android:contentDescription="@string/teilnehmer_des_termins"
             android:src="@drawable/defaultavatar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:scaleType="centerCrop"
+            android:background="@drawable/rounded_corner_background" />
     </LinearLayout>
 
     <View
-        app:layout_constraintTop_toBottomOf="@id/eventAnzeige"
         android:layout_width="match_parent"
-        android:layout_marginEnd="40dp"
-        android:layout_marginStart="40dp"
         android:layout_height="2dp"
-        android:layout_marginTop="2dp"
-        android:background="@color/grey" />
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:background="@color/grey"
+        app:layout_constraintTop_toBottomOf="@id/eventAnzeige" />
 
     <ImageView
         android:id="@+id/addEventButton"
