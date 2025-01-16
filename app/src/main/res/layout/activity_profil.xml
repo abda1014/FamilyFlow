@@ -14,8 +14,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Vorname Kästchen -->
-
     <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonProfilBearbeiten"
         style="@style/BoldTextStyle"
@@ -31,15 +29,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imageViewProfil" />
 
+    <!-- Vorname Kästchen -->
     <LinearLayout
         android:id="@+id/linearLayoutVorname"
         android:layout_width="322dp"
         android:layout_height="82dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="28dp"
         android:background="@color/brown1"
         android:orientation="vertical"
         android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/buttonProfilBearbeiten">
 
@@ -61,6 +61,21 @@
             android:textColor="@android:color/white"
             android:textSize="16sp" />
     </LinearLayout>
+
+    <!-- Bearbeitungszeichen im Vordergrund für Vorname -->
+    <ImageButton
+        android:id="@+id/bearbeitungsZeichenVorname"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/bearbeiten"
+        android:src="@android:drawable/ic_menu_edit"
+        android:layout_centerInParent="true"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        app:tint="@android:color/white"
+        app:layout_constraintEnd_toEndOf="@id/linearLayoutVorname"
+        app:layout_constraintBottom_toBottomOf="@id/linearLayoutVorname" />
 
     <!-- Nachname Kästchen -->
     <LinearLayout
@@ -94,6 +109,21 @@
             android:textSize="16sp" />
     </LinearLayout>
 
+    <!-- Bearbeitungszeichen im Vordergrund für Nachname -->
+    <ImageButton
+        android:id="@+id/bearbeitungsZeichenNachname"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/bearbeiten"
+        android:src="@android:drawable/ic_menu_edit"
+        android:layout_centerInParent="true"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        app:tint="@android:color/white"
+        app:layout_constraintEnd_toEndOf="@id/linearLayoutNachname"
+        app:layout_constraintBottom_toBottomOf="@id/linearLayoutNachname" />
+
     <!-- Email Kästchen -->
     <LinearLayout
         android:id="@+id/linearLayoutEmail"
@@ -125,6 +155,21 @@
             android:textColor="@android:color/white"
             android:textSize="16sp" />
     </LinearLayout>
+
+    <!-- Bearbeitungszeichen im Vordergrund für Email -->
+    <ImageButton
+        android:id="@+id/bearbeitungsZeichenEmail"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/bearbeiten"
+        android:src="@android:drawable/ic_menu_edit"
+        android:layout_centerInParent="true"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        app:tint="@android:color/white"
+        app:layout_constraintEnd_toEndOf="@id/linearLayoutEmail"
+        app:layout_constraintBottom_toBottomOf="@id/linearLayoutEmail" />
 
     <!-- Alter Kästchen -->
     <LinearLayout
@@ -158,6 +203,21 @@
             android:textSize="16sp" />
     </LinearLayout>
 
+    <!-- Bearbeitungszeichen im Vordergrund für Alter -->
+    <ImageButton
+        android:id="@+id/bearbeitungsZeichenAlterdatum"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/bearbeiten"
+        android:src="@android:drawable/ic_menu_edit"
+        android:layout_centerInParent="true"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        app:tint="@android:color/white"
+        app:layout_constraintEnd_toEndOf="@id/linearLayoutAlterdatum"
+        app:layout_constraintBottom_toBottomOf="@id/linearLayoutAlterdatum" />
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonZurueckEinstellungen"
         android:layout_width="100dp"
@@ -171,4 +231,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonProfilBearbeiten"
         app:layout_constraintVertical_bias="0.981" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
