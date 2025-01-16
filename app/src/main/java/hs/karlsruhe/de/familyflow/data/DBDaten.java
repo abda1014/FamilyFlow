@@ -163,20 +163,31 @@ public class DBDaten {
         }).start();
     }
 
+    // Definiert eine Methode, die ein Passwort als Eingabe akzeptiert und dessen SHA-256-Hash berechnet
     public static String hashPassword(String password) {
         try {
+            // Erstellt eine Instanz des MessageDigest-Objekts für den SHA-256-Algorithmus
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            // Konvertiert das Passwort in ein Byte-Array und berechnet den SHA-256-Hash
             byte[] hash = digest.digest(password.getBytes());
+            // Erstellt einen StringBuilder, um das Hash-Ergebnis in einen Hexadezimal-String zu konvertieren
             StringBuilder hexString = new StringBuilder();
 
+            // Iteriert durch jedes Byte im Hash-Ergebnis
             for (byte b : hash) {
+                // Konvertiert das Byte in einen Hexadezimal-String
                 String hex = Integer.toHexString(0xff & b);
+                // Fügt eine führende Null hinzu, wenn die Hexadezimaldarstellung nur ein Zeichen lang ist
                 if (hex.length() == 1) hexString.append('0');
+                // Fügt das Hexadezimalzeichen zur Ergebniszeichenkette hinzu
                 hexString.append(hex);
             }
+            // Gibt den vollständigen Hexadezimal-String als Ergebnis zurück
             return hexString.toString();
-        } catch (NoSuchAlgorithmException e) {
+        } catch (NoSuchAlgorithmException e) { // Falls der Algorithmus "SHA-256" nicht gefunden wird
+            // Gibt den Stack-Trace des Fehlers aus (Debugging-Zwecke)
             e.printStackTrace();
+            // Gibt null
             return null;
         }
     }

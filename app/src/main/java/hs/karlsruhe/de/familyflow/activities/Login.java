@@ -21,17 +21,16 @@ import hs.karlsruhe.de.familyflow.data.DBDaten;
 
 public class Login extends AppCompatActivity {
 
+    // Initialisierung der UI-Komponenten für E-Mail, Passwort und Fehlermeldung
     private EditText eingabeMail;
     private EditText eingabePasswort;
     private TextView fehleranzeige; // Fehleranzeige
 
-    // Simulierte Benutzerdaten
-    // private final String SIMULATION_MAIL = "HKA@hka.de";
-    // private final String SIMULATION_PASSWORT = "Testuser123";
-
+    // onCreate-Methode wird beim Starten der Activity aufgerufen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Setzt das Layout für die Login-Activity
         setContentView(R.layout.activity_login);
 
         // Testdaten initialisieren
@@ -46,62 +45,67 @@ public class Login extends AppCompatActivity {
         eingabePasswort = findViewById(R.id.editTextPasswort);
         fehleranzeige = findViewById(R.id.fehlermeldung);
 
-        // Login-Button Frame 1
+        // Login-Button Initial-Frame
         Button buttonLogin = findViewById(R.id.buttonLogin);
 
-        // Zeigt Frame 2 mit Eingabefeldern und versteckt das Initial-Frame
+        // Zeigt Einloggen-Frame mit Eingabefeldern und versteckt das Initial-Frame
         buttonLogin.setOnClickListener(v -> {
             frameInitial.setVisibility(View.GONE);
             frameLogin.setVisibility(View.VISIBLE);
         });
 
-        // Login-Button Frame 2 initialisieren
+        // Login-Button Einloggen-Frame initialisieren
         Button buttonNewLogin = findViewById(R.id.buttonNewLogin);
 
         // Überprüft die Eingaben und navigiert zur Pinnwand-Activity
         buttonNewLogin.setOnClickListener(v -> userLogin());
     }
 
+    // Methode zur Verarbeitung des Benutzer-Logins
     private void userLogin() {
+        // Abrufen der eingegebenen E-Mail und des Passworts aus den EditText-Feldern
         String mail = eingabeMail.getText().toString().trim();
         String passwort = eingabePasswort.getText().toString().trim();
 
-        // Hash des eingegebenen Passworts berechnen
+        // Berechnen des Hashes des Passworts, um die Sicherheit zu gewährleisten
         String hashedPassword = DBDaten.hashPassword(passwort);
 
+        // Falls die Passwort-Hash-Berechnung fehlgeschlagen ist
         if (hashedPassword == null) {
+            // Setzen einer Fehlermeldung in der UI
             runOnUiThread(() -> fehleranzeige.setText("Fehler bei der Passwort-Hash-Berechnung."));
-            return;
+            return; // Rückkehr, falls Fehler beim Hashen auftritt
         }
 
+        // Starte einen neuen Thread, um die Datenbankoperation im Hintergrund auszuführen
         new Thread(() -> {
+            // Zugriff auf die App-Datenbank
             AppDatabase db = DatabaseManager.getDatabase(this);
+            // BenutzerDao zum Abrufen der Benutzerdaten aus der Datenbank
             BenutzerDao benutzerDao = db.benutzerDao();
+            // Suche nach dem Benutzer mit der angegebenen E-Mail und dem gehashten Passwort
             Benutzer benutzer = benutzerDao.findBenutzerByEmailAndPassword(mail, hashedPassword);
 
+            // UI wird im Haupt-Thread aktualisiert, wenn die Datenbankabfrage abgeschlossen ist
             runOnUiThread(() -> {
                 if (benutzer != null) {
 
-                    // Benutzer-ID speichern, um sie später abzurufen
+                    // Wenn der Benutzer gefunden wird, speichere die Benutzer-ID in den SharedPreferences, um sie später wieder abzurufen
                     SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString("user_id", benutzer.getBenutzerId());  // Die ID des Benutzers speichern
-                    editor.apply();
+                    editor.apply(); // Änderungen anwenden
 
-                    // Weiterleitung zur Pinnwand
+                    // Weiterleitung zur Pinnwand-Activity (Hauptbildschirm nach Login)
                     Intent intent = new Intent(Login.this, Pinnwand.class);
-
-                    // Zum Test, ob die Weiterleitung von Login geht.
-                    //Intent intent = new Intent(Login.this, LoginTestActivity.class);
-
-                    startActivity(intent);
+                    startActivity(intent); // Starten der neuen Activity
                 } else {
-                    // Fehlermeldung anzeigen
-                    fehleranzeige.setVisibility(View.VISIBLE);
-                    fehleranzeige.setText("Die eingegebenen Daten sind falsch.");
+                    // Falls die Anmeldedaten nicht korrekt sind, eine Fehlermeldung anzeigen
+                    fehleranzeige.setVisibility(View.VISIBLE); // Sichtbarmachen der Fehlermeldung
+                    fehleranzeige.setText("Die eingegebenen Daten sind falsch."); // Fehlermeldung setzen
                 }
             });
-        }).start();
+        }).start(); // Starten des Hintergrund-Threads
     }
 
 }

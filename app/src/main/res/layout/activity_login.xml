@@ -61,7 +61,7 @@
             app:layout_constraintTop_toBottomOf="@id/buttonLogin" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- Frame 2: Login, Konto anlegen und Passwort vergessen -->
+    <!-- Einloggen-Frame: Login, Konto anlegen und Passwort vergessen -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/frameLogin"
         android:layout_width="match_parent"
@@ -136,9 +136,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textKontoErstellen" />
 
-        <!-- Zurück-button -->
-
-        <!-- Passwort vergessen- Button -->
+        <!-- Zurück- Button -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonZurueck"
             android:layout_width="110dp"
@@ -153,6 +151,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttonKontoAnlegen" />
 
+        <!-- Passwort vergessen- Button -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonVergessen"
             android:layout_width="wrap_content"
@@ -169,7 +168,7 @@
 
         <!-- Infotext zu Konto erstellen -->
 
-        <!-- Text Überschrift -->
+        <!-- Text KontoErstellen -->
         <TextView
             android:id="@+id/textKontoErstellen"
             style="@style/BoldTextStyle"
@@ -182,6 +181,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/fehlermeldung" />
 
+        <!-- Text Überschrift -->
         <TextView
             android:id="@+id/textUeberschrift"
             style="@style/UeberschriftLogin"
@@ -194,6 +194,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <!-- Text FehlermeldungFalscheAnmeldedaten -->
         <TextView
             android:id="@+id/fehlermeldung"
             android:layout_width="240dp"
