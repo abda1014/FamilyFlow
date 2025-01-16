@@ -105,7 +105,7 @@ public class Aufgabe {
     }
 
     // Gibt zurück, ob die Aufgabe gelöscht wurde.
-    public boolean isisDeleted() {
+    public boolean isDeleted() {
         return isDeleted;
     }
 
