@@ -40,6 +40,9 @@ public class Einstellungen extends AppCompatActivity {
             Intent intent = new Intent(Einstellungen.this, Profil.class);
             startActivity(intent);
         });
+
+        Button buttonZurueckPinnwand = findViewById(R.id.buttonZurueckPinnwand);
+        buttonZurueckPinnwand.setOnClickListener(v -> finish()); // Zurück zur vorherigen Activity
     }
 
     // Methode für den Bestätigungsdialog

@@ -87,7 +87,7 @@ public class DBDaten {
                 if (existierenderBenutzer == null) {
                     Benutzer lisa = new Benutzer(
                             UUID.randomUUID().toString(), "Lisa", "Klein",
-                            emailLisa, "2001-03-25", false, hashedStandardPassword, imageUrl_4
+                            emailLisa, "2001-03-25", false, hashedStandardPassword,null
                     );
                     benutzerDao.insertBenutzer(lisa);
                 }

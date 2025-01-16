@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
@@ -28,6 +30,9 @@ public class Profil extends AppCompatActivity {
         // ExecutorService für Hintergrundaufgaben initialisieren
         executorService = Executors.newSingleThreadExecutor();
 
+        Button buttonZurueckEinstellungen = findViewById(R.id.buttonZurueckEinstellungen);
+        buttonZurueckEinstellungen.setOnClickListener(v -> finish()); // Zurück zur vorherigen Activity
+
         // Benutzerprofil laden
         ladeBenutzerProfil();
     }
@@ -37,9 +42,6 @@ public class Profil extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
         String userId = sharedPreferences.getString("user_id", null);  // Benutzer-ID abrufen
 
-        Log.e("ProfilActivity", "Benutzer gefunden mit ID: " + userId);
-
-        if (userId != null) {
             executorService.execute(() -> {
                 // Datenbankzugriff initialisieren
                 AppDatabase db = DatabaseManager.getDatabase(this);
@@ -50,12 +52,13 @@ public class Profil extends AppCompatActivity {
                 if (benutzer == null) {
                     Log.e("ProfilActivity", "Benutzer nicht gefunden mit ID: " + userId);
                 } else {
-                    Log.d("ProfilActivity", "Benutzer gefunden: " + benutzer.getVorname());
+                    Log.d("ProfilActivity", "Benutzer gefunden: " + benutzer.getVorname() +"und" + userId);
                 }
 
                 // Ergebnis zurück an den Hauptthread übergeben
                 runOnUiThread(() -> {
                     if (benutzer != null) {
+                        Log.d("ProfilActivity", "Benutzer gefunden: " + benutzer.getVorname());
                         // Profilbild-URL abrufen
                         String imageProfilUrl = benutzer.getImageProfil();
 
@@ -68,21 +71,30 @@ public class Profil extends AppCompatActivity {
                                     .into(imageView);  // Das ImageView, in das das Bild geladen wird
                         } else {
                             // Fehler, wenn keine Bild-URL vorhanden ist
-                            Toast.makeText(this, "Kein Profilbild vorhanden", Toast.LENGTH_SHORT).show();
+                            ImageView imageView = findViewById(R.id.imageViewProfil);
+                            Glide.with(this)
+                                    .load(R.drawable.defaultavatar) // Standardbild laden
+                                    .into(imageView);
                         }
+
+
+                        // Vorname, Nachname und E-Mail setzen
+                        TextView vornameTextView = findViewById(R.id.textViewVorname);
+                        TextView nachnameTextView = findViewById(R.id.textViewNachname);
+                        TextView emailTextView = findViewById(R.id.textViewEmail);
+
+                        vornameTextView.setText(benutzer.getVorname());
+                        nachnameTextView.setText(benutzer.getNachname());
+                        emailTextView.setText(benutzer.getEmail());
                     } else {
                         // Fehler: Benutzer wurde nicht gefunden
-                        Toast.makeText(this, "Benutzer nicht gefunden", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Kein Benutzer angemeldet. Bitte erneut einloggen.", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(this, Login.class);
+                        startActivity(intent);
+                        finish();
                     }
                 });
             });
-        } else {
-            // Falls keine Benutzer-ID gefunden wurde, Benutzer zurück zur Login-Seite schicken
-            Toast.makeText(this, "Kein Benutzer angemeldet. Bitte erneut einloggen.", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this, Login.class);
-            startActivity(intent);
-            finish();
-        }
     }
 
     @Override
