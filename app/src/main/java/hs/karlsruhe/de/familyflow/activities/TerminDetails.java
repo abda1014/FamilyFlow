@@ -80,8 +80,8 @@ public class TerminDetails extends AppCompatActivity {
             }
 
             // Benutzerzuweisung abrufen
-//            BenutzerTerminDao benutzerTerminDao = DatabaseManager.getDatabase(this).benutzerTermineDao();
-//            BenutzerTermin benutzerTermin = benutzerTerminDao.getTermineForBenutzer(benutzerId);
+            BenutzerTerminDao benutzerTerminDao = DatabaseManager.getDatabase(this).benutzerTermineDao();
+            BenutzerTermin benutzerTermin = benutzerTerminDao.getBenutzerWithTermin(terminId);
 
 
             // Termin-Daten in die Felder einfügen
@@ -93,15 +93,15 @@ public class TerminDetails extends AppCompatActivity {
                 etBeschreibung.setText(termin.getBeschreibung());
 
                 // Benutzer im Spinner auswählen
-//                if (benutzerTermin != null) {
-//                    for (int i = 0; i < spinnerBenutzer.getAdapter().getCount(); i++) {
-//                        Benutzer benutzer = (Benutzer) spinnerBenutzer.getItemAtPosition(i);
-//                        if (benutzer.getBenutzerId().equals(benutzerTermin.getBenutzerId())) {
-//                            spinnerBenutzer.setSelection(i);
-//                            break;
-//                        }
-//                    }
-//                }
+                if (benutzerTermin != null) {
+                    for (int i = 0; i < spinnerBenutzer.getAdapter().getCount(); i++) {
+                        Benutzer benutzer = (Benutzer) spinnerBenutzer.getItemAtPosition(i);
+                        if (benutzer.getBenutzerId().equals(benutzerTermin.getBenutzerId())) {
+                            spinnerBenutzer.setSelection(i);
+                            break;
+                        }
+                    }
+                }
             });
         }).start();
     }
@@ -143,7 +143,7 @@ public class TerminDetails extends AppCompatActivity {
         new Thread(() -> {
             Termin termin = terminDao.findTerminById(terminId);
             if (termin != null) {
-                terminDao.softDeleteTermin(String.valueOf(termin));
+                terminDao.softDeleteTermin(terminId);
 
                 runOnUiThread(() -> {
                     Toast.makeText(this, "Termin gelöscht!", Toast.LENGTH_SHORT).show();

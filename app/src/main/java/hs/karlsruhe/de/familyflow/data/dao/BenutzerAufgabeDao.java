@@ -27,6 +27,12 @@ public interface BenutzerAufgabeDao {
     @Query("SELECT * FROM benutzeraufgaben ba  WHERE aufgabeId = :aufgabeId ")
     BenutzerAufgaben getBenutzerWithAufgaben(String aufgabeId);
 
+    // Überprüfen, ob ein Benutzer bereits einer Aufgabe zugewiesen ist
+    @Transaction
+    @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
+    @Query("SELECT * FROM benutzeraufgaben ba WHERE ba.aufgabeId = :aufgabeId AND ba.benutzerId = :benutzerId")
+    BenutzerAufgaben getBenutzerWithAufgabenAndBenutzerId(String aufgabeId, String benutzerId);
+
     // Abrufen aller Benutzer mit ihren Aufgaben
 //    @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
 //    @Transaction

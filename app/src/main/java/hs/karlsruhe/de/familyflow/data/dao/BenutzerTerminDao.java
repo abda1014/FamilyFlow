@@ -26,7 +26,7 @@ public interface BenutzerTerminDao {
 
     @Transaction@SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
     @Query("SELECT * FROM BenutzerTerminn   WHERE terminId = :terminId ")
-    BenutzerAufgaben getBenutzerWithTermin(String terminId);
+    BenutzerTermin getBenutzerWithTermin(String terminId);
 
 
 }
