@@ -1,25 +1,12 @@
 package hs.karlsruhe.de.familyflow.activities;
 
-import static androidx.core.content.ContextCompat.startActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
-
-
 import hs.karlsruhe.de.familyflow.R;
-
-
 
 public class Einstellungen extends AppCompatActivity {
 

@@ -82,10 +82,13 @@ public class Profil extends AppCompatActivity {
                         TextView vornameTextView = findViewById(R.id.textViewVorname);
                         TextView nachnameTextView = findViewById(R.id.textViewNachname);
                         TextView emailTextView = findViewById(R.id.textViewEmail);
+                        TextView altersdatumTextView = findViewById(R.id.textViewAltersdatum);
 
                         vornameTextView.setText(benutzer.getVorname());
                         nachnameTextView.setText(benutzer.getNachname());
                         emailTextView.setText(benutzer.getEmail());
+                        altersdatumTextView.setText(benutzer.getAlterDatum());
+
                     } else {
                         // Fehler: Benutzer wurde nicht gefunden
                         Toast.makeText(this, "Kein Benutzer angemeldet. Bitte erneut einloggen.", Toast.LENGTH_SHORT).show();
