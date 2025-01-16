@@ -100,5 +100,4 @@ public class Login extends AppCompatActivity {
             });
         }).start();
     }
-
 }

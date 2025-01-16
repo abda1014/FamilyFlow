@@ -18,10 +18,21 @@ import hs.karlsruhe.de.familyflow.data.DatabaseManager;
 import hs.karlsruhe.de.familyflow.data.entity.Benutzer;
 import hs.karlsruhe.de.familyflow.data.dao.BenutzerDao;
 
+/**
+ * Die Profil-Activity:
+ * Zeigt die Profildaten des aktuell angemeldeten Benutzers an.
+ */
 public class Profil extends AppCompatActivity {
 
+    // ExecutorService wird verwendet, um Hintergrundaufgaben asynchron auszuführen
     private ExecutorService executorService;
 
+    /**
+     * Wird beim Starten der Profil-Activity ausgeführt und initialisiert die View.
+     * @param savedInstanceState If the activity is being re-initialized after
+     *     previously being shut down then this Bundle contains the data it most
+     *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,23 +41,28 @@ public class Profil extends AppCompatActivity {
         // ExecutorService für Hintergrundaufgaben initialisieren
         executorService = Executors.newSingleThreadExecutor();
 
+        // Zurück-Button: Initialisiert den Button der zur  vorherigen Activity leitet
         Button buttonZurueckEinstellungen = findViewById(R.id.buttonZurueckEinstellungen);
         buttonZurueckEinstellungen.setOnClickListener(v -> finish()); // Zurück zur vorherigen Activity
 
-        // Benutzerprofil laden
+        // Lädt die Profildaten des Benutzers aus der Datenbank
         ladeBenutzerProfil();
     }
 
+    /**
+     * Lädt die Benutzerdaten aus der Datenbank.
+     */
     private void ladeBenutzerProfil() {
         // Benutzer-ID aus den SharedPreferences abrufen
         SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
-        String userId = sharedPreferences.getString("user_id", null);  // Benutzer-ID abrufen
+        String userId = sharedPreferences.getString("user_id", null);
 
+        // Überprüft ob eine Benutzer-ID vorhanden ist
             executorService.execute(() -> {
                 // Datenbankzugriff initialisieren
                 AppDatabase db = DatabaseManager.getDatabase(this);
                 BenutzerDao benutzerDao = db.benutzerDao();
-                Benutzer benutzer = benutzerDao.findBenutzerById(userId);  // Benutzer anhand der gespeicherten ID finden
+                Benutzer benutzer = benutzerDao.findBenutzerById(userId);   // Benutzer anhand der  ID finden
 
                 // Logging, um zu überprüfen, ob der Benutzer gefunden wird
                 if (benutzer == null) {
@@ -55,30 +71,29 @@ public class Profil extends AppCompatActivity {
                     Log.d("ProfilActivity", "Benutzer gefunden: " + benutzer.getVorname() +"und" + userId);
                 }
 
-                // Ergebnis zurück an den Hauptthread übergeben
+                // Aktualisiert die Benutzeroberfläche im Hauptthread
                 runOnUiThread(() -> {
                     if (benutzer != null) {
+                        // Logging für erfolgreiche Benutzerabfrage
                         Log.d("ProfilActivity", "Benutzer gefunden: " + benutzer.getVorname());
-                        // Profilbild-URL abrufen
+
+                        // Profilbild-URL abrufen und anzeigen
                         String imageProfilUrl = benutzer.getImageProfil();
 
-                        // Überprüfen, ob die URL gültig ist
+                        // Lädt das Profilbild oder ein Standardbild, wenn keine URL vorhanden ist
                         if (imageProfilUrl != null && !imageProfilUrl.isEmpty()) {
-                            // Verwenden von Glide, um das Bild zu laden
                             ImageView imageView = findViewById(R.id.imageViewProfil);
-                            Glide.with(this)  // Context angeben
-                                    .load(imageProfilUrl)  // Bild-URL
-                                    .into(imageView);  // Das ImageView, in das das Bild geladen wird
+                            Glide.with(this)
+                                    .load(imageProfilUrl)
+                                    .into(imageView);
                         } else {
-                            // Fehler, wenn keine Bild-URL vorhanden ist
                             ImageView imageView = findViewById(R.id.imageViewProfil);
                             Glide.with(this)
                                     .load(R.drawable.defaultavatar) // Standardbild laden
                                     .into(imageView);
                         }
 
-
-                        // Vorname, Nachname und E-Mail setzen
+                        // Benutzerinformationen in die entsprechenden TextViews einfügen
                         TextView vornameTextView = findViewById(R.id.textViewVorname);
                         TextView nachnameTextView = findViewById(R.id.textViewNachname);
                         TextView emailTextView = findViewById(R.id.textViewEmail);
@@ -92,6 +107,8 @@ public class Profil extends AppCompatActivity {
                     } else {
                         // Fehler: Benutzer wurde nicht gefunden
                         Toast.makeText(this, "Kein Benutzer angemeldet. Bitte erneut einloggen.", Toast.LENGTH_SHORT).show();
+
+                        // Leitet zur Login-Activity weiter und schließt die aktuelle Activity
                         Intent intent = new Intent(this, Login.class);
                         startActivity(intent);
                         finish();
@@ -100,10 +117,13 @@ public class Profil extends AppCompatActivity {
             });
     }
 
+    /**
+     * Wird aufgerufen, wenn die Activity zerstört wird.
+     * Stellt sicher, dass der ExecutorService bzw. der Thread ordnungsgemäß heruntergefahren wird.
+     */
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        // ExecutorService ordnungsgemäß herunterfahren
         executorService.shutdown();
     }
 }

@@ -130,12 +130,14 @@
 
         <ImageButton
             android:id="@+id/einstellungen"
-            style="?android:attr/buttonBarStyle"
             android:layout_width="72dp"
             android:layout_height="72dp"
             android:contentDescription="@string/einstellungen"
+            android:src="@drawable/einstellungen"
             app:tint="@color/brown1"
-            android:src="@drawable/einstellungen" />
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true" />
 
         <ImageButton
             android:id="@+id/benachrichtigungen"

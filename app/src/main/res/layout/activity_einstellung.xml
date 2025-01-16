@@ -1,5 +1,4 @@
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/Einstellungen"
@@ -13,14 +12,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
+            android:gravity="center"
             android:text="Einstellungen"
             android:textColor="@color/brown1"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:gravity="center" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonProfil"
@@ -31,9 +30,9 @@
             android:text="Profil ansehen"
             android:textColor="@android:color/white"
             app:cornerRadius="8dp"
-            app:layout_constraintTop_toBottomOf="@id/settingsHeader"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/settingsHeader" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonTonAnpassen"
@@ -44,9 +43,9 @@
             android:text="Ton anpassen"
             android:textColor="@android:color/white"
             app:cornerRadius="8dp"
-            app:layout_constraintTop_toBottomOf="@id/buttonProfil"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/buttonProfil" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonHelligkeit"
@@ -57,9 +56,9 @@
             android:text="Helligkeit einstellen"
             android:textColor="@android:color/white"
             app:cornerRadius="8dp"
-            app:layout_constraintTop_toBottomOf="@id/buttonTonAnpassen"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/buttonTonAnpassen" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonLayoutAendern"
@@ -70,9 +69,9 @@
             android:text="Layout ändern"
             android:textColor="@android:color/white"
             app:cornerRadius="8dp"
-            app:layout_constraintTop_toBottomOf="@id/buttonHelligkeit"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/buttonHelligkeit" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonRollenVerwalten"
@@ -83,9 +82,9 @@
             android:text="Rollen verwalten"
             android:textColor="@android:color/white"
             app:cornerRadius="8dp"
-            app:layout_constraintTop_toBottomOf="@id/buttonLayoutAendern"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/buttonLayoutAendern" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonGruppeVerlassen"
@@ -96,9 +95,9 @@
             android:text="Gruppe verlassen"
             android:textColor="@android:color/white"
             app:cornerRadius="8dp"
-            app:layout_constraintTop_toBottomOf="@id/buttonRollenVerwalten"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/buttonRollenVerwalten" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonKontoLoeschen"
@@ -109,41 +108,41 @@
             android:text="Konto löschen"
             android:textColor="@android:color/white"
             app:cornerRadius="8dp"
-            app:layout_constraintTop_toBottomOf="@id/buttonGruppeVerlassen"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/buttonGruppeVerlassen" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/buttonAboVerwalten"
+            android:id="@+id/buttonSicherheit"
             android:layout_width="310dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:backgroundTint="@color/brown1"
-            android:text="Abo verwalten"
+            android:text="Sicherheit"
             android:textColor="@android:color/white"
             app:cornerRadius="8dp"
-            app:layout_constraintTop_toBottomOf="@id/buttonKontoLoeschen"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/buttonKontoLoeschen" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonLogout"
             android:layout_width="310dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="24dp"
+            android:layout_marginTop="28dp"
             android:backgroundTint="@color/brown1"
             android:text="Abmelden"
             android:textColor="@android:color/white"
             app:cornerRadius="8dp"
-            app:layout_constraintTop_toBottomOf="@id/buttonAboVerwalten"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/buttonSicherheit" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonZurueckPinnwand"
             android:layout_width="100dp"
-            android:layout_height="47dp"
+            android:layout_height="48dp"
             android:layout_margin="16dp"
             android:layout_marginBottom="16dp"
             android:backgroundTint="@color/brown1"
