@@ -98,7 +98,6 @@ public class DBDaten {
             TerminDao terminDao = db.terminDao();
             if (terminDao.getNextTermin() == null) {
                 // Datumsformat anlegen
-                SimpleDateFormat datum = new SimpleDateFormat("dd.MM.yyyy");
                 // Uhrzeitformat anlegen
                 SimpleDateFormat uhrzeit = new SimpleDateFormat("HH:mm");
 
@@ -108,17 +107,17 @@ public class DBDaten {
                 // Termine anlegen
                 datumUndUhrzeit.set(2025, 1, 17, 15, 30);
                 Termin ersterTermin = new Termin(UUID.randomUUID().toString(), "Geburtstag Gustav",
-                        datum.format(datumUndUhrzeit.getTime()), uhrzeit.format(datumUndUhrzeit.getTime()),
+                        datumUndUhrzeit.getTime().toString(), uhrzeit.format(datumUndUhrzeit.getTime()),
                         "KEINE", "Sein 13ter Kindergeburtstag", false);
 
                 datumUndUhrzeit.set(2025, 1, 19, 11, 0);
                 Termin zweiterTermin = new Termin(UUID.randomUUID().toString(), "Fußballspiel",
-                        datum.format(datumUndUhrzeit.getTime()), uhrzeit.format(datumUndUhrzeit.getTime()),
+                        datumUndUhrzeit.getTime().toString(), uhrzeit.format(datumUndUhrzeit.getTime()),
                         "KEINE", "Julian und Jonas spielen", false);
 
                 datumUndUhrzeit.set(2025, 1, 20, 16, 0);
                 Termin dritterTermin = new Termin(UUID.randomUUID().toString(), "Musikunterricht",
-                        datum.format(datumUndUhrzeit.getTime()), uhrzeit.format(datumUndUhrzeit.getTime()),
+                        datumUndUhrzeit.getTime().toString(), uhrzeit.format(datumUndUhrzeit.getTime()),
                         "WOECHENTLICH", "Gustavs Trompetenunterricht", false);
 
                 // Termine speichern

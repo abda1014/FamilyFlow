@@ -9,7 +9,7 @@
     <EditText
         android:id="@+id/editTextTerminname"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:autofillHints=""
         android:hint="@string/terminname"
         android:inputType="text"
@@ -22,7 +22,7 @@
     <EditText
         android:id="@+id/editTextDatum"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:autofillHints=""
         android:hint="@string/datum"
         android:inputType="text"
@@ -35,7 +35,7 @@
     <EditText
         android:id="@+id/editTextUhrzeit"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:autofillHints=""
         android:hint="@string/uhrzeit"
         android:inputType="text"
@@ -48,7 +48,7 @@
     <EditText
         android:id="@+id/editTextWiederholung"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:autofillHints=""
         android:hint="@string/wiederholung"
         android:inputType="text"
@@ -61,7 +61,7 @@
     <EditText
         android:id="@+id/editTextBeschreibung"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:autofillHints=""
         android:hint="@string/beschreibung"
         android:inputType="text"
@@ -73,7 +73,7 @@
     <Spinner
         android:id="@+id/spinnerBenutzer"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginTop="16dp"
         app:layout_constraintTop_toBottomOf="@id/editTextBeschreibung"
         app:layout_constraintStart_toStartOf="parent"
@@ -84,36 +84,48 @@
         android:id="@+id/bottomNavigation"
         style="?android:attr/buttonBarButtonStyle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginEnd="1dp"
+        android:layout_height="60dp"
         android:layout_marginStart="1dp"
-        android:layout_marginBottom="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent">
 
-    <!-- Speichern-Button -->
-    <Button
-        android:id="@+id/buttonTerminSpeichern"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/speichern"
-        android:backgroundTint="@color/brown1"
-        app:layout_constraintTop_toBottomOf="@id/editTextBeschreibung"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="16dp" />
+        <Button
+            android:id="@+id/buttonZurueck"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/brown1"
+            android:text="@string/zurueck"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/buttonTerminLoeschen" />
 
-    <!-- Löschen-Button -->
-    <Button
-        android:id="@+id/buttonTerminLoeschen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/loeschen"
-        android:backgroundTint="@color/brown1"
-        app:layout_constraintTop_toBottomOf="@id/buttonTerminSpeichern"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="16dp" />
+        <Button
+            android:id="@+id/buttonTerminSpeichern"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/brown1"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_margin="2dp"
+            android:text="@string/speichern"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editTextBeschreibung" />
+
+        <Button
+            android:id="@+id/buttonTerminLoeschen"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_margin="2dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/brown1"
+            android:text="@string/loeschen"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/buttonTerminSpeichern" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

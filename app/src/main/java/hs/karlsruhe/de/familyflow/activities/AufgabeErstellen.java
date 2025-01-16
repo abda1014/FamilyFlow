@@ -53,6 +53,10 @@ public class AufgabeErstellen extends AppCompatActivity {
         // Benutzerliste laden und im Spinner anzeigen
         loadBenutzerInSpinner();
         btnSpeichern.setOnClickListener(v -> saveAufgabe());
+
+        // Zurück-Button: Initialisiert den Button der zur  vorherigen Activity leitet
+        Button buttonZurueck = findViewById(R.id.buttonZurueck);
+        buttonZurueck.setOnClickListener(v -> finish()); // Zurück zur vorherigen Activity
     }
 
     private void saveAufgabe() {
