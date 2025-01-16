@@ -65,6 +65,10 @@ public class AufgabeDetails extends AppCompatActivity {
 
         // Löschen-Button: Aufgabe löschen
         btnLoeschen.setOnClickListener(v -> softDeleteAufgabe());
+
+        // Zurück-Button: Initialisiert den Button der zur  vorherigen Activity leitet
+        Button buttonZurueck = findViewById(R.id.buttonZurueck);
+        buttonZurueck.setOnClickListener(v -> finish()); // Zurück zur vorherigen Activity
     }
 
     private void loadAufgabeDetails() {

@@ -9,14 +9,10 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.bumptech.glide.Glide;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-
 import hs.karlsruhe.de.familyflow.R;
 import hs.karlsruhe.de.familyflow.data.AppDatabase;
 import hs.karlsruhe.de.familyflow.data.DatabaseManager;

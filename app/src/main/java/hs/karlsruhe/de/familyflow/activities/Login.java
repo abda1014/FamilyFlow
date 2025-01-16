@@ -7,17 +7,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-
 import hs.karlsruhe.de.familyflow.R;
 import hs.karlsruhe.de.familyflow.data.DatabaseManager;
 import hs.karlsruhe.de.familyflow.data.AppDatabase;
 import hs.karlsruhe.de.familyflow.data.entity.Benutzer;
 import hs.karlsruhe.de.familyflow.data.dao.BenutzerDao;
 import hs.karlsruhe.de.familyflow.data.DBDaten;
-
 
 public class Login extends AppCompatActivity {
 
@@ -107,5 +104,4 @@ public class Login extends AppCompatActivity {
             });
         }).start(); // Starten des Hintergrund-Threads
     }
-
 }

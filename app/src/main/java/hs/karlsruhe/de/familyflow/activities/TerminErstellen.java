@@ -54,6 +54,10 @@ public class TerminErstellen extends AppCompatActivity {
         Button btnSpeichern = findViewById(R.id.buttonTerminSpeichern);
         loadBenutzerInSpinner();
         btnSpeichern.setOnClickListener(v -> saveTermin());
+
+        // Zurück-Button: Initialisiert den Button der zur  vorherigen Activity leitet
+        Button buttonZurueck = findViewById(R.id.buttonZurueck);
+        buttonZurueck.setOnClickListener(v -> finish()); // Zurück zur vorherigen Activity
     }
 
     private void saveTermin() {

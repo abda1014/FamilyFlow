@@ -4,28 +4,229 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <ImageView
-        android:id="@+id/imageViewProfil"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+    <FrameLayout
+        android:id="@+id/frameLayoutProfil"
+        android:layout_width="192dp"
+        android:layout_height="181dp"
         android:layout_marginTop="32dp"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageViewProfil"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="4dp"
+            android:background="@color/brown1"
+            android:scaleType="centerCrop" />
+
+        <ImageButton
+            android:id="@+id/buttonEditProfilbild"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="1dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:backgroundTint="#141313"
+            android:contentDescription="@string/bearbeiten"
+            android:src="@android:drawable/ic_menu_edit"
+            app:tint="@color/black" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutVorname"
+        android:layout_width="322dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="28dp"
+        android:background="@color/brown1"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/frameLayoutProfil">
+
+        <TextView
+            android:id="@+id/textViewVornameHeader"
+            style="@style/BoldTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="Vorname:"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textViewVorname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vorname Wert"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/bearbeitungsZeichenVorname"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/bearbeiten"
+        android:src="@android:drawable/ic_menu_edit"
+        android:layout_centerInParent="true"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        app:tint="@android:color/white"
+        app:layout_constraintEnd_toEndOf="@id/linearLayoutVorname"
+        app:layout_constraintBottom_toBottomOf="@id/linearLayoutVorname" />
+
+    <LinearLayout
+        android:id="@+id/linearLayoutNachname"
+        android:layout_width="326dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/brown1"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayoutVorname">
+
+        <TextView
+            android:id="@+id/textViewNachnameHeader"
+            style="@style/BoldTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="Nachname:"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textViewNachname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nachname Wert"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/bearbeitungsZeichenNachname"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/bearbeiten"
+        android:src="@android:drawable/ic_menu_edit"
+        android:layout_centerInParent="true"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        app:tint="@android:color/white"
+        app:layout_constraintEnd_toEndOf="@id/linearLayoutNachname"
+        app:layout_constraintBottom_toBottomOf="@id/linearLayoutNachname" />
+
+    <LinearLayout
+        android:id="@+id/linearLayoutEmail"
+        android:layout_width="325dp"
+        android:layout_height="83dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/brown1"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayoutNachname">
+
+        <TextView
+            android:id="@+id/textViewEmailHeader"
+            style="@style/BoldTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="E-Mail:"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textViewEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="E-Mail Wert"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/bearbeitungsZeichenEmail"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/bearbeiten"
+        android:src="@android:drawable/ic_menu_edit"
+        android:layout_centerInParent="true"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        app:tint="@android:color/white"
+        app:layout_constraintEnd_toEndOf="@id/linearLayoutEmail"
+        app:layout_constraintBottom_toBottomOf="@id/linearLayoutEmail" />
+
+    <LinearLayout
+        android:id="@+id/linearLayoutAlterdatum"
+        android:layout_width="325dp"
+        android:layout_height="83dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/brown1"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayoutEmail">
+
+        <TextView
+            android:id="@+id/textViewAlterdatumHeader"
+            style="@style/BoldTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="Geburtstag:"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textViewAltersdatum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Alterdatum Wert"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/bearbeitungsZeichenAlterdatum"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/bearbeiten"
+        android:src="@android:drawable/ic_menu_edit"
+        android:layout_centerInParent="true"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        app:tint="@android:color/white"
+        app:layout_constraintEnd_toEndOf="@id/linearLayoutAlterdatum"
+        app:layout_constraintBottom_toBottomOf="@id/linearLayoutAlterdatum" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/buttonProfilBearbeiten"
-        android:layout_width="310dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:id="@+id/buttonZurueckEinstellungen"
+        android:layout_width="100dp"
+        android:layout_height="48dp"
+        android:layout_margin="16dp"
         android:backgroundTint="@color/brown1"
-        android:text="Profilbild ändern"
-        android:textColor="@android:color/white"
-        app:cornerRadius="8dp"
-        app:layout_constraintTop_toBottomOf="@id/imageViewProfil"
+        android:text="@string/zurueckPinnwand"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.142"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-
+        app:layout_constraintTop_toBottomOf="@+id/bearbeitungsZeichenAlterdatum"
+        app:layout_constraintVertical_bias="0.981" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

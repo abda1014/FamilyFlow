@@ -66,6 +66,10 @@ public class TerminDetails extends AppCompatActivity {
 
         // Löschen-Button: Termin löschen
         btnLoeschen.setOnClickListener(v -> softDeleteTermin());
+
+        // Zurück-Button: Initialisiert den Button der zur  vorherigen Activity leitet
+        Button buttonZurueck = findViewById(R.id.buttonZurueck);
+        buttonZurueck.setOnClickListener(v -> finish()); // Zurück zur vorherigen Activity
     }
 
     private void loadTerminDetails() {
