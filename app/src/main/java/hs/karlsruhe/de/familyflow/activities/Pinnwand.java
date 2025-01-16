@@ -2,6 +2,7 @@ package hs.karlsruhe.de.familyflow.activities;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,12 +12,15 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import hs.karlsruhe.de.familyflow.R;
 import hs.karlsruhe.de.familyflow.data.AppDatabase;
 import hs.karlsruhe.de.familyflow.data.DatabaseManager;
+import hs.karlsruhe.de.familyflow.data.entity.Benutzer;
 import hs.karlsruhe.de.familyflow.data.entity.Termin;
 
 /**
@@ -66,6 +70,16 @@ public class Pinnwand extends AppCompatActivity {
         new Thread(() -> {
             AppDatabase db = DatabaseManager.getDatabase(this);
             Termin termin = db.terminDao().getNextTermin();
+            Benutzer benutzer = null;
+
+            // Benutzerprofilbild laden
+            SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+            String userId = sharedPreferences.getString("user_id", null); // Benutzer-ID abrufen
+            if (userId != null) {
+                benutzer = db.benutzerDao().findBenutzerById(userId);
+            }
+
+            Benutzer finalBenutzer = benutzer;
 
             runOnUiThread(() -> {
                 TextView eventTitleView = findViewById(R.id.eventTitle);
@@ -79,13 +93,23 @@ public class Pinnwand extends AppCompatActivity {
                     eventTimeView.setText(termin.getDatum() + " " + termin.getUhrzeit());
 
                     //Avatarbildchen setzen
-                    eventImageView.setImageDrawable(getResources().getDrawable(R.drawable.defaultavatar));
+                    //eventImageView.setImageDrawable(getResources().getDrawable(R.drawable.defaultavatar));
                 } else {
                     //Fallback, falls noch keine Termine existieren
                     eventTitleView.setText("zurzeit gibt es keine anstehenden Termine");
                     //Uhrzeit und Datum setzen
                     SimpleDateFormat datumsFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm");
                     eventTimeView.setText(datumsFormat.format(Calendar.getInstance().getTime()));
+                }
+
+                // Profilbild setzen
+                if (finalBenutzer != null && finalBenutzer.getImageProfil() != null) {
+                    Glide.with(this)
+                            .load(finalBenutzer.getImageProfil())
+                            .placeholder(R.drawable.defaultavatar) // Platzhalter-Bild
+                            .into(eventImageView);
+                } else {
+                    eventImageView.setImageDrawable(getResources().getDrawable(R.drawable.defaultavatar));
                 }
             });
         }).start(); // Startet den Thread
