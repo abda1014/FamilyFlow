@@ -8,6 +8,7 @@ import androidx.room.RoomWarnings;
 import androidx.room.Transaction;
 
 //import hs.karlsruhe.de.familyflow.data.entity.Termin;
+import hs.karlsruhe.de.familyflow.data.entity.BenutzerAufgaben;
 import hs.karlsruhe.de.familyflow.data.entity.BenutzerTermin;
 
 import java.util.List;
@@ -21,7 +22,11 @@ public interface BenutzerTerminDao {
 
     // Löschen eines BenutzerTermins
     @Query("DELETE FROM BenutzerTerminn WHERE benutzerId = :benutzerId AND terminId = :terminId")
-    void deleteBenutzerTermin(String benutzerId, String terminId);
+    void deleteBenutzerTermin( String terminId,String benutzerId);
+
+    @Transaction@SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
+    @Query("SELECT * FROM BenutzerTerminn   WHERE terminId = :terminId ")
+    BenutzerAufgaben getBenutzerWithTermin(String terminId);
 
 
 }
