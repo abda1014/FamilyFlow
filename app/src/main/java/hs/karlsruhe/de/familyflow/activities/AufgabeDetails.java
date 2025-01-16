@@ -124,7 +124,9 @@ public class AufgabeDetails extends AppCompatActivity {
                 aufgabe.setFaelligkeitsdatum(faelligkeitsdatum);
                 aufgabe.setNotiz(notiz);
 
+
                 aufgabeDao.updateAufgabe(aufgabe);
+
 
                 runOnUiThread(() -> {
                     Toast.makeText(this, "Änderungen gespeichert!", Toast.LENGTH_SHORT).show();
@@ -138,7 +140,7 @@ public class AufgabeDetails extends AppCompatActivity {
         new Thread(() -> {
             Aufgabe aufgabe = aufgabeDao.findAufgabeById(aufgabeId);
             if (aufgabe != null) {
-                aufgabeDao.softDeleteAufgabe(String.valueOf(aufgabe));
+                aufgabeDao.softDeleteAufgabe(aufgabeId);
 
                 runOnUiThread(() -> {
                     Toast.makeText(this, "Aufgabe gelöscht!", Toast.LENGTH_SHORT).show();
