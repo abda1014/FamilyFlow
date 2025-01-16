@@ -119,4 +119,10 @@ public class Benutzer {
     public void setImageProfil(String imageProfil) {
         this.imageProfil = imageProfil;
     }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return vorname + " " + nachname; // Oder z. B. vorname + " " + nachname + " (" + email + ")"
+    }
 }
