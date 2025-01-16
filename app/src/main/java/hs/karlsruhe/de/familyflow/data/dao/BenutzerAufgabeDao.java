@@ -18,13 +18,9 @@ public interface BenutzerAufgabeDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAufgabe(BenutzerAufgaben aufgabe);
 
-    // Aktualisieren einer bestehenden Aufgabe
-    @Query("UPDATE Aufgabe SET aufgabenbezeichnung = :bezeichnung, status = :status, faelligkeitsdatum = :datum, notiz = :notiz, isDeleted = :isDeleted WHERE aufgabeId = :aufgabeId")
-    void updateAufgabe(String aufgabeId, String bezeichnung, String status, String datum, String notiz, boolean isDeleted);
-
-    // Weiche Löschung einer Aufgabe
-    @Query("UPDATE Aufgabe SET isDeleted = 1 WHERE aufgabeId = :aufgabeId")
-    void deleteAufgabe(String aufgabeId);
+    // Löschen eines BenutzerAufgaben-Datensatzes
+    @Query("DELETE FROM BenutzerAufgaben WHERE benutzerId = :benutzerId AND aufgabeId = :aufgabeId")
+    void deleteBenutzerAufgaben(String benutzerId, String aufgabeId);
 
     // Abrufen aller Aufgaben für einen bestimmten Benutzer
     @Transaction@SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
@@ -32,8 +28,8 @@ public interface BenutzerAufgabeDao {
     BenutzerAufgaben getBenutzerWithAufgaben(String benutzerId);
 
     // Abrufen aller Benutzer mit ihren Aufgaben
-    @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
-    @Transaction
-    @Query("SELECT * FROM Benutzer b inner join BenutzerAufgaben ba inner join Aufgabe a on b.benutzerId=ba.benutzerId and ba.aufgabeId=a.aufgabeId where a.isDeleted = 0")
-    List<BenutzerAufgaben> getAlleBenutzerMitAufgaben();
+//    @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
+//    @Transaction
+//    @Query("SELECT * FROM Benutzer b inner join BenutzerAufgaben ba inner join Aufgabe a on b.benutzerId=ba.benutzerId and ba.aufgabeId=a.aufgabeId where a.isDeleted = 0")
+//    List<BenutzerAufgaben> getAlleBenutzerMitAufgaben();
 }
