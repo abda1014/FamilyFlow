@@ -105,20 +105,17 @@ public class DBDaten {
                 Calendar datumUndUhrzeit = Calendar.getInstance();
 
                 // Termine anlegen
-                datumUndUhrzeit.add(Calendar.DAY_OF_MONTH, 1);
-                datumUndUhrzeit.add(Calendar.HOUR_OF_DAY, 1);
+                datumUndUhrzeit.set(2025, 1, 17, 15, 30);
                 Termin ersterTermin = new Termin(UUID.randomUUID().toString(), "Geburtstag Gustav",
                         datum.format(datumUndUhrzeit.getTime()), uhrzeit.format(datumUndUhrzeit.getTime()),
-                        "KEINE", "sein 13ter Kindergeburtstag", false);
+                        "KEINE", "Sein 13ter Kindergeburtstag", false);
 
-                datumUndUhrzeit.add(Calendar.DAY_OF_MONTH, 2);
-                datumUndUhrzeit.add(Calendar.HOUR_OF_DAY, 3);
+                datumUndUhrzeit.set(2025, 1, 19, 11, 0);
                 Termin zweiterTermin = new Termin(UUID.randomUUID().toString(), "Fußballspiel",
                         datum.format(datumUndUhrzeit.getTime()), uhrzeit.format(datumUndUhrzeit.getTime()),
                         "KEINE", "Julian und Jonas spielen", false);
 
-                datumUndUhrzeit.add(Calendar.DAY_OF_MONTH, 3);
-                datumUndUhrzeit.add(Calendar.HOUR_OF_DAY, 6);
+                datumUndUhrzeit.set(2025, 1, 20, 16, 0);
                 Termin dritterTermin = new Termin(UUID.randomUUID().toString(), "Musikunterricht",
                         datum.format(datumUndUhrzeit.getTime()), uhrzeit.format(datumUndUhrzeit.getTime()),
                         "WOECHENTLICH", "Gustavs Trompetenunterricht", false);
@@ -139,21 +136,19 @@ public class DBDaten {
                 Calendar datumUndUhrzeit = Calendar.getInstance();
 
                 // Aufgaben anlegen
-                datumUndUhrzeit.add(Calendar.HOUR_OF_DAY, 2);
+                datumUndUhrzeit.set(2025, 1, 17, 14, 0);
                 Aufgabe ersteAufgabe = new Aufgabe(UUID.randomUUID().toString(), "Einkaufen", "INPROGRESS",
                         datum.format(datumUndUhrzeit.getTime()), "Sachen für Gustavs Geburtstag kaufen", false);
 
-                datumUndUhrzeit.add(Calendar.DAY_OF_MONTH, 2);
-                datumUndUhrzeit.add(Calendar.HOUR_OF_DAY, 3);
+                datumUndUhrzeit.set(2025, 1, 19, 13, 0);
                 Aufgabe zweiteAufgabe = new Aufgabe(UUID.randomUUID().toString(), "Oma und Opa Abholen",
                         "ANSTEHEND", datum.format(datumUndUhrzeit.getTime()),
                         "Oma und Opa kommen vorbei und müssen am Bahnhof abgeholt werden", false);
 
-                datumUndUhrzeit.add(Calendar.DAY_OF_MONTH, 1);
-                datumUndUhrzeit.add(Calendar.HOUR_OF_DAY, 1);
-                Aufgabe dritteAufgabe = new Aufgabe(UUID.randomUUID().toString(), "Oma und Opa Abholen",
+                datumUndUhrzeit.set(2025, 2, 1, 15, 0);
+                Aufgabe dritteAufgabe = new Aufgabe(UUID.randomUUID().toString(), "Steuern machen",
                         "ANSTEHEND", datum.format(datumUndUhrzeit.getTime()),
-                        "Oma und Opa kommen vorbei und müssen am Bahnhof abgeholt werden", false);
+                        "Manche Unterlagen sind noch im Keller", false);
 
                 // Aufgaben speichern
                 aufgabeDao.insertAufgabe(ersteAufgabe);
