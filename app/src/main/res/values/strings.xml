@@ -85,4 +85,6 @@
     <string name="terminname_hint">Terminname</string>
     <string name="uhrzeit">Uhrzeit</string>
     <string name="wiederholung">Wiederholung</string>
+    <string name="event_title_placeholder">Event Title</string>
+    <string name="event_time_placeholder">Event Time</string>
 </resources>
