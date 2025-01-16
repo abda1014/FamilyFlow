@@ -24,8 +24,8 @@ public interface BenutzerAufgabeDao {
 
     // Abrufen aller Aufgaben für einen bestimmten Benutzer
     @Transaction@SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
-    @Query("SELECT * FROM benutzeraufgaben ba  WHERE benutzerId = :benutzerId ")
-    BenutzerAufgaben getBenutzerWithAufgaben(String benutzerId);
+    @Query("SELECT * FROM benutzeraufgaben ba  WHERE aufgabeId = :aufgabeId ")
+    BenutzerAufgaben getBenutzerWithAufgaben(String aufgabeId);
 
     // Abrufen aller Benutzer mit ihren Aufgaben
 //    @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
