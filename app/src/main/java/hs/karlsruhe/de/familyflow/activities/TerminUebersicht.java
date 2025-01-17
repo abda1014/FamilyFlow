@@ -3,7 +3,6 @@ package hs.karlsruhe.de.familyflow.activities;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Button;
 import android.widget.Toast;
@@ -20,12 +19,12 @@ import hs.karlsruhe.de.familyflow.data.AppDatabase;
 import hs.karlsruhe.de.familyflow.data.DatabaseManager;
 import hs.karlsruhe.de.familyflow.data.dao.TerminDao;
 import hs.karlsruhe.de.familyflow.data.entity.Termin;
+import hs.karlsruhe.de.familyflow.data.TerminAdapter;
 
 public class TerminUebersicht extends AppCompatActivity {
 
-    private ArrayList<String> termineListe; // Liste zur Anzeige der Terminbezeichnung
-    private ArrayList<String> termineIdListe; // Liste zur Speicherung der Termin-IDs
-    private ArrayAdapter<String> adapter;
+    private ArrayList<Termin> termineListe; // Liste für Terminobjekte
+    private TerminAdapter adapter;
     private TerminDao terminDao;
 
     @Override
@@ -44,8 +43,7 @@ public class TerminUebersicht extends AppCompatActivity {
         ListView listViewTermine = findViewById(R.id.listViewTermine);
 
         termineListe = new ArrayList<>();
-        termineIdListe = new ArrayList<>();
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, termineListe);
+        adapter = new TerminAdapter(this, termineListe);
         listViewTermine.setAdapter(adapter);
 
         // Termine aus der Datenbank laden
@@ -53,7 +51,8 @@ public class TerminUebersicht extends AppCompatActivity {
 
         // Item-Klick: Navigiere zu Details
         listViewTermine.setOnItemClickListener((parent, view, position, id) -> {
-            String terminId = termineIdListe.get(position); // Die richtige Termin-ID abrufen
+            Termin termin = termineListe.get(position); // Das Terminobjekt abrufen
+            String terminId = termin.getTerminId(); // Termin-ID abrufen
             Intent intent = new Intent(this, TerminDetails.class);
             intent.putExtra("terminId", terminId); // Termin-ID übergeben
             startActivity(intent);
@@ -81,13 +80,7 @@ public class TerminUebersicht extends AppCompatActivity {
             List<Termin> termine = terminDao.getAllActiveTermine();
             runOnUiThread(() -> {
                 termineListe.clear();
-                termineIdListe.clear(); // IDs löschen, bevor sie neu geladen werden
-
-                for (Termin termin : termine) {
-                    termineListe.add(termin.getTerminname()); // Namen hinzufügen
-                    termineIdListe.add(termin.getTerminId()); // IDs hinzufügen
-                }
-
+                termineListe.addAll(termine); // Alle Termine zur Liste hinzufügen
                 adapter.notifyDataSetChanged();
             });
         }).start();
@@ -102,13 +95,7 @@ public class TerminUebersicht extends AppCompatActivity {
             }
             runOnUiThread(() -> {
                 termineListe.clear();
-                termineIdListe.clear();
-
-                for (Termin termin : termine) {
-                    termineListe.add(termin.getTerminname());
-                    termineIdListe.add(termin.getTerminId());
-                }
-
+                termineListe.addAll(termine); // Alle sortierten Termine zur Liste hinzufügen
                 adapter.notifyDataSetChanged();
                 Toast.makeText(TerminUebersicht.this, "Termine nach Datum sortiert!", Toast.LENGTH_SHORT).show();
             });
@@ -124,13 +111,7 @@ public class TerminUebersicht extends AppCompatActivity {
             }
             runOnUiThread(() -> {
                 termineListe.clear();
-                termineIdListe.clear();
-
-                for (Termin termin : termine) {
-                    termineListe.add(termin.getTerminname());
-                    termineIdListe.add(termin.getTerminId());
-                }
-
+                termineListe.addAll(termine); // Alle alphabetisch sortierten Termine zur Liste hinzufügen
                 adapter.notifyDataSetChanged();
                 Toast.makeText(TerminUebersicht.this, "Termine alphabetisch sortiert!", Toast.LENGTH_SHORT).show();
             });
