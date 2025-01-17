@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".activities.LoginTestActivity">
 
-    <!-- Frame 1 -->
+    <!-- Frame 1: Hauptcontainer für den ersten Bildschirm -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/frameInitial"
         android:layout_width="match_parent"
@@ -15,7 +15,7 @@
         android:visibility="visible"
         tools:visibility="visible">
 
-        <!-- App-Logo -->
+        <!-- App-Logo: Zeigt das Logo der App an -->
         <ImageView
             android:id="@+id/imageLogo"
             android:layout_width="156dp"
@@ -28,7 +28,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
+        <!-- Text "Login funktioniert": Zeigt eine Nachricht unter dem Logo an -->
         <TextView
             android:id="@+id/textLoginFunktioniert"
             style="@style/BoldTextStyle"
@@ -42,6 +42,5 @@
             app:layout_constraintTop_toBottomOf="@id/imageLogo" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,22 +5,24 @@
     android:orientation="horizontal"
     android:padding="8dp">
 
-    <TextView
-        android:id="@+id/textTerminName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Terminname"
-        android:textSize="16sp"
-        android:gravity="start" />
+<!-- TextView für den Terminname -->
+<TextView
+    android:id="@+id/textTerminName"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:text="Terminname"
+    android:textSize="16sp"
+    android:gravity="start"/>
 
-    <TextView
-        android:id="@+id/textTerminDatum"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Datum"
-        android:textSize="14sp"
-        android:gravity="end"
-        android:paddingStart="8dp" />
+<!-- TextView für das Datum des Termins -->
+<TextView
+    android:id="@+id/textTerminDatum"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Datum"
+    android:textSize="14sp"
+    android:gravity="end"
+    android:paddingStart="8dp"/>
 
 </LinearLayout>

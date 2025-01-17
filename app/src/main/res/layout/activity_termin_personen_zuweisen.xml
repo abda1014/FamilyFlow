@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- TextView für die Anzeige von "Personen zuweisen" -->
     <TextView
         android:id="@+id/textViewPersonen"
         android:layout_width="wrap_content"
@@ -15,6 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="16dp" />
 
+    <!-- Button zum Speichern von Personen -->
     <Button
         android:id="@+id/buttonPersonenSpeichern"
         android:layout_width="wrap_content"

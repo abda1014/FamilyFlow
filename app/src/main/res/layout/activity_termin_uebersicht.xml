@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- Container für die obere Navigation mit Buttons -->
     <LinearLayout
         android:id="@+id/topNavigation"
         style="?android:attr/buttonBarButtonStyle"
@@ -18,6 +19,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
+
         <!-- Button für Sortierung nach Datum -->
         <Button
             android:id="@+id/buttonSortiereDatum"
@@ -42,9 +44,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_margin="1dp" />
 
-
     </LinearLayout>
 
+    <!-- ListView für die Anzeige der Termine -->
     <ListView
         android:id="@+id/listViewTermine"
         android:layout_width="0dp"
@@ -55,6 +57,7 @@
         app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
         android:padding="8dp" />
 
+    <!-- Container für die untere Navigation mit Buttons -->
     <LinearLayout
         android:id="@+id/bottomNavigation"
         style="?android:attr/buttonBarButtonStyle"
@@ -69,6 +72,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
+        <!-- Button zum Zurückkehren zur Pinnwand -->
         <Button
             android:id="@+id/buttonZurueckPinnwand"
             android:layout_width="wrap_content"
@@ -79,7 +83,7 @@
             android:backgroundTint="@color/brown1"
             android:layout_margin="16dp" />
 
-        <!-- Button für neuen Termin -->
+        <!-- Button für die Erstellung eines neuen Termins -->
         <Button
             android:id="@+id/button_neuer_termin"
             android:layout_width="wrap_content"

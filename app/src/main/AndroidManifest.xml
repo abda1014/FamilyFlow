@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- Berechtigung für Internetzugriff -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -8,57 +9,82 @@
         android:icon="@mipmap/family"
         android:supportsRtl="true"
         android:theme="@style/Theme.FamilyFlow">
+
+        <!-- Aktivität für Benutzerprofil -->
         <activity
             android:name=".activities.Profil"
             android:exported="true" />
+
+        <!-- Aktivität für Einstellungen -->
         <activity
             android:name=".activities.Einstellungen"
             android:exported="true" />
+
+        <!-- Test-Aktivität für den Login -->
         <activity
             android:name=".activities.LoginTestActivity"
             android:exported="true" />
+
+        <!-- Login-Aktivität, die als Einstiegspunkt dient -->
         <activity
             android:name=".activities.Login"
             android:exported="true"
             android:theme="@style/Theme.FamilyFlow">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity> <!-- Pinnwand Activity -->
+
+        <!-- Pinnwand-Aktivität -->
         <activity
             android:name=".activities.Pinnwand"
             android:exported="true"
-            android:theme="@style/Theme.FamilyFlow" /> <!-- Aufgabenmanagement Activities -->
+            android:theme="@style/Theme.FamilyFlow" />
+
+        <!-- Aufgabenmanagement Activities -->
         <activity
             android:name=".activities.AufgabeUebersicht"
             android:exported="true"
             android:theme="@style/Theme.FamilyFlow" />
+
+        <!-- Detaillierte Ansicht einer Aufgabe -->
         <activity
             android:name=".activities.AufgabeDetails"
             android:exported="true"
             android:theme="@style/Theme.FamilyFlow" />
+
+        <!-- Aktivität zum Erstellen einer neuen Aufgabe -->
         <activity
             android:name=".activities.AufgabeErstellen"
             android:exported="true"
             android:theme="@style/Theme.FamilyFlow" />
+
+        <!-- Personen zur Aufgabe zuweisen -->
         <activity
             android:name=".activities.PersonenZuweisen"
             android:exported="true"
-            android:theme="@style/Theme.FamilyFlow" /> <!-- Terminmanagement Activities -->
+            android:theme="@style/Theme.FamilyFlow" />
+
+        <!-- Terminmanagement Activities -->
         <activity
             android:name=".activities.TerminUebersicht"
             android:exported="true"
             android:theme="@style/Theme.FamilyFlow" />
+
+        <!-- Detaillierte Ansicht eines Termins -->
         <activity
             android:name=".activities.TerminDetails"
             android:exported="true"
             android:theme="@style/Theme.FamilyFlow" />
+
+        <!-- Aktivität zum Erstellen eines neuen Termins -->
         <activity
             android:name=".activities.TerminErstellen"
             android:exported="true"
             android:theme="@style/Theme.FamilyFlow" />
+
+        <!-- Personen zu einem Termin zuweisen -->
         <activity
             android:name=".activities.TerminPersonenZuweisen"
             android:exported="true"

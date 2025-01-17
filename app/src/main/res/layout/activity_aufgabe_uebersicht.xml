@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- Top Navigation mit Buttons für Sortierung -->
     <LinearLayout
         android:id="@+id/topNavigation"
         style="?android:attr/buttonBarButtonStyle"
@@ -18,6 +19,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
+
         <!-- Button für Sortierung nach Datum -->
         <Button
             android:id="@+id/buttonSortiereDatum"
@@ -41,10 +43,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_margin="1dp" />
-
-
     </LinearLayout>
 
+    <!-- ListView für die Anzeige der Aufgaben -->
     <ListView
         android:id="@+id/listViewAufgaben"
         android:layout_width="0dp"
@@ -55,8 +56,7 @@
         app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
         android:padding="8dp" />
 
-
-
+    <!-- Bottom Navigation mit Buttons für Navigation und neue Aufgabe -->
     <LinearLayout
         android:id="@+id/bottomNavigation"
         style="?android:attr/buttonBarButtonStyle"
@@ -71,6 +71,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
+        <!-- Button zum Zurückkehren zur Pinnwand -->
         <Button
             android:id="@+id/buttonZurueckPinnwand"
             android:layout_width="wrap_content"
@@ -81,7 +82,7 @@
             android:backgroundTint="@color/brown1"
             android:layout_margin="16dp" />
 
-        <!-- Button für neue Aufgabe -->
+        <!-- Button zum Erstellen einer neuen Aufgabe -->
         <Button
             android:id="@+id/button_neue_aufgabe"
             android:layout_width="wrap_content"

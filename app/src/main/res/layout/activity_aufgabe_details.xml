@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
+    <!-- EditText für Aufgabenbezeichnung -->
     <EditText
         android:id="@+id/editTextAufgabenbezeichnung"
         android:layout_width="0dp"
@@ -17,6 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:padding="8dp" />
 
+    <!-- EditText für Status -->
     <EditText
         android:id="@+id/editTextStatus"
         android:layout_width="0dp"
@@ -29,6 +31,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:padding="8dp" />
 
+    <!-- EditText für Fälligkeitsdatum -->
     <EditText
         android:id="@+id/editTextFaelligkeitsdatum"
         android:layout_width="0dp"
@@ -41,6 +44,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:padding="8dp" />
 
+    <!-- EditText für Notizen -->
     <EditText
         android:id="@+id/editTextNotiz"
         android:layout_width="0dp"
@@ -53,6 +57,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:padding="8dp" />
 
+    <!-- Spinner für Benutzerwahl -->
     <Spinner
         android:id="@+id/spinnerBenutzer"
         android:layout_width="0dp"
@@ -63,7 +68,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:spinnerMode="dropdown" />
 
-
+    <!-- LinearLayout für die untere Navigationsleiste -->
     <LinearLayout
         android:id="@+id/bottomNavigation"
         style="?android:attr/buttonBarButtonStyle"
@@ -79,6 +84,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent">
 
+        <!-- Button für "Zurück" -->
         <Button
             android:id="@+id/buttonZurueck"
             android:layout_width="0dp"
@@ -90,6 +96,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/buttonAufgabeLoeschen" />
 
+        <!-- Button für "Speichern" -->
         <Button
             android:id="@+id/buttonAufgabeSpeichern"
             android:layout_height="wrap_content"
@@ -101,6 +108,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/editTextNotiz" />
 
+        <!-- Button für "Löschen" -->
         <Button
             android:id="@+id/buttonAufgabeLoeschen"
             android:layout_width="0dp"

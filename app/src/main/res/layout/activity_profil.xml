@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
+    <!-- FrameLayout für das Profilbild -->
     <FrameLayout
         android:id="@+id/frameLayoutProfil"
         android:layout_width="192dp"
@@ -13,6 +14,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <!-- Profilbild als ImageView -->
         <ImageView
             android:id="@+id/imageViewProfil"
             android:layout_width="match_parent"
@@ -21,6 +23,7 @@
             android:background="@color/brown1"
             android:scaleType="centerCrop" />
 
+        <!-- Button zum Bearbeiten des Profilbildes -->
         <ImageButton
             android:id="@+id/buttonEditProfilbild"
             android:layout_width="48dp"
@@ -34,6 +37,7 @@
             app:tint="@color/black" />
     </FrameLayout>
 
+    <!-- LinearLayout für Vorname -->
     <LinearLayout
         android:id="@+id/linearLayoutVorname"
         android:layout_width="322dp"
@@ -47,6 +51,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/frameLayoutProfil">
 
+        <!-- Header TextView für Vorname -->
         <TextView
             android:id="@+id/textViewVornameHeader"
             style="@style/BoldTextStyle"
@@ -57,6 +62,7 @@
             android:textColor="@android:color/white"
             android:textSize="16sp" />
 
+        <!-- TextView für den Wert des Vornamens -->
         <TextView
             android:id="@+id/textViewVorname"
             android:layout_width="wrap_content"
@@ -66,6 +72,7 @@
             android:textSize="16sp" />
     </LinearLayout>
 
+    <!-- Bearbeitungsbutton für Vorname -->
     <ImageButton
         android:id="@+id/bearbeitungsZeichenVorname"
         android:layout_width="48dp"
@@ -80,6 +87,7 @@
         app:layout_constraintEnd_toEndOf="@id/linearLayoutVorname"
         app:layout_constraintBottom_toBottomOf="@id/linearLayoutVorname" />
 
+    <!-- LinearLayout für Nachname -->
     <LinearLayout
         android:id="@+id/linearLayoutNachname"
         android:layout_width="326dp"
@@ -92,6 +100,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/linearLayoutVorname">
 
+        <!-- Header TextView für Nachname -->
         <TextView
             android:id="@+id/textViewNachnameHeader"
             style="@style/BoldTextStyle"
@@ -102,6 +111,7 @@
             android:textColor="@android:color/white"
             android:textSize="16sp" />
 
+        <!-- TextView für den Wert des Nachnamens -->
         <TextView
             android:id="@+id/textViewNachname"
             android:layout_width="wrap_content"
@@ -111,6 +121,7 @@
             android:textSize="16sp" />
     </LinearLayout>
 
+    <!-- Bearbeitungsbutton für Nachname -->
     <ImageButton
         android:id="@+id/bearbeitungsZeichenNachname"
         android:layout_width="48dp"
@@ -125,6 +136,7 @@
         app:layout_constraintEnd_toEndOf="@id/linearLayoutNachname"
         app:layout_constraintBottom_toBottomOf="@id/linearLayoutNachname" />
 
+    <!-- LinearLayout für E-Mail -->
     <LinearLayout
         android:id="@+id/linearLayoutEmail"
         android:layout_width="325dp"
@@ -137,6 +149,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/linearLayoutNachname">
 
+        <!-- Header TextView für E-Mail -->
         <TextView
             android:id="@+id/textViewEmailHeader"
             style="@style/BoldTextStyle"
@@ -147,6 +160,7 @@
             android:textColor="@android:color/white"
             android:textSize="16sp" />
 
+        <!-- TextView für den Wert der E-Mail -->
         <TextView
             android:id="@+id/textViewEmail"
             android:layout_width="wrap_content"
@@ -156,6 +170,7 @@
             android:textSize="16sp" />
     </LinearLayout>
 
+    <!-- Bearbeitungsbutton für E-Mail -->
     <ImageButton
         android:id="@+id/bearbeitungsZeichenEmail"
         android:layout_width="48dp"
@@ -170,6 +185,7 @@
         app:layout_constraintEnd_toEndOf="@id/linearLayoutEmail"
         app:layout_constraintBottom_toBottomOf="@id/linearLayoutEmail" />
 
+    <!-- LinearLayout für Geburtsdatum -->
     <LinearLayout
         android:id="@+id/linearLayoutAlterdatum"
         android:layout_width="325dp"
@@ -182,6 +198,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/linearLayoutEmail">
 
+        <!-- Header TextView für Geburtsdatum -->
         <TextView
             android:id="@+id/textViewAlterdatumHeader"
             style="@style/BoldTextStyle"
@@ -192,6 +209,7 @@
             android:textColor="@android:color/white"
             android:textSize="16sp" />
 
+        <!-- TextView für den Wert des Geburtsdatums -->
         <TextView
             android:id="@+id/textViewAltersdatum"
             android:layout_width="wrap_content"
@@ -201,6 +219,7 @@
             android:textSize="16sp" />
     </LinearLayout>
 
+    <!-- Bearbeitungsbutton für Geburtsdatum -->
     <ImageButton
         android:id="@+id/bearbeitungsZeichenAlterdatum"
         android:layout_width="48dp"
@@ -215,6 +234,7 @@
         app:layout_constraintEnd_toEndOf="@id/linearLayoutAlterdatum"
         app:layout_constraintBottom_toBottomOf="@id/linearLayoutAlterdatum" />
 
+    <!-- Button zum Zurückkehren zu den Einstellungen -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonZurueckEinstellungen"
         android:layout_width="100dp"

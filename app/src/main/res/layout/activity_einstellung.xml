@@ -7,6 +7,7 @@
     android:background="@color/white"
     tools:context="hs.karlsruhe.de.familyflow.activities.Einstellungen">
 
+        <!-- Titel der Seite: Einstellungen -->
         <TextView
             android:id="@+id/settingsHeader"
             android:layout_width="wrap_content"
@@ -21,6 +22,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <!-- Button zum Anzeigen des Profils -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonProfil"
             android:layout_width="310dp"
@@ -34,6 +36,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/settingsHeader" />
 
+        <!-- Button zur Anpassung des Tons -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonTonAnpassen"
             android:layout_width="310dp"
@@ -47,6 +50,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/buttonProfil" />
 
+        <!-- Button zur Anpassung der Helligkeit -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonHelligkeit"
             android:layout_width="310dp"
@@ -60,6 +64,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/buttonTonAnpassen" />
 
+        <!-- Button zum Ändern des Layouts -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonLayoutAendern"
             android:layout_width="310dp"
@@ -73,6 +78,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/buttonHelligkeit" />
 
+        <!-- Button zur Verwaltung der Rollen -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonRollenVerwalten"
             android:layout_width="310dp"
@@ -86,6 +92,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/buttonLayoutAendern" />
 
+        <!-- Button zum Verlassen der Gruppe -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonGruppeVerlassen"
             android:layout_width="310dp"
@@ -99,6 +106,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/buttonRollenVerwalten" />
 
+        <!-- Button zum Löschen des Kontos -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonKontoLoeschen"
             android:layout_width="310dp"
@@ -112,6 +120,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/buttonGruppeVerlassen" />
 
+        <!-- Button zur Sicherheits-Einstellung -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonSicherheit"
             android:layout_width="310dp"
@@ -125,6 +134,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/buttonKontoLoeschen" />
 
+        <!-- Button zum Abmelden -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonLogout"
             android:layout_width="310dp"
@@ -139,6 +149,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/buttonSicherheit" />
 
+        <!-- Button zum Zurückgehen zur Pinnwand -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonZurueckPinnwand"
             android:layout_width="100dp"

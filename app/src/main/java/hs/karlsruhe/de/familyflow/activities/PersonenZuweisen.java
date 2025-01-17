@@ -24,6 +24,7 @@ import hs.karlsruhe.de.familyflow.data.entity.BenutzerAufgaben;
 
 public class PersonenZuweisen extends AppCompatActivity {
 
+    // DAO-Objekte für den Zugriff auf die Datenbank
     private BenutzerDao benutzerDao;
     private AufgabeDao aufgabeDao;
 
@@ -32,17 +33,18 @@ public class PersonenZuweisen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personen_zuweisen);
 
+        // Initialisiere die Datenbank und DAO-Objekte
         AppDatabase db = DatabaseManager.getDatabase(this);
-        benutzerDao = db.benutzerDao();
-        aufgabeDao = db.aufgabeDao();
+        benutzerDao = db.benutzerDao(); // Zugriff auf Benutzer-Tabellenoperationen
+        aufgabeDao = db.aufgabeDao();   // Zugriff auf Aufgaben-Tabellenoperationen
 
+        // Speicher-Button initialisieren
         Button btnSpeichern = findViewById(R.id.buttonPersonenSpeichern);
+
+        // Click-Listener für den Button
         btnSpeichern.setOnClickListener(v -> {
-            // Eventuell Daten verarbeiten (Zuweisung noch implementieren)
+            // Eventuell: Logik für das Speichern der Zuweisung hinzufügen
             Toast.makeText(this, "Personen gespeichert", Toast.LENGTH_SHORT).show();
         });
     }
 }
-
-
-

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Aufgabenbezeichnung -->
+    <!-- Eingabefeld für Aufgabenbezeichnung -->
     <EditText
         android:id="@+id/editTextAufgabenbezeichnung"
         android:layout_width="0dp"
@@ -18,7 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="16dp" />
 
-    <!-- Status -->
+    <!-- Eingabefeld für Status -->
     <EditText
         android:id="@+id/editTextStatus"
         android:layout_width="0dp"
@@ -31,7 +31,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="16dp" />
 
-    <!-- Fälligkeitsdatum -->
+    <!-- Eingabefeld für das Fälligkeitsdatum -->
     <EditText
         android:id="@+id/editTextFaelligkeitsdatum"
         android:layout_width="0dp"
@@ -44,7 +44,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="16dp" />
 
-    <!-- Notiz -->
+    <!-- Eingabefeld für Notizen -->
     <EditText
         android:id="@+id/editTextNotiz"
         android:layout_width="0dp"
@@ -57,6 +57,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="16dp" />
 
+    <!-- Dropdown-Menü für die Auswahl eines Benutzers -->
     <Spinner
         android:id="@+id/spinnerBenutzer"
         android:layout_width="0dp"
@@ -67,9 +68,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:spinnerMode="dropdown" />
 
-
-
-    <!-- Speichern Button -->
+    <!-- Button zum Speichern der Aufgabe -->
     <Button
         android:id="@+id/buttonAufgabeSpeichern"
         android:layout_width="0dp"
@@ -81,6 +80,7 @@
         android:backgroundTint="@color/brown1"
         android:layout_marginTop="16dp" />
 
+    <!-- Button zum Zurückgehen zur Pinnwand -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonZurueck"
         android:layout_width="100dp"

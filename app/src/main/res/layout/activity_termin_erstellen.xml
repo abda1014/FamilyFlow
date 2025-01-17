@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Terminname -->
+    <!-- EditText für den Terminname -->
     <EditText
         android:id="@+id/editTextTerminname"
         android:layout_width="0dp"
@@ -18,7 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="16dp" />
 
-    <!-- Datum -->
+    <!-- EditText für das Datum -->
     <EditText
         android:id="@+id/editTextDatum"
         android:layout_width="0dp"
@@ -31,7 +31,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="16dp" />
 
-    <!-- Notiz -->
+    <!-- EditText für die Uhrzeit -->
     <EditText
         android:id="@+id/editTextUhrzeit"
         android:layout_width="0dp"
@@ -44,7 +44,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="16dp" />
 
-    <!-- Notiz -->
+    <!-- EditText für die Wiederholung -->
     <EditText
         android:id="@+id/editTextWiederholung"
         android:layout_width="0dp"
@@ -57,7 +57,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="16dp" />
 
-    <!-- Status -->
+    <!-- EditText für die Beschreibung (Status) -->
     <EditText
         android:id="@+id/editTextBeschreibung"
         android:layout_width="0dp"
@@ -70,6 +70,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="16dp" />
 
+    <!-- Spinner für die Auswahl des Benutzers -->
     <Spinner
         android:id="@+id/spinnerBenutzer"
         android:layout_width="0dp"
@@ -80,7 +81,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:spinnerMode="dropdown" />
 
-    <!-- Speichern Button -->
+    <!-- Button zum Speichern des Termins -->
     <Button
         android:id="@+id/buttonTerminSpeichern"
         android:layout_width="0dp"
@@ -92,6 +93,7 @@
         android:backgroundTint="@color/brown1"
         android:layout_marginTop="16dp" />
 
+    <!-- MaterialButton für den Zurück-Button -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonZurueck"
         android:layout_width="100dp"

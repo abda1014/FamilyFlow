@@ -21,21 +21,26 @@ import hs.karlsruhe.de.familyflow.data.dao.TerminDao;
 
 public class TerminPersonenZuweisen extends AppCompatActivity {
 
-    private BenutzerDao benutzerDao;
-    private TerminDao terminDao;
+    // Datenbankzugriff-Objekte
+    private BenutzerDao benutzerDao; // DAO für Benutzer
+    private TerminDao terminDao;     // DAO für Termine
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personen_zuweisen);
 
+        // Datenbankinstanz abrufen und DAOs initialisieren
         AppDatabase db = DatabaseManager.getDatabase(this);
-        benutzerDao = db.benutzerDao();
-        terminDao = db.terminDao();
+        benutzerDao = db.benutzerDao(); // Zugriff auf Benutzer-Daten
+        terminDao = db.terminDao();     // Zugriff auf Termin-Daten
 
+        // Speichern-Button aus dem Layout abrufen
         Button btnSpeichern = findViewById(R.id.buttonPersonenSpeichern);
+
+        // Klick-Listener für den Speichern-Button setzen
         btnSpeichern.setOnClickListener(v -> {
-            // Eventuell Daten verarbeiten (Zuweisung noch implementieren)
+            // Hier könnte die Logik für die Zuweisung von Personen zu einem Termin implementiert werden
             Toast.makeText(this, "Personen gespeichert", Toast.LENGTH_SHORT).show();
         });
     }

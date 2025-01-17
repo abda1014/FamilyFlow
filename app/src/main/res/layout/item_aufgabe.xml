@@ -4,19 +4,21 @@
     android:orientation="horizontal"
     android:padding="8dp">
 
-    <TextView
-        android:id="@+id/textAufgabeName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:textSize="16sp"
-        android:textColor="@android:color/black" />
+<!-- TextView für den Aufgabennamen -->
+<TextView
+    android:id="@+id/textAufgabeName"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:textSize="16sp"
+    android:textColor="@android:color/black"/>
 
-    <TextView
-        android:id="@+id/textAufgabeDatum"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:textColor="@android:color/darker_gray"
-        android:paddingStart="8dp" />
+<!-- TextView für das Aufgabendatum -->
+<TextView
+    android:id="@+id/textAufgabeDatum"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textSize="14sp"
+    android:textColor="@android:color/darker_gray"
+    android:paddingStart="8dp"/>
 </LinearLayout>

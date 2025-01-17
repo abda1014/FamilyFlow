@@ -16,7 +16,7 @@
         android:visibility="visible"
         tools:visibility="gone">
 
-        <!-- App-Logo -->
+        <!-- App-Logo, zentriert oben auf dem Bildschirm -->
         <ImageView
             android:id="@+id/imageLogo"
             android:layout_width="156dp"
@@ -29,7 +29,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- Login-Button -->
+        <!-- Login-Button, unterhalb des Logos -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonLogin"
             android:layout_width="310dp"
@@ -45,7 +45,7 @@
             app:layout_constraintTop_toBottomOf="@id/imageLogo"
             app:layout_constraintVertical_chainStyle="packed" />
 
-        <!-- Registrieren-Button -->
+        <!-- Registrieren-Button, unterhalb des Login-Buttons -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonRegistrieren"
             android:layout_width="310dp"
@@ -69,7 +69,7 @@
         android:visibility="gone"
         tools:visibility="visible">
 
-        <!-- Eingabefeld Mail-Adresse -->
+        <!-- Eingabefeld für die Mail-Adresse -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/usernameInputLayout"
             android:layout_width="311dp"
@@ -88,7 +88,7 @@
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Eingabefeld Passwort -->
+        <!-- Eingabefeld für das Passwort -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/passwordInputLayout"
             android:layout_width="311dp"
@@ -106,7 +106,7 @@
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Login Button -->
+        <!-- Login-Button für das Login-Formular -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonNewLogin"
             android:layout_width="310dp"
@@ -121,7 +121,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/buttonVergessen" />
 
-        <!-- Konto anlegen-Button -->
+        <!-- Konto anlegen-Button, um zur Kontoerstellung zu wechseln -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonKontoAnlegen"
             android:layout_width="310dp"
@@ -136,7 +136,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textKontoErstellen" />
 
-        <!-- Zurück- Button -->
+        <!-- Zurück-Button, um zum vorherigen Bildschirm zu gelangen -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonZurueck"
             android:layout_width="110dp"
@@ -151,7 +151,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttonKontoAnlegen" />
 
-        <!-- Passwort vergessen- Button -->
+        <!-- Passwort vergessen-Button, um das Passwort zurückzusetzen -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonVergessen"
             android:layout_width="wrap_content"
@@ -168,7 +168,7 @@
 
         <!-- Infotext zu Konto erstellen -->
 
-        <!-- Text KontoErstellen -->
+        <!-- Text für die Konto-Erstellung, erscheint über den Eingabefeldern -->
         <TextView
             android:id="@+id/textKontoErstellen"
             style="@style/BoldTextStyle"
@@ -181,7 +181,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/fehlermeldung" />
 
-        <!-- Text Überschrift -->
+        <!-- Text für die Überschrift des Login-Formulars -->
         <TextView
             android:id="@+id/textUeberschrift"
             style="@style/UeberschriftLogin"
@@ -194,7 +194,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- Text FehlermeldungFalscheAnmeldedaten -->
+        <!-- Text für Fehlermeldung bei falschen Anmeldedaten -->
         <TextView
             android:id="@+id/fehlermeldung"
             android:layout_width="240dp"
@@ -208,7 +208,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/buttonNewLogin"
             tools:visibility="visible" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

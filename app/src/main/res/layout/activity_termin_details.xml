@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
-    <!-- Terminname -->
+    <!-- EditText für den Terminname -->
     <EditText
         android:id="@+id/editTextTerminname"
         android:layout_width="0dp"
@@ -18,7 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:padding="8dp" />
 
-    <!-- Datum -->
+    <!-- EditText für das Datum -->
     <EditText
         android:id="@+id/editTextDatum"
         android:layout_width="0dp"
@@ -31,7 +31,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:padding="8dp" />
 
-    <!-- Uhrzeit -->
+    <!-- EditText für die Uhrzeit -->
     <EditText
         android:id="@+id/editTextUhrzeit"
         android:layout_width="0dp"
@@ -44,7 +44,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:padding="8dp" />
 
-    <!-- Wiederholung -->
+    <!-- EditText für die Wiederholung -->
     <EditText
         android:id="@+id/editTextWiederholung"
         android:layout_width="0dp"
@@ -57,7 +57,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:padding="8dp" />
 
-    <!-- Beschreibung -->
+    <!-- EditText für die Beschreibung -->
     <EditText
         android:id="@+id/editTextBeschreibung"
         android:layout_width="0dp"
@@ -70,6 +70,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:padding="8dp" />
 
+    <!-- Spinner für die Auswahl des Benutzers -->
     <Spinner
         android:id="@+id/spinnerBenutzer"
         android:layout_width="0dp"
@@ -80,6 +81,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:spinnerMode="dropdown" />
 
+    <!-- LinearLayout für die untere Navigationsleiste -->
     <LinearLayout
         android:id="@+id/bottomNavigation"
         style="?android:attr/buttonBarButtonStyle"
@@ -95,6 +97,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent">
 
+        <!-- Button zum Zurückkehren -->
         <Button
             android:id="@+id/buttonZurueck"
             android:layout_width="0dp"
@@ -106,6 +109,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/buttonTerminLoeschen" />
 
+        <!-- Button zum Speichern des Termins -->
         <Button
             android:id="@+id/buttonTerminSpeichern"
             android:layout_height="wrap_content"
@@ -117,6 +121,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/editTextBeschreibung" />
 
+        <!-- Button zum Löschen des Termins -->
         <Button
             android:id="@+id/buttonTerminLoeschen"
             android:layout_width="0dp"
